@@ -49,3 +49,4 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 3) Add "libsqlite3.tbd" to Linked Frameworks and Libraries on your iOS Target
 4) Add "#import "FMDB.h" to your bridging header
 5) Add "#import "BRDatabase.h" to your bridging header
+6) In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
