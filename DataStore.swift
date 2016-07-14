@@ -33,22 +33,30 @@ class DataStore {
     
     func addDocumentToSyncQueue(documentId : String) {
         queue.inDatabase { (database) in
-            if let results = database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", documentId) {
+            do {
+                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", documentId)
                 if (results.next()) {
                     // The id already exists in the sync queue so skip
                     results.close()
                     return
                 }
                 results.close()
+
+                // If you're still here then add to the queue
+                try database.executeUpdate("INSERT INTO sync_queue (id) VALUES (?);", documentId)
+            } catch {
+                print("There was an error executing database queries or updates.")
             }
-            // If you're still here then add to the queue
-            database.executeUpdate("INSERT INTO sync_queue (id) VALUES (?);", documentId)
         }
     }
     
     func removeDocumentFromSyncQueue(documentId : String) {
         queue.inDatabase { (database) in
-            database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", documentId)
+            do {
+                try database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", documentId)
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
         }
     }
     
@@ -57,40 +65,49 @@ class DataStore {
         
         if let id = json["id"].string {
             queue.inDatabase { (database) -> Void in
-                
-                // First see if document already exists
-                if let results = database.executeQuery("SELECT * FROM documents WHERE id = ?;", id) {
+                do {
+                    // First see if document already exists
+                    let results = try database.executeQuery("SELECT * FROM documents WHERE id = ?;", id)
                     if (results.next()) {
                         // The document does exist so update
-                        database.executeUpdate("UPDATE documents SET json = ? WHERE id = ?;", documentJson, id)
+                        try database.executeUpdate("UPDATE documents SET json = ? WHERE id = ?;", documentJson, id)
                         results.close()
                         return;
                     }
                     results.close()
+                    
+                    // Document does not exist so we insert
+                    try database.executeUpdate("INSERT INTO documents (id, json) VALUES(?, ?);", id, documentJson);
+                } catch {
+                    print("There was an error executing database queries or updates.")
                 }
-                
-                // Document does not exist so we insert
-                database.executeUpdate("INSERT INTO documents (id, json) VALUES(?, ?);", id, documentJson);
             }
         }
     }
     
     func retrieveDocumentJSON(id : String, callback: (String?) -> ()) {
         queue.inDatabase { (database) in
-            if let results = database.executeQuery("SELECT json FROM documents WHERE id = ?;", id) {
+            do {
+                let results = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", id)
                 if (results.next()) {
                     let json = results.stringForColumn("json")
                     results.close()
                     callback(json)
                 }
                 results.close()
+            } catch {
+                print("There was an error executing database queries or updates.")
             }
         }
     }
     
     func deleteDocument(id : String) {
         queue.inDatabase { (database) in
-            database.executeUpdate("DELETE FROM documents WHERE id = ?;", id)
+            do {
+                try database.executeUpdate("DELETE FROM documents WHERE id = ?;", id)
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
         }
     }
     
@@ -118,10 +135,13 @@ class DataStore {
             // Load all json objects AHHHHHH
             var documents = [JSON]()
             
-            if let results = database.executeQuery("SELECT * FROM documents;") {
+            do {
+                let results = try database.executeQuery("SELECT * FROM documents;")
                 while (results.next()) {
                     documents.append(JSON.parse(results.stringForColumn("json")))
                 }
+            } catch {
+                print("There was an error executing database queries or updates.")
             }
             
             // Filter documents by parameters
@@ -146,7 +166,8 @@ class DataStore {
     
     func retrieveQueuedDocuments(callback: ([String]?) -> ()) {
         queue.inDatabase { (database) in
-            if let results = database.executeQuery("SELECT * FROM sync_queue;") {
+            do {
+                let results = try database.executeQuery("SELECT * FROM sync_queue;")
                 var syncIds : [String] = []
                 while (results.next()) {
                     let id = results.stringForColumn("id")
@@ -157,15 +178,16 @@ class DataStore {
                 // For each ID get the json
                 var documents : [String] = []
                 for id in syncIds {
-                    if let docResult = database.executeQuery("SELECT json FROM documents WHERE id = ?;", id) {
-                        if (docResult.next()) {
-                            let json = docResult.stringForColumn("json")
-                            documents.append(json)
-                        }
-                        docResult.close()
+                    let docResult = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", id)
+                    if (docResult.next()) {
+                        let json = docResult.stringForColumn("json")
+                        documents.append(json)
                     }
+                    docResult.close()
                 }
                 callback(documents)
+            } catch {
+                print("There was an error executing database queries or updates.")
             }
         }
     }

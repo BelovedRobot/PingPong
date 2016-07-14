@@ -60,7 +60,7 @@ class PingPong {
         }
         
         let headerDict = [
-            "Authorization" : "Token token=\(Globals.authToken)"
+            "Authorization" : "Token token=\(self.authorizationToken)"
         ];
 
         let endpoint = "\(PingPong.shared.documentEndpoint)/app/upload"
@@ -132,7 +132,7 @@ class PingPong {
             let fileName = pathString.lastPathComponent
          
             let headerDict = [
-                "Authorization" : "Token token=\(Globals.authToken)"
+                "Authorization" : "Token token=\(self.authorizationToken)"
             ];
             
             let endpoint = "\(PingPong.shared.documentEndpoint)/app/upload"
