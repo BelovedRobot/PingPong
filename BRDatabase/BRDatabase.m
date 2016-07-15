@@ -23,7 +23,7 @@
 
 #import "BRDatabase.h"
 #import "FMDatabaseQueue.h"
-#import "FMDatabase+BRDatabaseExtensions.h"
+#import "FMDB.h"
 
 @implementation BRDatabase
 
@@ -120,10 +120,9 @@
             // Get the Database Install
             NSString *installScript = [self getStringFromScriptPath:[_scripts objectForKey:@"0.0"]];
             
-            NSError *error;
-            [database executeBatchWithSqlScript:installScript outError:&error];
-            if (error != nil) {
-                NSLog(@"Update failed with error: %@", [error localizedDescription]);
+            bool success = [database executeStatements:installScript];
+            if (!success) {
+                NSLog(@"Update failed");
             }
         }
         
@@ -170,10 +169,9 @@
         
         NSString *upgradeScript = [self getStringFromScriptPath:[_scripts objectForKey:version]];
         
-        NSError *error;
-        [_database executeBatchWithSqlScript:upgradeScript outError:&error];
-        if (error != nil)
-            NSLog(@"Update failed with error: %@", [error localizedDescription]);
+        bool success = [_database executeStatements:upgradeScript];
+        if (!success)
+            NSLog(@"Update failed.");
         
         [_database close];
     }

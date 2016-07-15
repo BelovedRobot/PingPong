@@ -74,18 +74,6 @@ class BackgroundSync {
                 
                 // Based on type, de-serialize from JSON in order to save
                 switch(type) {
-                case "ticket":
-                    let ticket = Ticket()
-                    ticket.fromJSON(json)
-                    ticket.backgroundSync(success)
-                case "crane":
-                    let crane = Crane()
-                    crane.fromJSON(json)
-                    crane.backgroundSync(success)
-                case "payrollWeek":
-                    let payrollWeek = PayrollWeek()
-                    payrollWeek.fromJSON(json)
-                    payrollWeek.backgroundSync(success)
                 case "fileUpload":
                     let fileUpload = FileUpload()
                     fileUpload.fromJSON(json)
@@ -94,7 +82,8 @@ class BackgroundSync {
                     let fileDelete = FileDelete()
                     fileDelete.fromJSON(json)
                     PingPong.shared.deleteFile(fileDelete, callback: success)
-                default: break
+                default:
+                    PingPong.shared.saveDocumentToCloud(json, success: success)
                 }
             }
         }

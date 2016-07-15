@@ -16,14 +16,8 @@ class SyncObject : StashObject {
     override var id: String {
         didSet {
             // Add observer for cloud changes
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: self.updatedNotificationName, object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onCloudUpdate), name: self.updatedNotificationName, object: nil)
-        }
-    }
-    
-    private var updatedNotificationName : String {
-        get {
-            return "\(self.id)_updated"
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: SyncObject.getUpdatedNotification(self.id), object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onCloudUpdate), name: SyncObject.getUpdatedNotification(self.id), object: nil)
         }
     }
     
@@ -31,6 +25,7 @@ class SyncObject : StashObject {
         self.refresh()
     }
 
+    
 //    func save(callback: (() -> ())?) {
 //        // Update the local stash
 //        self.stash()
@@ -65,6 +60,10 @@ class SyncObject : StashObject {
 //        self.fromJSON(jsonResult)
 //    }
     
+    static func getUpdatedNotification(id : String) -> String {
+        return "\(id)_updated"
+    }
+    
     func saveEventually() {
         // Update the local stash
         self.stash()
@@ -89,17 +88,17 @@ class SyncObject : StashObject {
         }
     }
     
-    // Save Document to Cloud (Network call)
-    private func saveDocumentToCloud(success : ((jsonString : String?) -> ())? ) {
-        let isPost = (self.id == "")
-        
-        // If it is a post
-        if isPost {
-            self.post(success)
-        } else {
-            self.put(success)
-        }
-    }
+//    // Save Document to Cloud (Network call)
+//    private func saveDocumentToCloud(success : ((jsonString : String?) -> ())? ) {
+//        let isPost = (self.id == "")
+//        
+//        // If it is a post
+//        if isPost {
+//            self.post(success)
+//        } else {
+//            self.put(success)
+//        }
+//    }
     
     // POST Document
     private func post(success : ((jsonString : String?) -> ())? ) {
@@ -124,7 +123,7 @@ class SyncObject : StashObject {
                         DataStore.sharedDataStore.stashDocument(documentJson)
                         
                         // Send notification of update
-                        NSNotificationCenter.defaultCenter().postNotificationName(self.updatedNotificationName, object: nil)
+                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
                         
                         success?(jsonString: documentJson)
                     } else {
@@ -160,7 +159,7 @@ class SyncObject : StashObject {
                         DataStore.sharedDataStore.stashDocument(documentJson)
                         
                         // Send notification of update
-                        NSNotificationCenter.defaultCenter().postNotificationName(self.updatedNotificationName, object: nil)
+                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
                         
                         success?(jsonString: documentJson)
                     } else {

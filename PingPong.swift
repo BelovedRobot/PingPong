@@ -156,4 +156,61 @@ class PingPong {
         fileDelete.stash()
         DataStore.sharedDataStore.addDocumentToSyncQueue(fileDelete.id)
     }
+    
+    // POST JSON Document
+    func saveDocumentToCloud(jsonString : String, success : (() -> ())? ) {
+        // Guard against missing id
+        guard let id = JSON.parse(jsonString)["id"].string else {
+            return
+        }
+        
+        let url = "\(PingPong.shared.documentEndpoint)/document"
+        
+        guard let nsUrl = NSURL(string: url) else {
+            success?()
+            return
+        }
+        
+        // Build the request
+        let request = NSMutableURLRequest(URL: nsUrl)
+        request.HTTPMethod = "PUT"
+        request.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        request.addValue(PingPong.shared.authorizationToken, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        // Build the task
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler: { data, response, error -> Void in
+            // Check if response is valid
+            if let httpResponse = response as? NSHTTPURLResponse {
+                // Check the status code
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    // Parse the data
+                    if let realData = data, value = String(data: realData, encoding: NSUTF8StringEncoding) {
+                        let json = JSON(value);
+                        let documentJson = json["data"].rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))!
+                        
+                        // Update stash
+                        DataStore.sharedDataStore.stashDocument(documentJson)
+                        
+                        // Send notification of update
+                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(id), object: nil)
+                        
+                        success?()
+                    }
+                } else {
+                    // The request went bad, do some thing about it
+                    print("There was a problem syncing the document")
+                    print("Response code is \(httpResponse.statusCode)")
+                }
+            } else {
+                // The response is nil
+                print("There was a problem syncing the document, did not recieve a response from the endpoint")
+            }
+        })
+        
+        
+        task.resume()
+    }
 }
