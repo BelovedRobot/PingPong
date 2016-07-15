@@ -43,7 +43,7 @@ I expect:
 ### Implementation Notes for iOS Apps
 After creating the endpoint, add PingPong to your iOS project by following these steps:
 1. Clone a copy of PingPong or make sure to pull latest
-2. Copy _all_ the source files from the repo into your iOS project
+2. Copy _all_ the source files from the repo into your iOS project *DO NOT* Copy the .git repo or any .git files
 
 As weird as this sounds but PingPong is not an actual iOS Framework. At the time of writing this mixed Objective-C/Swift frameworks are not allowed. Furthermore FMDB is not compatible with Frameworks either (again, as of this writing). The simplest solution then was to simply create a folder with the source and copy it into each project that needs it.
 
