@@ -51,3 +51,6 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 4. Add "#import "FMDB.h" to your bridging header
 5. Add "#import "BRDatabase.h" to your bridging header
 6. In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
+
+### Modifying PingPong
+The easiest and recommended way of making modifications to PingPong is to edit the source files directly in a working iOS project. Before making modifications make sure that you have the latest version of PingPong installed. Then simply start editing. This ensures that any changes are built and tested prior to committing to the PingPong repo. Once you have validated your changes you can can copy/paste the source into the PingPong repo and commit them.
