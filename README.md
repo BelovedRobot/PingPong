@@ -51,6 +51,31 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 4. Add "#import "FMDB.h" to your bridging header
 5. Add "#import "BRDatabase.h" to your bridging header
 6. In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
+7. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
+Example:
+`class PayrollWeek : SyncObject {
+    var technicianId : String = ""
+    var name : String = ""
+    var serviceLocation : String = ""
+    var startOfWeek : String = ""
+    var days : [PayrollDay] = []
+    var docType = "payrollWeek"
+    
+    override func fromJSON(json: String) {
+        self.days = []
+        
+        super.fromJSON(json)
+        
+        // Days
+        if let dayArray = self.deserializationExceptions["days"]?.array {
+            for dayJson in dayArray {
+                let day = PayrollDay()
+                day.fromJSON(dayJson.rawString()!)
+                self.days.append(day)
+            }
+        }
+    }
+}`
 
 ### Modifying PingPong
 The easiest and recommended way of making modifications to PingPong is to edit the source files directly in a working iOS project. Before making modifications make sure that you have the latest version of PingPong installed. Then simply start editing. This ensures that any changes are built and tested prior to committing to the PingPong repo. Once you have validated your changes you can can copy/paste the source into the PingPong repo and commit them.
