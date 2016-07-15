@@ -42,13 +42,20 @@ I expect:
 
 ### Implementation Notes for iOS Apps
 After creating the endpoint, add PingPong to your iOS project by following these steps:
+
 1. Clone a copy of PingPong or make sure to pull latest
+
 2. Copy _all_ the source files from the repo into your iOS project *DO NOT* Copy the .git repo or any .git files
 As weird as this sounds but PingPong is not an actual iOS Framework. At the time of writing this mixed Objective-C/Swift frameworks are not allowed. Furthermore FMDB is not compatible with Frameworks either (again, as of this writing). The simplest solution then was to simply create a folder with the source and copy it into each project that needs it.
+
 3. Add "libsqlite3.tbd" to Linked Frameworks and Libraries on your iOS Target
+
 4. Add "#import "FMDB.h" to your bridging header
+
 5. Add "#import "BRDatabase.h" to your bridging header
+
 6. In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
+
 7. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
 Example:
 
