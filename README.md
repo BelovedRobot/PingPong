@@ -56,17 +56,18 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 
 6. In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
 
-7. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
+7. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries (or Swift classes that are seen as Dictionaries) on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
 Example:
 
 ```swift
 class PayrollWeek : SyncObject {
+    var docType = "payrollWeek"
     var technicianId : String = ""
     var name : String = ""
     var serviceLocation : String = ""
     var startOfWeek : String = ""
     var days : [PayrollDay] = []
-    var docType = "payrollWeek"
+    var metadata : PayrollMetadata = PayrollMetadata()
     
     override func fromJSON(json: String) {
         self.days = []
@@ -80,6 +81,13 @@ class PayrollWeek : SyncObject {
                 day.fromJSON(dayJson.rawString()!)
                 self.days.append(day)
             }
+        }
+        
+        // PayrollMetadata
+        if let json = self.deserializationExceptions["metadata"]?.rawString() {
+            let metadata = PayrollMetadata()
+            metadata.fromJSON(json)
+            self.metadata = metadata
         }
     }
 }
