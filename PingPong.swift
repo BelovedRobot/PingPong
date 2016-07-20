@@ -29,10 +29,10 @@ class PingPong {
         self.reachabilityManager = NetworkReachabilityManager(host: "www.apple.com")
     }
     
-    func start(documentEndpoint : String, authorizationToken : String, secondsInterval : Int) {
+    func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
-        self.backgroundSync.start(secondsInterval)
+        self.backgroundSync.start(backGroundSyncInterval)
         
         // Start listening
         self.reachabilityManager?.listener = { status in
