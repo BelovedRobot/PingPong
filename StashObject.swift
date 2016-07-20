@@ -11,11 +11,10 @@ import Foundation
 class StashObject : JsonObject {
     
     override init() {
-        self.id = ""
         super.init()
     }
     
-    var id : String; // Every sync object is required to have an id
+    var id : String = "" // Every sync object is required to have an id
     
     func stash() {
         let jsonString = self.toJSON()
@@ -58,14 +57,14 @@ class StashObject : JsonObject {
         return hasChanged
     }
     
-    private func retrieve(id : String, callback : (() -> ())?) {
-        DataStore.sharedDataStore.retrieveDocumentJSON(id) { (result : String?) in
-            if let json = result {
-                self.fromJSON(json)
-                if let callableCallback = callback {
-                    callableCallback()
-                }
-            }
-        }
-    }
+//    private func retrieve(id : String, callback : (() -> ())?) {
+//        DataStore.sharedDataStore.retrieveDocumentJSON(id) { (result : String?) in
+//            if let json = result {
+//                self.fromJSON(json)
+//                if let callableCallback = callback {
+//                    callableCallback()
+//                }
+//            }
+//        }
+//    }
 }

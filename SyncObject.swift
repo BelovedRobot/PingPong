@@ -15,9 +15,12 @@ class SyncObject : StashObject {
     // variables of this object in memeory will update automatically if a cloud update is issued.
     override var id: String {
         didSet {
-            // Add observer for cloud changes
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: SyncObject.getUpdatedNotification(self.id), object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onCloudUpdate), name: SyncObject.getUpdatedNotification(self.id), object: nil)
+            // Only add the observer is id is not ""
+            if (id != "") {
+                // Add observer for cloud changes
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: SyncObject.getUpdatedNotification(self.id), object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onCloudUpdate), name: SyncObject.getUpdatedNotification(self.id), object: nil)
+            }
         }
     }
     
