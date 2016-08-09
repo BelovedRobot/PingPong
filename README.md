@@ -20,15 +20,17 @@ The first step is to create the Document endpoint. This endpoint can be configur
 
 ### Implementation Notes for the Service Endpoint
 1. Each document needs an ID
+
 2. Each document needs a "docType" property, which can then be used to model types of objects
+
 3. When documents are POST/PUT the document is returned wrapped in a data property. Example: 
+
 I POST:
 `{
 	"id": "...",
 	"docType": "myDocType",
 	"someProperty": "Hello World!"
 }`
-
 I expect:
 `{
 	"data": {
@@ -37,7 +39,9 @@ I expect:
 		"someProperty": "Hello World!"
 	}
 }`
+
 4. When files are uploaded PingPong assumes they are tied to another document so you have to provide a FileUpload object for each file that should be used by your endpoint to assign the file's URL to the object once uploading is complete
+
 5. Authorization to the endpoint is _only_ provided through simple token-based authentication where a token is assigned to each app and or user that gives access the endpoint through the "Authorization" header on requests. That is to say each PingPong request includes "Token token=xxx" in the Authorization header where "xxx" is the actual token
 
 ### Implementation Notes for iOS Apps
@@ -56,7 +60,9 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 
 6. In your AppDelegate (or wherever you'd like) add PingPong.shared.start(...your parameters...)
 
-7. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries (or Swift classes that are seen as Dictionaries) on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
+7. PingPong supports the ability to "override" default syncing behavior through the SyncingOptions parameter. Essentially you give PingPong the docType and a closure (block of code) to execute when syncing occurs. You can use this feature to create custom background tasks.
+
+8. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries (or Swift classes that are seen as Dictionaries) on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property. Also be weary of **private** properties, they may are may not serialize properly (this needs to be verified).
 Example:
 
 ```swift
