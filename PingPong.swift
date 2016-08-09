@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+typealias SyncOptionValue = (jsonData: String, success: (()->())?) -> Void
+
 class PingPong {
     
     static let shared : PingPong = PingPong()
@@ -17,6 +19,7 @@ class PingPong {
     private var backgroundSync : BackgroundSync
     private var reachabilityManager : NetworkReachabilityManager?
     var isEndpointReachable : Bool = false
+    var syncOptions = [String : SyncOptionValue]()
     
     init() {
         // Init the data store
@@ -29,10 +32,13 @@ class PingPong {
         self.reachabilityManager = NetworkReachabilityManager(host: "www.apple.com")
     }
     
-    func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int) {
+    func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncOptions : [String : SyncOptionValue]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
         self.backgroundSync.start(backGroundSyncInterval)
+        if let userSyncOptions = syncOptions {
+            self.syncOptions = userSyncOptions
+        }
         
         // Start listening
         self.reachabilityManager?.listener = { status in
@@ -47,6 +53,35 @@ class PingPong {
             }
         }
         self.reachabilityManager?.startListening()
+    }
+    
+    func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncOptions : [String : SyncOptionValue]?) {
+        self.documentEndpoint = documentEndpoint
+        self.authorizationToken = authorizationToken
+        if let userSyncOptions = syncOptions {
+            self.syncOptions = userSyncOptions
+        }
+        
+        // Start listening
+        self.reachabilityManager?.listener = { status in
+            print("Network Status Changed: \(status)")
+            switch (status) {
+            case .Reachable(.EthernetOrWiFi):
+                self.isEndpointReachable = true
+            case .Reachable(.WWAN):
+                self.isEndpointReachable = true
+            default:
+                self.isEndpointReachable = false
+            }
+        }
+        self.reachabilityManager?.startListening()
+        
+        // Call the background sync
+        self.backgroundSync.sync()
+    }
+    
+    func stop() {
+        self.backgroundSync.stop()
     }
     
     func uploadFile(fileUpload : FileUpload, callback: ()->()) {
@@ -175,7 +210,8 @@ class PingPong {
         let request = NSMutableURLRequest(URL: nsUrl)
         request.HTTPMethod = "PUT"
         request.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        request.addValue(PingPong.shared.authorizationToken, forHTTPHeaderField: "Authorization")
+        let authValue = "Token token=\(PingPong.shared.authorizationToken)"
+        request.addValue(authValue, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         

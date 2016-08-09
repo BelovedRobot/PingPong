@@ -88,15 +88,16 @@ class DataStore {
     func retrieveDocumentJSON(id : String, callback: (String?) -> ()) {
         queue.inDatabase { (database) in
             do {
+                var jsonResult : String? = nil
                 let results = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", id)
                 if (results.next()) {
-                    let json = results.stringForColumn("json")
-                    results.close()
-                    callback(json)
+                    jsonResult = results.stringForColumn("json")
                 }
                 results.close()
+                callback(jsonResult)
             } catch {
                 print("There was an error executing database queries or updates.")
+                
             }
         }
     }
@@ -140,6 +141,7 @@ class DataStore {
                 while (results.next()) {
                     documents.append(JSON.parse(results.stringForColumn("json")))
                 }
+                results.close()
             } catch {
                 print("There was an error executing database queries or updates.")
             }

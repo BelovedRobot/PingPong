@@ -28,41 +28,6 @@ class SyncObject : StashObject {
         self.refresh()
     }
 
-    
-//    func save(callback: (() -> ())?) {
-//        // Update the local stash
-//        self.stash()
-//        
-//        self.saveDocumentToCloud(self) { jsonString in
-//            if let json = jsonString {
-//                self.fromJSON(json)
-//            }
-//            
-//            if let callableCallback = callback {
-//                callableCallback()
-//            }
-//        }
-//    }
-//    func saveAndWait() {
-//        // Update the local stash
-//        self.stash()
-//        
-//        // Create semaphore to await results
-//        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
-//        var jsonResult : String = ""
-//        
-//        self.saveDocumentToCloud(self) { jsonString in
-//            if let json = jsonString {
-//                jsonResult = json
-//            }
-//            dispatch_semaphore_signal(sema)
-//        }
-//        
-//        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
-//        
-//        self.fromJSON(jsonResult)
-//    }
-    
     static func getUpdatedNotification(id : String) -> String {
         return "\(id)_updated"
     }
@@ -91,17 +56,61 @@ class SyncObject : StashObject {
         }
     }
     
-//    // Save Document to Cloud (Network call)
-//    private func saveDocumentToCloud(success : ((jsonString : String?) -> ())? ) {
-//        let isPost = (self.id == "")
-//        
-//        // If it is a post
-//        if isPost {
-//            self.post(success)
-//        } else {
-//            self.put(success)
-//        }
-//    }
+    func fromCloud(success : (()->())?) {
+        self.get{ jsonString in
+            
+            // If json was returned
+            if let json = jsonString {
+                
+                // Populate self
+                self.fromJSON(json)
+                
+                // Call success
+                if let callableSuccess = success {
+                    callableSuccess()
+                }
+            }
+        }
+    }
+    
+    // Get Document
+    private func get(success : ((jsonString : String?) -> ())? ) {
+        let headerDict = [
+            "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
+            "Content-Type" : "application/json"
+        ];
+        
+        let url = "\(PingPong.shared.documentEndpoint)/document/\(self.id)"
+        
+        // Send the request
+        request(.GET, url, parameters: nil, headers: headerDict, encoding: .JSON)
+            .responseJSON { response in
+                if response.response?.statusCode == 200 {
+                    print("Document \(self.valueForKey("docType")!) retrieved!")
+                    
+                    if let value = response.result.value {
+                        let json = JSON(value);
+                        if let documentJson = json.rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0)) {
+                            
+                            // Update stash
+                            DataStore.sharedDataStore.stashDocument(documentJson)
+                            
+                            // Send notification of update
+                            NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
+                            
+                            success?(jsonString: documentJson)
+                        } else {
+                            print("There was a problem retrieving the document")
+                        }
+                    } else {
+                        success?(jsonString: nil)
+                    }
+                } else {
+                    print("There was a problem retrieving the document")
+                    print("Response code is \(response.response?.statusCode)")
+                }
+        }
+    }
     
     // POST Document
     private func post(success : ((jsonString : String?) -> ())? ) {

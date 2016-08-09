@@ -13,6 +13,7 @@ class BackgroundSync {
     static let shared : BackgroundSync = BackgroundSync()
     private var queue : NSOperationQueue;
     private var secondsInterval : Int = 0
+    private var timer : NSTimer?
     
     init() {
         queue = NSOperationQueue()
@@ -24,9 +25,15 @@ class BackgroundSync {
         self.scheduleTimer()
     }
     
+    func stop() {
+        if let validTimer = self.timer {
+            validTimer.invalidate()
+        }
+    }
+    
     private func scheduleTimer() {
         let seconds = Double(self.secondsInterval)
-        NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(self.timerFired(_:)), userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(self.timerFired(_:)), userInfo: nil, repeats: false)
     }
     
     @objc private func timerFired(timer : NSTimer) {
@@ -43,7 +50,7 @@ class BackgroundSync {
         self.scheduleTimer()
     }
     
-    private func sync() {
+    func sync() {
         // Is there a network connection
         guard PingPong.shared.isEndpointReachable else {
             return
@@ -83,7 +90,13 @@ class BackgroundSync {
                     fileDelete.fromJSON(json)
                     PingPong.shared.deleteFile(fileDelete, callback: success)
                 default:
-                    PingPong.shared.saveDocumentToCloud(json, success: success)
+                    // Does the docType has a custom sync option
+                    if let syncOption = PingPong.shared.syncOptions[type] {
+                        syncOption(jsonData: json, success: success)
+                    } else {
+                        // By Default sync the document
+                        PingPong.shared.saveDocumentToCloud(json, success: success)
+                    }
                 }
             }
         }
