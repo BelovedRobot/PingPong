@@ -63,7 +63,9 @@ As weird as this sounds but PingPong is not an actual iOS Framework. At the time
 
 7. PingPong supports the ability to "override" default syncing behavior through the SyncingOptions parameter. Essentially you give PingPong the docType and a closure (block of code) to execute when syncing occurs. You can use this feature to create custom background tasks.
 
-8. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries (or Swift classes that are seen as Dictionaries) on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property. Also be weary of **private** properties, they may are may not serialize properly (this needs to be verified).
+8.  Be weary of **optional** properties, they do not serialize properly (this needs to be verified).
+
+9. This is *very important*: The JSON de-serialization to Swift objects cannot parse arrays or dictionaries (or Swift classes that are seen as Dictionaries) on it's own. So if your object has an array or dictionary you will have to override the func fromJson. Be sure to call super.fromJSON() to populate your simple properties and that will also populate the property deserializationExceptions (Dictionary<string, JSON>) where you can get the JSON value for the property.
 Example:
 
 ```swift
