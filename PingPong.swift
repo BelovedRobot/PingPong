@@ -233,6 +233,8 @@ class PingPong {
                         // Send notification of update
                         NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(id), object: nil)
                         
+                        print("Document \(json["data"]["docType"].string!) synced!")
+                        
                         success?()
                     }
                 } else {
