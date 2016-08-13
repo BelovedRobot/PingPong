@@ -21,6 +21,14 @@ class StashObject : JsonObject {
         DataStore.sharedDataStore.stashDocument(jsonString)
     }
     
+    // This func takes is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
+    func safeStashFromCloud() {
+        if !DataStore.sharedDataStore.hasPendingChanges(self.id) {
+            let jsonString = self.toJSON()
+            DataStore.sharedDataStore.stashDocument(jsonString)
+        }
+    }
+    
     func refresh() {
         // Create semaphore to await results
         let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)

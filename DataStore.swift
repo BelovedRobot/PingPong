@@ -50,6 +50,32 @@ class DataStore {
         }
     }
     
+    func hasPendingChanges(documentId : String) -> Bool {
+        var hasChanges = false
+        
+        // Create semaphore to await results
+        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        
+        queue.inDatabase { (database) in
+            do {
+                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", documentId)
+                if (results.next()) {
+                    // The id already exists in the sync queue return true
+                    hasChanges = true
+                }
+                results.close()
+                dispatch_semaphore_signal(sema)
+                
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
+        }
+        
+        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        return hasChanges
+
+    }
+    
     func removeDocumentFromSyncQueue(documentId : String) {
         queue.inDatabase { (database) in
             do {

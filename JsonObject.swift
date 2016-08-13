@@ -89,7 +89,7 @@ class JsonObject : NSObject {
                     print("Child property '\(label)' can not be serialized...skipping.")
                 }
             } else if let value = anyValue as? JsonObject {
-                // For non-optional types the object will through dictionary mirror handler, otherwise optionals end-up here
+                // For non-optional types the object will go through dictionary mirror handler, otherwise optionals end-up here
                 let childDict = value.toDictionary()
                 dict[label] = childDict
             } else {
