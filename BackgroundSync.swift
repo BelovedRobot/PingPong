@@ -22,7 +22,7 @@ class BackgroundSync {
     
     func start(secondsInterval : Int) {
         self.secondsInterval = secondsInterval
-        self.scheduleTimer()
+        self.scheduleTimer(5) // First pass refreshes after 5 seconds
     }
     
     func stop() {
@@ -31,9 +31,8 @@ class BackgroundSync {
         }
     }
     
-    private func scheduleTimer() {
-        let seconds = Double(self.secondsInterval)
-        timer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(self.timerFired(_:)), userInfo: nil, repeats: false)
+    private func scheduleTimer(seconds : Int) {
+        timer = NSTimer.scheduledTimerWithTimeInterval(Double(seconds), target: self, selector: #selector(self.timerFired(_:)), userInfo: nil, repeats: false)
     }
     
     @objc private func timerFired(timer : NSTimer) {
@@ -47,7 +46,7 @@ class BackgroundSync {
         queue.addOperationWithBlock(someWork);
         
         // Schedule more work
-        self.scheduleTimer()
+        self.scheduleTimer(self.secondsInterval)
     }
     
     func sync() {
@@ -100,5 +99,9 @@ class BackgroundSync {
                 }
             }
         }
+        
+        // Delete any orphanced records in the sync queue, there is a byproduct of the sync options in which they clean up their own records but 
+        // the sync queue record may remain
+        DataStore.sharedDataStore.removeOrphanedSyncQueueEntries()
     }
 }

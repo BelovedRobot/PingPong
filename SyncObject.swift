@@ -73,6 +73,18 @@ class SyncObject : StashObject {
         }
     }
     
+    // This func takes is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
+    func safeStashFromCloud() {
+        if !self.hasPendingSync() {
+            let jsonString = self.toJSON()
+            DataStore.sharedDataStore.stashDocument(jsonString)
+        }
+    }
+    
+    func hasPendingSync() -> Bool {
+        return DataStore.sharedDataStore.hasPendingSync(self.id);
+    }
+    
     // Get Document
     private func get(success : ((jsonString : String?) -> ())? ) {
         let headerDict = [

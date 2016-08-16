@@ -224,18 +224,22 @@ class PingPong {
                 if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
                     // Parse the data
                     if let realData = data, value = String(data: realData, encoding: NSUTF8StringEncoding) {
-                        let json = JSON(value);
-                        let documentJson = json["data"].rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))!
-                        
-                        // Update stash
-                        DataStore.sharedDataStore.stashDocument(documentJson)
-                        
-                        // Send notification of update
-                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(id), object: nil)
-                        
-                        print("Document \(json["data"]["docType"].string!) synced!")
-                        
-                        success?()
+                        let json = JSON.parse(value)
+                        if let documentJson = json["data"].rawString() {
+                            // Update stash
+                            DataStore.sharedDataStore.stashDocument(documentJson)
+                            
+                            // Send notification of update
+                            NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(id), object: nil)
+                            
+                            if let docType = json["data"]["docType"].string {
+                                print("Document \(docType) synced!")
+                            } else {
+                                print("Document synced down but JSON could not be parsed")
+                            }
+                            
+                            success?()
+                        }
                     }
                 } else {
                     // The request went bad, do some thing about it

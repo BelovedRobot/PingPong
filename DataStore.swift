@@ -50,7 +50,7 @@ class DataStore {
         }
     }
     
-    func hasPendingChanges(documentId : String) -> Bool {
+    func hasPendingSync(documentId : String) -> Bool {
         var hasChanges = false
         
         // Create semaphore to await results
@@ -80,6 +80,16 @@ class DataStore {
         queue.inDatabase { (database) in
             do {
                 try database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", documentId)
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
+        }
+    }
+    
+    func removeOrphanedSyncQueueEntries() {
+        queue.inDatabase { (database) in
+            do {
+                try database.executeUpdate("DELETE FROM sync_queue WHERE id NOT IN (SELECT id FROM documents);")
             } catch {
                 print("There was an error executing database queries or updates.")
             }

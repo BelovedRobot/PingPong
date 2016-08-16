@@ -21,12 +21,29 @@ class StashObject : JsonObject {
         DataStore.sharedDataStore.stashDocument(jsonString)
     }
     
-    // This func takes is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
-    func safeStashFromCloud() {
-        if !DataStore.sharedDataStore.hasPendingChanges(self.id) {
-            let jsonString = self.toJSON()
-            DataStore.sharedDataStore.stashDocument(jsonString)
+    // This is essentially an override for stash where only a single instance of this document should exist in the DB at a time
+    func stashSingle(docType : String) -> Bool {
+        var shouldStash = false
+        
+        // Create semaphore to await results
+        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        
+        // Query the datastore for existing receipt validation tasks
+        DataStore.sharedDataStore.queryDocumentStore(("docType", docType)) { results in
+            // If none are found then stash current
+            if (results.count == 0) {
+                shouldStash = true
+            }
+            dispatch_semaphore_signal(sema)
         }
+        
+        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        
+        if (shouldStash) {
+            stash()
+        }
+        
+        return shouldStash
     }
     
     func refresh() {
@@ -64,15 +81,4 @@ class StashObject : JsonObject {
         
         return hasChanged
     }
-    
-//    private func retrieve(id : String, callback : (() -> ())?) {
-//        DataStore.sharedDataStore.retrieveDocumentJSON(id) { (result : String?) in
-//            if let json = result {
-//                self.fromJSON(json)
-//                if let callableCallback = callback {
-//                    callableCallback()
-//                }
-//            }
-//        }
-//    }
 }
