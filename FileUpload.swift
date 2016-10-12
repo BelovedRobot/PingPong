@@ -11,7 +11,7 @@ import Foundation
 class FileUpload : StashObject {
     // The data will be used by the API to associate the upload with the right document.
     var docType : String = "fileUpload";
-    var localFileUrl : String = "";
+    var localFilePath : String = ""; // This path will very likely have a ~ in it...meaning it needs to be expanded
     var targetId : String = "";
     var targetDocType : String = "";
     var targetProperty : String = "";
@@ -24,11 +24,11 @@ class FileUpload : StashObject {
         self.id = NSUUID().UUIDString
     }
     
-    init(localFileUrl : String, targetId : String, targetDocType : String, targetProperty : String) {
+    init(localFilePath : String, targetId : String, targetDocType : String, targetProperty : String) {
         super.init()
         self.id = NSUUID().UUIDString
         
-        self.localFileUrl = localFileUrl
+        self.localFilePath = localFilePath
         self.targetId = targetId
         self.targetDocType = targetDocType
         self.targetProperty = targetProperty

@@ -16,7 +16,7 @@ class PingPong {
     static let shared : PingPong = PingPong()
     var documentEndpoint : String = ""
     var authorizationToken : String = ""
-    private var backgroundSync : BackgroundSync
+    var backgroundSync : BackgroundSync
     private var reachabilityManager : NetworkReachabilityManager?
     var isEndpointReachable : Bool = false
     var syncOptions = [String : SyncOptionValue]()
@@ -85,7 +85,14 @@ class PingPong {
     }
     
     func uploadFile(fileUpload : FileUpload, callback: ()->()) {
-        guard let fileUrl = NSURL(string: fileUpload.localFileUrl) else {
+        // Expand the path if necessary
+        let expandedPath = (fileUpload.localFilePath as NSString).stringByExpandingTildeInPath
+        
+        // Check if the file does not exist
+        guard NSFileManager.defaultManager().fileExistsAtPath(expandedPath) else {
+            // Delete the record and sync record
+            DataStore.sharedDataStore.deleteDocument(fileUpload.id)
+            DataStore.sharedDataStore.removeDocumentFromSyncQueue(fileUpload.id)
             return
         }
         
@@ -99,6 +106,7 @@ class PingPong {
         ];
 
         let endpoint = "\(PingPong.shared.documentEndpoint)/app/upload"
+        let fileUrl = NSURL.fileURLWithPath(expandedPath)
         
         upload(.POST, endpoint, headers: headerDict,
             multipartFormData: { multipartFormData in

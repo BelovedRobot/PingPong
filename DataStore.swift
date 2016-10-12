@@ -138,6 +138,20 @@ class DataStore {
         }
     }
     
+    func retrieveDocumentJSONSynchronous(id : String) -> String? {
+        var result : String?
+        // Create semaphore to await results
+        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        DataStore.sharedDataStore.retrieveDocumentJSON(id, callback: { jsonResult in
+            if let json = jsonResult {
+                result = json
+            }
+            dispatch_semaphore_signal(sema)
+        })
+        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        return result
+    }
+    
     func deleteDocument(id : String) {
         queue.inDatabase { (database) in
             do {
