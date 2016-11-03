@@ -8,69 +8,83 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
-    func differenceInDaysWithDate(date: NSDate) -> Int {
-        let calendar: NSCalendar = NSCalendar.currentCalendar()
+    func differenceInDaysWithDate(date: Date) -> Int {
+        let calendar: Calendar = Calendar.current
         
-        let date1 = calendar.startOfDayForDate(self)
-        let date2 = calendar.startOfDayForDate(date)
+        let date1 = calendar.startOfDay(for: self as Date)
+        let date2 = calendar.startOfDay(for: date as Date)
         
-        let components = calendar.components(.Day, fromDate: date1, toDate: date2, options: [])
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
         // This only counts the "midnights" between two dates so we pad it with a day
-        return components.day + 1
+        return components.day! + 1
     }
     
     func isBetweeen(date date1: NSDate, andDate date2: NSDate) -> Bool {
-        return date1.compare(self).rawValue * self.compare(date2).rawValue >= 0
+        return date1.compare(self as Date).rawValue * self.compare(date2 as Date).rawValue >= 0
     }
     
     func toISOString() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self as Date)
     }
     
-    static func fromISOString(dateString : String) -> NSDate {
-        let formatter = NSDateFormatter()
+    static func fromISOString(dateString : String) -> Date {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        return formatter.dateFromString(dateString)!
+        return formatter.date(from: dateString)!
     }
     
     func toShortDateString() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self as Date)
     }
     
-    func localDate() -> NSDate {
-        let timezoneOffset = Double(NSCalendar.currentCalendar().timeZone.secondsFromGMT);
-        return self.dateByAddingTimeInterval(timezoneOffset)
+    func localDate() -> Date {
+        let timezoneOffset = Calendar.current.timeZone.secondsFromGMT()
+        return self.addingTimeInterval(TimeInterval(timezoneOffset)) as Date
     }
     
-    func endOfDay() -> NSDate {
-        let testDate = self.localDate().dateByAddingTimeInterval(86399)
+    func endOfDay() -> Date {
+        let testDate = self.localDate().addingTimeInterval(86399)
         
         // Strip off the time
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
         
-        let dateWithoutTimeString = formatter.stringFromDate(testDate)
-        let dateWithoutTime = formatter.dateFromString(dateWithoutTimeString)!
+        let dateWithoutTimeString = formatter.string(from: testDate as Date)
+        let dateWithoutTime = formatter.date(from: dateWithoutTimeString)!
         
         // Add all the seconds of the day minus one
-        return dateWithoutTime.dateByAddingTimeInterval(86399)
+        return dateWithoutTime.addingTimeInterval(86399)
     }
     
-    static func lastMonday() -> NSDate {
-        let now = NSDate()
-        var startDate: NSDate? = nil
-        var duration: NSTimeInterval = 0
+    static func lastMonday() -> Date {
+        let calendar: Calendar = Calendar.current
         
-        NSCalendar.currentCalendar().rangeOfUnit(.WeekOfYear, startDate: &startDate, interval: &duration, forDate: now)
+        // Get the current components
+        let now = Date()
+        var nowComps = calendar.dateComponents([.day, .month, .year, .weekOfYear, .weekday], from: now)
         
-        // By default the start date is set to Monday
-        return startDate!.dateByAddingTimeInterval(60 * 60 * 24)
+        // Calculate Monday's comps
+        var mondayComps = DateComponents()
+        mondayComps.year = nowComps.year
+        mondayComps.weekOfYear = nowComps.weekOfYear
+        mondayComps.weekday = 2
+        
+        // Calculate Dates
+        var monday = calendar.date(from: mondayComps)
+        
+        // If today is Monday then go back a week
+        if (nowComps.weekday == 2) {
+            monday = monday?.addingTimeInterval(24*60*60*7*(-1))
+        }
+        
+        return monday!
     }
 }

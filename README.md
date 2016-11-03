@@ -1,7 +1,7 @@
 # PingPong by Beloved Robot
 
 ## Overview
-This group of source files provides a framework to sync json documents to and from a type-less document endpoint. The syncing can occur in the foreground or background, and it supports offline syncing.
+PingPong provides a framework to sync json documents to and from a type-less document endpoint. The syncing can occur in the foreground or background, and it supports offline syncing.
 
 In our projects we pair this framework with a REST-ful nodejs endpoint to POST/PUT documents, which are then stored in a document database. The framework also supports file uploads through another endpoint.
 
@@ -12,38 +12,109 @@ In our projects we pair this framework with a REST-ful nodejs endpoint to POST/P
 - Local Document Stash 
 - File Uploads
 
-## What's Missing
-- Document Conflict Handling (the framework assumes conflict decisions will be handled elsewhere)
+## What's Missing or Broken
+- Document Conflict Handling is not covered, the framework assumes conflict decisions will be handled elsewhere
+- JSON deserialization can not handle Array and Dictionary types
+- JSON deserialization can not handle null types, such as Int?
+
+## Quick Example
+```swift
+class Note : SyncObject {
+    var docType : String = "note" // This field is for querying on type and is required to differentiate objects
+    var text : String = ""
+}
+```
+
+```swift
+    var note : Note = Note()
+    note.text = "Here is my note text"
+
+    // To stash the object locally
+    note.stash()
+
+    // To save the object to the endpoint
+    note.saveEventually()
+
+    // To convert to JSON
+    let jsonString = note.toJSON()
+
+    // To fetch from the stash
+    note.id = 'aa-bb-cc-dd-ee' // You must have an id to fetch a document
+    note.refresh()
+
+    // To fetch from the cloud
+    note.fromCloud()
+```
+
+## Core Objects and Concepts
+Below is a list of PingPong objects and why they are important. It is critical that you understand these objects and why.
+
+### JsonObject
+The JsonObject class contains all of the JSON serialization and deserialization logic. Subclassing JsonObject will enable an object to be json serialized and deserialized as well as converted to a Dictionary.
+
+### StashObject
+The StashObject class contains all of the logic to save and retrieve an object from the local database. Subclassing StashObject will enable an object to be saved, updated, and retrieved from the local database. StashObject subclasses JsonObject, therefore you inherit those behaviors as well.
+
+### SyncObject
+The SyncObject class contains all of the logic to POST/PUT/DELETE an object from the document endpoint. The SyncObject also contains that critical logic that updates objects in memory when updated from a sync operation.
+
+### FileUpload/FileDelete
+The FileUpload and FileDelete objects are designed to upload attachments to documents. For example consider the JSON representing a Note object: 
+```json
+{
+    "noteId" : "aa-bb-cc-dd",
+    "text" : "This is the note text",
+    "noteImageUrl" : ""
+}
+```
+
+The field noteImageUrl is clearly meant to attach a photo to this note. The problem is how do you sync the json object with a missing image url for the image if the image has not been uploaded, or vice-versa do you risk uploading a file without the back object to describe and define it? This is where FileUpload and FileDelete come in. When a Note object is created and an image as assigned to it then a FileUpload object should be created. The FileUpload object defines the file to be uploaded and the meta-data necessary to tie that file to the target Note on the server. Therefore when the background sync operation occurs the Note is synced to the server, the image is uploaded, and after the upload is successful the Note is updated with the proper url. The same is true for FileDelete except that it works in the opposite direction. You issue a file delete for a given url and simultaneously delete the url from the Note object and the background sync will save the Note with a blank image url, and then the file delete will physically remove the file.
+
+### The Physical Database and the DateStore class
+The physical database backing PingPong is SQLite. We use FMDB to access SQLite and we use BRDatabase to provision and upgrade the physical database. Most of the logic saving and retrieving documents to and from the database is found in DataStore, however it is uncommon to access DataStore or SQLite directly. All of the operations to save documents to and from the local stash can be found in the Stash class.
+
+### The Background Sync Process
+The background sync process is designed to push data and pull data to and from the app and the service in a background thread. This liberates the main thread from long running web requests and also handles the complicated logic for the developer. The background sync process can be fired in three ways: 
+1) When PingPong is started, usually in the AppDelegate, there are timers that are configured to fire and run the background sync
+2) When the App is in the background the background sync process is executed during a background fetch event from the OS
+3) The developer can manually trigger a background sync by calling PingPong.startBackgroundSync()
+
+### Custom Sync Options
+There are scenarios when you don't want PingPong to handle specific document types, and in those cases we provide an override mechanism. When starting a PingPong 
+
+### Querying the Stash
+There is a handy func in the DataStore that enables the user to query the local stash. Simply pass in a set of fields and values to search on those values.
+```swift
+// Func signature
+func queryDocumentStore(parameters : (property: String, value: String)..., callback : @escaping ([JSON]) -> ())
+```
+
+```swift
+// Example Usage
+DataStore.sharedDataStore.queryDocumentStore(("docType", "note")) { documents in
+    for json in documents {
+        let note = Note()
+        note.fromJSON(json.rawString()!)
+    }
+}
+```
 
 ## Implementation
-The first step is to create the Document endpoint. This endpoint can be configured anyway you like as long as PingPong can POST/PUT json documents. 
+The first step is to create the Document endpoint. This endpoint can be configured anyway you like as long as PingPong can POST/PUT json documents. A sample endpoint that Beloved Robot uses is found here: https://github.com/BelovedRobot/PingPongEndpoint
 
 ### Implementation Notes for the Service Endpoint
 1. Each document needs an ID
 
 2. Each document needs a "docType" property, which can then be used to model types of objects
 
-3. When documents are POST/PUT the document is returned wrapped in a data property. Example: 
+3. When documents are POST/PUT the document is returned wrapped in a data property.
 
-I POST:
-`{
-	"id": "...",
-	"docType": "myDocType",
-	"someProperty": "Hello World!"
-}`
+4. When files are uploaded PingPong assumes they are tied to another document so you have to provide a FileUpload object for each file that should be used by your endpoint to assign the file's URL to the object once uploading is complete
 
-I expect:
-`{
-	"data": {
-		"id": "...",
-		"docType": "myDocType",
-		"someProperty": "Hello World!"
-	}
-}`
+5. Authorization to the endpoint is _only_ provided through simple token-based authentication where a token is assigned to each app and or user that gives access the endpoint through the "Authorization" header on requests. That is to say each PingPong request includes "Token token=xxx" in the Authorization header where "xxx" is the actual token
 
-4 . When files are uploaded PingPong assumes they are tied to another document so you have to provide a FileUpload object for each file that should be used by your endpoint to assign the file's URL to the object once uploading is complete
+### Implementation of Alternate Endpoints
 
-5 . Authorization to the endpoint is _only_ provided through simple token-based authentication where a token is assigned to each app and or user that gives access the endpoint through the "Authorization" header on requests. That is to say each PingPong request includes "Token token=xxx" in the Authorization header where "xxx" is the actual token
 
 ### Implementation Notes for iOS Apps
 After creating the endpoint, add PingPong to your iOS project by following these steps:

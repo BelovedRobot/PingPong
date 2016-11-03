@@ -10,23 +10,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		8ZgUYYQ16K4vO6evBs8/e83e9tU=
+		ECtikd6hbOqKggjwDj7Woouy5pE=
 		</data>
-		<key>Modules/CryptoSwift.swiftmodule/arm.swiftdoc</key>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		Sm2Ms7H4Qf0gu/n0gbAix/xobv0=
+		fFHcsn1kuUpVEF5cRSjai86zszE=
 		</data>
-		<key>Modules/CryptoSwift.swiftmodule/arm.swiftmodule</key>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		D4UNXIiy17771CSSOBHjBAp1ZgQ=
-		</data>
-		<key>Modules/CryptoSwift.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		9ZAOFW6N/CWJZ7FB2cYfNt8fx0Y=
-		</data>
-		<key>Modules/CryptoSwift.swiftmodule/arm64.swiftmodule</key>
-		<data>
-		/agujsXaIKD80K57qag+eYmybCo=
+		MQMY4j1BzqDu8ggcg/HTTjvS7Y8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -46,48 +38,26 @@
 			LKTFZeCP6yi+xx9GiYdLvJom52FZ5NRrUx7+M7cJWyM=
 			</data>
 		</dict>
-		<key>Modules/CryptoSwift.swiftmodule/arm.swiftdoc</key>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Sm2Ms7H4Qf0gu/n0gbAix/xobv0=
+			fFHcsn1kuUpVEF5cRSjai86zszE=
 			</data>
 			<key>hash2</key>
 			<data>
-			3ERpa79R5ufstdfbPObP21HlKUKmCGcsLIKu9uW9KCQ=
+			7KSSoRl47UERAnF38L1eEwb3mdZge+MgDS9eqGaR4z4=
 			</data>
 		</dict>
-		<key>Modules/CryptoSwift.swiftmodule/arm.swiftmodule</key>
+		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			D4UNXIiy17771CSSOBHjBAp1ZgQ=
+			MQMY4j1BzqDu8ggcg/HTTjvS7Y8=
 			</data>
 			<key>hash2</key>
 			<data>
-			j74qsOYsY/2TcgQwPmHnO5RP9kczJbpwy02WHtWTCFs=
-			</data>
-		</dict>
-		<key>Modules/CryptoSwift.swiftmodule/arm64.swiftdoc</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			9ZAOFW6N/CWJZ7FB2cYfNt8fx0Y=
-			</data>
-			<key>hash2</key>
-			<data>
-			JeCNfoAydIpGOS/BIzwWpkir5uKnDEI7SlPAe9b4EvE=
-			</data>
-		</dict>
-		<key>Modules/CryptoSwift.swiftmodule/arm64.swiftmodule</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/agujsXaIKD80K57qag+eYmybCo=
-			</data>
-			<key>hash2</key>
-			<data>
-			QgBIwuGUxMpWvcfQ3vq2BSseeAUT3udVn1jz04oQclg=
+			nWcd58Shhu8UNG59+vzCx67qjh0KLRWGT8FdotElopk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

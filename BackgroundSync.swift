@@ -11,18 +11,18 @@ import Foundation
 class BackgroundSync {
     
     static let shared : BackgroundSync = BackgroundSync()
-    private var queue : NSOperationQueue;
+    private var queue : OperationQueue;
     private var secondsInterval : Int = 0
-    private var timer : NSTimer?
+    private var timer : Timer?
     
     init() {
-        queue = NSOperationQueue()
+        queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1 // Serial Queue
     }
     
     func start(secondsInterval : Int) {
         self.secondsInterval = secondsInterval
-        self.scheduleTimer(5) // First pass refreshes after 5 seconds
+        self.scheduleTimer(seconds: 5) // First pass refreshes after 5 seconds
     }
     
     func stop() {
@@ -32,21 +32,20 @@ class BackgroundSync {
     }
     
     private func scheduleTimer(seconds : Int) {
-        timer = NSTimer.scheduledTimerWithTimeInterval(Double(seconds), target: self, selector: #selector(self.timerFired(_:)), userInfo: nil, repeats: false)
+        let secondsDouble = Double(seconds)
+        let selector = #selector(self.timerFired(timer:))
+        timer = Timer.scheduledTimer(timeInterval: secondsDouble, target: self, selector: selector, userInfo: nil, repeats: false)
     }
     
-    @objc private func timerFired(timer : NSTimer) {
+    @objc private func timerFired(timer : Timer) {
         let someWork : ()->() = {
-            NSDate().toISOString()
-            
-            print("Background Sync Fired -> \(NSDate().toISOString())")
-            
+            print("Background Sync Fired -> \(Date().toISOString())")
             self.sync()
         }
-        queue.addOperationWithBlock(someWork);
+        queue.addOperation(someWork);
         
         // Schedule more work
-        self.scheduleTimer(self.secondsInterval)
+        self.scheduleTimer(seconds: self.secondsInterval)
     }
     
     func sync() {
@@ -56,16 +55,16 @@ class BackgroundSync {
         }
         
         // Create semaphore to await results
-        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        let sema = DispatchSemaphore(value: 0)
         
         // Get all Document Ids to Sync
         var results : [String]?
         DataStore.sharedDataStore.retrieveQueuedDocuments { (dataResults) in
             results = dataResults
-            dispatch_semaphore_signal(sema)
+            sema.signal()
         }
         
-        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
         
         if let jsonDocuments = results {
             // For each document
@@ -75,26 +74,26 @@ class BackgroundSync {
                 
                 // The success for each type of document is to remove itself from the sync queue
                 let success = {
-                    DataStore.sharedDataStore.removeDocumentFromSyncQueue(id)
+                    DataStore.sharedDataStore.removeDocumentFromSyncQueue(documentId: id)
                 }
                 
                 // Based on type, de-serialize from JSON in order to save
                 switch(type) {
                 case "fileUpload":
                     let fileUpload = FileUpload()
-                    fileUpload.fromJSON(json)
-                    PingPong.shared.uploadFile(fileUpload, callback: success)
+                    fileUpload.fromJSON(json: json)
+                    PingPong.shared.uploadFile(fileUpload: fileUpload, callback: success)
                 case "fileDelete":
                     let fileDelete = FileDelete()
-                    fileDelete.fromJSON(json)
-                    PingPong.shared.deleteFile(fileDelete, callback: success)
+                    fileDelete.fromJSON(json: json)
+                    PingPong.shared.deleteFile(fileDelete: fileDelete, callback: success)
                 default:
                     // Does the docType has a custom sync option
                     if let syncOption = PingPong.shared.syncOptions[type] {
-                        syncOption(jsonData: json, success: success)
+                        syncOption(json, success)
                     } else {
                         // By Default sync the document
-                        PingPong.shared.saveDocumentToCloud(json, success: success)
+                        PingPong.shared.saveDocumentToCloud(jsonString: json, success: success)
                     }
                 }
             }

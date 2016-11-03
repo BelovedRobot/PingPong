@@ -21,20 +21,24 @@ class DataStore {
         if let path = sharedDatabase.databasePath {
             NSLog("DB created at path: \(path)")
         } else {
-            sharedDatabase.initializeWithDatabaseName(DataStore.databaseName, withDatabaseVersion: 0.0, withSuccess: nil)
+            sharedDatabase.initialize(withDatabaseName: DataStore.databaseName, withDatabaseVersion: 0.0, withSuccess: nil)
             print("SQLite path is \(sharedDatabase.databasePath)")
         }
         
         // Initialize the queue
-        let appDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let appDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let dbPath = "\(appDir)/\(DataStore.databaseName)"
         queue = FMDatabaseQueue(path: dbPath)
     }
     
     func addDocumentToSyncQueue(documentId : String) {
-        queue.inDatabase { (database) in
+        queue.inDatabase { database in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", documentId)
+                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", values: [documentId])
                 if (results.next()) {
                     // The id already exists in the sync queue so skip
                     results.close()
@@ -43,7 +47,7 @@ class DataStore {
                 results.close()
 
                 // If you're still here then add to the queue
-                try database.executeUpdate("INSERT INTO sync_queue (id) VALUES (?);", documentId)
+                try database.executeUpdate("INSERT INTO sync_queue (id) VALUES (?);", values: [documentId])
             } catch {
                 print("There was an error executing database queries or updates.")
             }
@@ -54,32 +58,40 @@ class DataStore {
         var hasChanges = false
         
         // Create semaphore to await results
-        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        let sema = DispatchSemaphore(value: 0)
         
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", documentId)
+                let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", values: [documentId])
                 if (results.next()) {
                     // The id already exists in the sync queue return true
                     hasChanges = true
                 }
                 results.close()
-                dispatch_semaphore_signal(sema)
-                
+                sema.signal()
             } catch {
                 print("There was an error executing database queries or updates.")
             }
         }
         
-        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        
         return hasChanges
 
     }
     
     func removeDocumentFromSyncQueue(documentId : String) {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                try database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", documentId)
+                try database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", values: [documentId])
             } catch {
                 print("There was an error executing database queries or updates.")
             }
@@ -88,8 +100,12 @@ class DataStore {
     
     func removeOrphanedSyncQueueEntries() {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                try database.executeUpdate("DELETE FROM sync_queue WHERE id NOT IN (SELECT id FROM documents);")
+                try database.executeUpdate(sql: "DELETE FROM sync_queue WHERE id NOT IN (SELECT id FROM documents);")
             } catch {
                 print("There was an error executing database queries or updates.")
             }
@@ -101,19 +117,23 @@ class DataStore {
         
         if let id = json["id"].string {
             queue.inDatabase { (database) -> Void in
+                guard let database = database else {
+                    return
+                }
+                
                 do {
                     // First see if document already exists
-                    let results = try database.executeQuery("SELECT * FROM documents WHERE id = ?;", id)
+                    let results = try database.executeQuery("SELECT * FROM documents WHERE id = ?;", values: [id])
                     if (results.next()) {
                         // The document does exist so update
-                        try database.executeUpdate("UPDATE documents SET json = ? WHERE id = ?;", documentJson, id)
+                        try database.executeUpdate("UPDATE documents SET json = ? WHERE id = ?;", values: [documentJson, id])
                         results.close()
-                        return;
+                        return
                     }
                     results.close()
                     
                     // Document does not exist so we insert
-                    try database.executeUpdate("INSERT INTO documents (id, json) VALUES(?, ?);", id, documentJson);
+                    try database.executeUpdate("INSERT INTO documents (id, json) VALUES(?, ?);", values: [id, documentJson])
                 } catch {
                     print("There was an error executing database queries or updates.")
                 }
@@ -121,13 +141,17 @@ class DataStore {
         }
     }
     
-    func retrieveDocumentJSON(id : String, callback: (String?) -> ()) {
+    func retrieveDocumentJSON(id : String, callback: @escaping (String?) -> ()) {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
                 var jsonResult : String? = nil
-                let results = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", id)
+                let results = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", values: [id])
                 if (results.next()) {
-                    jsonResult = results.stringForColumn("json")
+                    jsonResult = results.string(forColumn: "json")
                 }
                 results.close()
                 callback(jsonResult)
@@ -141,21 +165,25 @@ class DataStore {
     func retrieveDocumentJSONSynchronous(id : String) -> String? {
         var result : String?
         // Create semaphore to await results
-        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
-        DataStore.sharedDataStore.retrieveDocumentJSON(id, callback: { jsonResult in
+        let sema = DispatchSemaphore(value: 0)
+        DataStore.sharedDataStore.retrieveDocumentJSON(id: id, callback: { jsonResult in
             if let json = jsonResult {
                 result = json
             }
-            dispatch_semaphore_signal(sema)
+            sema.signal()
         })
-        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
         return result
     }
     
     func deleteDocument(id : String) {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                try database.executeUpdate("DELETE FROM documents WHERE id = ?;", id)
+                try database.executeUpdate("DELETE FROM documents WHERE id = ?;", values: [id])
             } catch {
                 print("There was an error executing database queries or updates.")
             }
@@ -164,32 +192,36 @@ class DataStore {
     
     func deleteDocumentsOfType(docType : String) {
         // Create semaphore to await results
-        let sema : dispatch_semaphore_t = dispatch_semaphore_create(0)
+        let sema = DispatchSemaphore(value: 0)
         var documentsJson : [JSON] = []
         
-        self.queryDocumentStore(("docType", docType)) { json in
+        self.queryDocumentStore(parameters: ("docType", docType)) { json in
             documentsJson = json
-            dispatch_semaphore_signal(sema)
+            sema.signal()
         }
         
-        dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, Int64(20 * Double(NSEC_PER_SEC)))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
         
         for docJson in documentsJson {
             if let id = docJson["id"].string {
-                self.deleteDocument(id)
+                self.deleteDocument(id: id)
             }
         }
     }
     
-    func queryDocumentStore(parameters : (property: String, value: String)..., callback : ([JSON]) -> ()) {
+    func queryDocumentStore(parameters : (property: String, value: String)..., callback : @escaping ([JSON]) -> ()) {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             // Load all json objects AHHHHHH
             var documents = [JSON]()
             
             do {
-                let results = try database.executeQuery("SELECT * FROM documents;")
+                let results = try database.executeQuery(sql: "SELECT * FROM documents")
                 while (results.next()) {
-                    documents.append(JSON.parse(results.stringForColumn("json")))
+                    documents.append(JSON.parse(results.string(forColumn: "json")))
                 }
                 results.close()
             } catch {
@@ -216,24 +248,28 @@ class DataStore {
         }
     }
     
-    func retrieveQueuedDocuments(callback: ([String]?) -> ()) {
+    func retrieveQueuedDocuments(callback: @escaping ([String]?) -> ()) {
         queue.inDatabase { (database) in
+            guard let database = database else {
+                return
+            }
+            
             do {
-                let results = try database.executeQuery("SELECT * FROM sync_queue;")
+                let results = try database.executeQuery(sql: "SELECT * FROM sync_queue")
                 var syncIds : [String] = []
                 while (results.next()) {
-                    let id = results.stringForColumn("id")
-                    syncIds.append(id)
+                    let id = results.string(forColumn: "id")
+                    syncIds.append(id!)
                 }
                 results.close()
                 
                 // For each ID get the json
                 var documents : [String] = []
                 for id in syncIds {
-                    let docResult = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", id)
+                    let docResult = try database.executeQuery("SELECT json FROM documents WHERE id = ?;", values:[id])
                     if (docResult.next()) {
-                        let json = docResult.stringForColumn("json")
-                        documents.append(json)
+                        let json = docResult.string(forColumn: "json")
+                        documents.append(json!)
                     }
                     docResult.close()
                 }

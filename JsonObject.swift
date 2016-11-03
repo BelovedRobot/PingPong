@@ -9,6 +9,10 @@
 import Foundation
 
 class JsonObject : NSObject {
+
+    // [2016.11.03.ZK] - Discovered EVReflection, a more fully-feature Swift Object to Json Serialization. I would like to eventually move to this as an
+    // alternative to this code.
+    
     var deserializationExceptions : Dictionary<String, JSON> = Dictionary<String, JSON>() // This is a container used to store properties and values when they can't be de-serialized
     
     // MARK: Serialize to JSON
@@ -17,11 +21,9 @@ class JsonObject : NSObject {
     
     final func toJSON() -> String {
         do {
-            let dict = try self.mirrorObjectToDict(self)
-//            let data = try NSJSONSerialization.dataWithJSONObject(dict, options: .PrettyPrinted)
-            let data = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.init(rawValue: 0))
-            return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
-            
+            let dict = try self.mirrorObjectToDict(object: self)
+            let data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.init(rawValue: 0))
+            return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String
         } catch {
             print("There was an error serializing the object to json. -> \(error)")
             return ""
@@ -31,7 +33,7 @@ class JsonObject : NSObject {
     // Convert object to Dictionary<String, AnyObject> that can be converted to JSON
     final func toDictionary() -> Dictionary<String, AnyObject>? {
         do {
-            return try self.mirrorObjectToDict(self)
+            return try self.mirrorObjectToDict(object: self)
         } catch {
             print("There was an error serializing the object to json-able dictionary. -> \(error)")
             return nil
@@ -42,7 +44,7 @@ class JsonObject : NSObject {
         // Create mirror of self
         let mirror = Mirror(reflecting: object)
         
-        guard (mirror.displayStyle == .Class)
+        guard (mirror.displayStyle == .class)
             else { throw SyncObjectError.SerializationErrorUnsupportedType }
         
         var dict = Dictionary<String, AnyObject>();
@@ -69,21 +71,21 @@ class JsonObject : NSObject {
                     } else {
                         // Object
                         do {
-                            let childDict = try self.mirrorObjectToDict(childItem)
-                            children.append(childDict)
+                            let childDict = try self.mirrorObjectToDict(object: childItem)
+                            children.append(childDict as AnyObject)
                         } catch {
                             // Ignore children error (ie do not throw again)
 //                            print("Child property '\(label)' can not be serialized...skipping.")
                         }
                     }
                 }
-                dict[label] = children
+                dict[label] = children as AnyObject?
                 // Class or Struct
             } else if let value = anyValue as? AnyObject {
                 // Reflect on child
                 do {
-                    let childDict = try self.mirrorObjectToDict(value)
-                    dict[label] = childDict
+                    let childDict = try self.mirrorObjectToDict(object: value)
+                    dict[label] = childDict as AnyObject?
                 } catch {
                     // Ignore children error (ie do not throw again)
 //                    print("Child property '\(label)' can not be serialized...skipping.")
@@ -91,14 +93,14 @@ class JsonObject : NSObject {
             } else if let value = anyValue as? JsonObject {
                 // For non-optional types the object will go through dictionary mirror handler, otherwise optionals end-up here
                 let childDict = value.toDictionary()
-                dict[label] = childDict
+                dict[label] = childDict as AnyObject?
             } else {
 //                print("Child property '\(label)' can not be serialized...skipping.")
             }
         }
         
         // Mirror the superclass to get the id
-        for case let (label?, anyValue) in mirror.superclassMirror()!.children {
+        for case let (label?, anyValue) in mirror.superclassMirror!.children {
             if label == "id" {
                 if let value = anyValue as? NSString {
                     dict[label] = value
@@ -107,7 +109,7 @@ class JsonObject : NSObject {
         }
         
         // Mirror the superclass of the superclass to get the id
-        if let superSuperClassMirror = mirror.superclassMirror()!.superclassMirror() {
+        if let superSuperClassMirror = mirror.superclassMirror!.superclassMirror {
             for case let (label?, anyValue) in superSuperClassMirror.children {
                 if label == "id" {
                     if let value = anyValue as? NSString {
@@ -124,13 +126,13 @@ class JsonObject : NSObject {
     
     // Init object with json string
     func fromJSON(json : String) {
-        self.fromSwiftyJSON(JSON.parse(json))
+        self.fromSwiftyJSON(json: JSON.parse(json))
     }
     
     private func fromSwiftyJSON(json : JSON) {
         for (key, value) in json {
             // If the property exists, then proceed
-            if (self.respondsToSelector(NSSelectorFromString(key))) {
+            if (self.responds(to: NSSelectorFromString(key))) {
 
                 // If it is a string
                 if let stringVal = value.string {
@@ -152,6 +154,8 @@ class JsonObject : NSObject {
         }
     }
 
+    // [ZK] -  This is old code. I could never fully get subJson dictionary and arrays to serialize without using the serialization exceptions and manually
+    // performing the conversions
 //    Convert a child dictionary is that when you set the key it keeps it as a Dictionary rather than the actual type it should be
 //    private func convertSubJsonToDictionary(subJson : [String : JSON]) -> Dictionary<String, AnyObject> {
 //        var childDict = [String : AnyObject]()

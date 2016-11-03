@@ -13,14 +13,14 @@ class FileDelete : StashObject {
     var docType : String = "fileDelete";
     var fileUrl : String = "";
     
-    override init() {
+    required init() {
         super.init()
-        self.id = NSUUID().UUIDString
+        self.id = NSUUID().uuidString
     }
     
     init(fileUrl : String) {
         super.init()
-        self.id = NSUUID().UUIDString
+        self.id = NSUUID().uuidString
         
         self.fileUrl = fileUrl
     }

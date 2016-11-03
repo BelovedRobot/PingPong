@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class SyncObject : StashObject {
     
@@ -18,8 +17,9 @@ class SyncObject : StashObject {
             // Only add the observer is id is not ""
             if (id != "") {
                 // Add observer for cloud changes
-                NSNotificationCenter.defaultCenter().removeObserver(self, name: SyncObject.getUpdatedNotification(self.id), object: nil)
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onCloudUpdate), name: SyncObject.getUpdatedNotification(self.id), object: nil)
+                let notificationName = Notification.Name(SyncObject.getUpdatedNotification(id: self.id))
+                NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(self.onCloudUpdate), name: notificationName, object: nil)
             }
         }
     }
@@ -37,22 +37,22 @@ class SyncObject : StashObject {
         self.stash()
         
         // Stash DocId in Database and let it go
-        DataStore.sharedDataStore.addDocumentToSyncQueue(self.id)
+        DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: self.id)
     }
     
     func backgroundSync(callback : (() -> ())? ) {
         let isPost = (self.id == "")
         
         // Convert the closure to the type expected by post/put
-        let convertedCallback : (a : String?)->() = { a in
+        let convertedCallback : (String?)->() = { _ in
             callback?()
         }
         
         // If it is a post
         if isPost {
-            self.post(convertedCallback)
+            self.post(success: convertedCallback)
         } else {
-            self.put(convertedCallback)
+            self.put(success: convertedCallback)
         }
     }
     
@@ -63,7 +63,7 @@ class SyncObject : StashObject {
             if let json = jsonString {
                 
                 // Populate self
-                self.fromJSON(json)
+                self.fromJSON(json: json)
                 
                 // Call success
                 if let callableSuccess = success {
@@ -77,16 +77,16 @@ class SyncObject : StashObject {
     func safeStashFromCloud() {
         if !self.hasPendingSync() {
             let jsonString = self.toJSON()
-            DataStore.sharedDataStore.stashDocument(jsonString)
+            DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
         }
     }
     
     func hasPendingSync() -> Bool {
-        return DataStore.sharedDataStore.hasPendingSync(self.id);
+        return DataStore.sharedDataStore.hasPendingSync(documentId: self.id);
     }
     
     // Get Document
-    private func get(success : ((jsonString : String?) -> ())? ) {
+    private func get(success : ((String?) -> ())? ) {
         let headerDict = [
             "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
             "Content-Type" : "application/json"
@@ -95,37 +95,33 @@ class SyncObject : StashObject {
         let url = "\(PingPong.shared.documentEndpoint)/document/\(self.id)"
         
         // Send the request
-        request(.GET, url, parameters: nil, headers: headerDict, encoding: .JSON)
+        request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headerDict)
+            .validate()
             .responseJSON { response in
-                if response.response?.statusCode == 200 {
-                    print("Document \(self.valueForKey("docType")!) retrieved!")
-                    
-                    if let value = response.result.value {
-                        let json = JSON(value);
-                        if let documentJson = json.rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0)) {
-                            
-                            // Update stash
-                            DataStore.sharedDataStore.stashDocument(documentJson)
-                            
-                            // Send notification of update
-                            NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
-                            
-                            success?(jsonString: documentJson)
-                        } else {
-                            print("There was a problem retrieving the document")
-                        }
+                print("Document \(self.value(forKey: "docType")!) retrieved!")
+                
+                if let value = response.result.value {
+                    let json = JSON(value);
+                    if let documentJson = json.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0)) {
+                        
+                        // Update stash
+                        DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
+                        
+                        // Send notification of update
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
+                        
+                        success?(documentJson)
                     } else {
-                        success?(jsonString: nil)
+                        print("There was a problem retrieving the document")
                     }
                 } else {
-                    print("There was a problem retrieving the document")
-                    print("Response code is \(response.response?.statusCode)")
+                    success?(nil)
                 }
         }
     }
     
     // POST Document
-    private func post(success : ((jsonString : String?) -> ())? ) {
+    private func post(success : ((_ jsonString : String?) -> ())? ) {
         let headerDict = [
             "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
             "Content-Type" : "application/json"
@@ -134,24 +130,24 @@ class SyncObject : StashObject {
         let url = "\(PingPong.shared.documentEndpoint)/document"
         
         // Send the request
-        request(.POST, url, parameters: self.toDictionary(), headers: headerDict, encoding: .JSON)
+        request(url, method: .post, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
             .responseJSON { response in
                 if response.response?.statusCode == 200 {
-                    print("Document \(self.valueForKey("docType")!) synced!")
+                    print("Document \(self.value(forKey: "docType")!) synced!")
                     
                     if let value = response.result.value {
                         let json = JSON(value);
-                        let documentJson = json["data"].rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))!
+                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
                         
                         // Update stash
-                        DataStore.sharedDataStore.stashDocument(documentJson)
+                        DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
                         
                         // Send notification of update
-                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
                         
-                        success?(jsonString: documentJson)
+                        success?(documentJson)
                     } else {
-                        success?(jsonString: nil);
+                        success?(nil)
                     }
                 } else {
                     print("There was a problem syncing the document")
@@ -161,7 +157,7 @@ class SyncObject : StashObject {
     }
     
     // PUT Document
-    private func put(success : ((jsonString : String?) -> ())? ) {
+    private func put(success : ((_ jsonString : String?) -> ())? ) {
         let headerDict = [
             "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
             "Content-Type" : "application/json"
@@ -170,31 +166,26 @@ class SyncObject : StashObject {
         let url = "\(PingPong.shared.documentEndpoint)/document"
         
         // Send the request
-        request(.PUT, url, parameters: self.toDictionary(), headers: headerDict, encoding: .JSON)
+        request(url, method: .put, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
             .responseJSON { response in
                 if response.response?.statusCode == 200 {
-                    print("Document \(self.valueForKey("docType")!) synced!")
+                    print("Document \(self.value(forKey: "docType")!) synced!")
                     
                     if let value = response.result.value {
                         let json = JSON(value);
-                        let documentJson = json["data"].rawString(NSUTF8StringEncoding, options: NSJSONWritingOptions(rawValue: 0))!
+                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
                         
                         // Update stash
-                        DataStore.sharedDataStore.stashDocument(documentJson)
+                        DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
                         
                         // Send notification of update
-                        NSNotificationCenter.defaultCenter().postNotificationName(SyncObject.getUpdatedNotification(self.id), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
                         
-                        success?(jsonString: documentJson)
+                        success?(documentJson)
                     } else {
-                        success?(jsonString: nil);
+                        success?(nil);
                     }
                 } else {
-                    if let request = response.request, body = request.HTTPBody {
-                        let strBody = NSString(data: body, encoding: NSUTF8StringEncoding)
-                        print(strBody!)
-                    }
-                    
                     print("There was a problem syncing the document")
                     print("Response code is \(response.response?.statusCode)")
                 }
@@ -202,7 +193,7 @@ class SyncObject : StashObject {
     }
 }
 
-enum SyncObjectError: ErrorType {
+enum SyncObjectError: Error {
     case SerializationErrorUnsupportedType
     case SerializationErrorUnsupportedSubType
 }

@@ -19,14 +19,14 @@ class FileUpload : StashObject {
     var subTargetDocType : String = "";
     var subTargetProperty : String = "";
     
-    override init() {
+    required init() {
         super.init()
-        self.id = NSUUID().UUIDString
+        self.id = NSUUID().uuidString
     }
     
     init(localFilePath : String, targetId : String, targetDocType : String, targetProperty : String) {
         super.init()
-        self.id = NSUUID().UUIDString
+        self.id = NSUUID().uuidString
         
         self.localFilePath = localFilePath
         self.targetId = targetId
