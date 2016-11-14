@@ -17,6 +17,8 @@ In our projects we pair this framework with a REST-ful nodejs endpoint to POST/P
 - JSON deserialization can not handle Array and Dictionary types
 - JSON deserialization can not handle null types, such as Int?
 
+![Beloved Robot PingPong Infographic](https://belovedrobotstorage.blob.core.windows.net/general/PingPongOverview.png "Beloved Robot PingPong Infographic")
+
 ## Quick Example
 ```swift
 class Note : SyncObject {
@@ -114,7 +116,7 @@ The first step is to create the Document endpoint. This endpoint can be configur
 5. Authorization to the endpoint is _only_ provided through simple token-based authentication where a token is assigned to each app and or user that gives access the endpoint through the "Authorization" header on requests. That is to say each PingPong request includes "Token token=xxx" in the Authorization header where "xxx" is the actual token
 
 ### Implementation of Alternate Endpoints
-
+If you are implementing a non-document endpoint or you do not have control of the endpoint then you can override all functionality of PingPong by using the syncOptions. You will need to register a syncOption for each documentType and implement it in that manner. If you have a file upload process you can either a) modify the fileUpload logic directly or b) change the docType of FileUpload and create a customer sync option.
 
 ### Implementation Notes for iOS Apps
 After creating the endpoint, add PingPong to your iOS project by following these steps:
