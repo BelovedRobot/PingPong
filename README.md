@@ -17,6 +17,8 @@ In our projects we pair this framework with a REST-ful nodejs endpoint to POST/P
 - JSON deserialization can not handle Array and Dictionary types
 - JSON deserialization can not handle null types, such as Int?
 
+![Beloved Robot PingPong Infographic](https://belovedrobotstorage.blob.core.windows.net/general/PingPongOverview.png "Beloved Robot PingPong Infographic")
+
 ## Quick Example
 ```swift
 class Note : SyncObject {
