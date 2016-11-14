@@ -78,7 +78,7 @@ class DataStore {
             }
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait()
         
         return hasChanges
 
@@ -172,7 +172,7 @@ class DataStore {
             }
             sema.signal()
         })
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        let _ = sema.wait()
         return result
     }
     
@@ -200,7 +200,7 @@ class DataStore {
             sema.signal()
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        sema.wait()
         
         for docJson in documentsJson {
             if let id = docJson["id"].string {

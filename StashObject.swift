@@ -37,7 +37,7 @@ class StashObject : JsonObject {
             sema.signal()
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        sema.wait()
         
         if (shouldStash) {
             stash()
@@ -57,7 +57,7 @@ class StashObject : JsonObject {
             }
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        sema.wait()
     }
     
     func hasChangedFromStash() -> Bool {
@@ -77,7 +77,7 @@ class StashObject : JsonObject {
             }
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        sema.wait()
         
         return hasChanged
     }

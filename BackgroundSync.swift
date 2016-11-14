@@ -64,7 +64,7 @@ class BackgroundSync {
             sema.signal()
         }
         
-        let _ = sema.wait(timeout: .now() + (20.0 * Double(NSEC_PER_SEC))) // Waits 20 seconds, more than enough time
+        sema.wait()
         
         if let jsonDocuments = results {
             // For each document

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CryptoSwift
 
 public class CryptoBot {
     
