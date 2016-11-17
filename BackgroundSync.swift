@@ -66,6 +66,9 @@ class BackgroundSync {
         
         sema.wait()
         
+        // Get list of document sync tasks
+        let syncTaskDictionary = self.getDocumentSyncTasksDictionary()
+        
         if let jsonDocuments = results {
             // For each document
             for json in jsonDocuments {
@@ -88,9 +91,10 @@ class BackgroundSync {
                     fileDelete.fromJSON(json: json)
                     PingPong.shared.deleteFile(fileDelete: fileDelete, callback: success)
                 default:
-                    // Does the docType has a custom sync option
-                    if let syncOption = PingPong.shared.syncOptions[type] {
-                        syncOption(json, success)
+                    // Does the docType has a custom sync task
+                    if let syncTask = syncTaskDictionary[type] {
+                        // Execute the custom sync operation and pass the success callback
+                        syncTask.sync(jsonString: json, success: success)
                     } else {
                         // By Default sync the document
                         PingPong.shared.saveDocumentToCloud(jsonString: json, success: success)
@@ -99,8 +103,26 @@ class BackgroundSync {
             }
         }
         
+        // Get list of automatic sync tasks and execute
+        let autoSyncTasks = PingPong.shared.syncTasks.filter({ $0.automaticTask })
+        for task in autoSyncTasks {
+            task.sync(jsonString: nil, success: nil)
+        }
+        
         // Delete any orphanced records in the sync queue, there is a byproduct of the sync options in which they clean up their own records but 
         // the sync queue record may remain
         DataStore.sharedDataStore.removeOrphanedSyncQueueEntries()
+    }
+    
+    // Helpers
+    private func getDocumentSyncTasksDictionary() -> [String : SyncTask] {
+        // This dictionary represents syncTasks indexed by their document type
+        var syncTasksDictionary : [String : SyncTask] = [String : SyncTask]()
+        
+        for task in PingPong.shared.syncTasks.filter({ $0.docType != nil && $0.docType != "" }) {
+            syncTasksDictionary[task.docType!] = task
+        }
+        
+        return syncTasksDictionary
     }
 }

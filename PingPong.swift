@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias SyncOptionValue = (String, (()->())?) -> Void // The string is the jsonData, and closure is the success callback
-
 class PingPong {
     
     static let shared : PingPong = PingPong()
@@ -18,7 +16,7 @@ class PingPong {
     var backgroundSync : BackgroundSync
     private var reachabilityManager : NetworkReachabilityManager?
     var isEndpointReachable : Bool = false
-    var syncOptions = [String : SyncOptionValue]()
+    var syncTasks = [SyncTask]() // This array of sync tasks is configured with PingPong and enables overriding the default document syncing behavior
     
     init() {
         // Init the data store
@@ -31,12 +29,12 @@ class PingPong {
         self.reachabilityManager = NetworkReachabilityManager(host: "www.apple.com")
     }
     
-    func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncOptions : [String : SyncOptionValue]?) {
+    func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncTasks : [SyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
         self.backgroundSync.start(secondsInterval: backGroundSyncInterval)
-        if let userSyncOptions = syncOptions {
-            self.syncOptions = userSyncOptions
+        if let tasks = syncTasks {
+            self.syncTasks = tasks
         }
         
         // Start listening
@@ -54,11 +52,11 @@ class PingPong {
         self.reachabilityManager?.startListening()
     }
     
-    func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncOptions : [String : SyncOptionValue]?) {
+    func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
-        if let userSyncOptions = syncOptions {
-            self.syncOptions = userSyncOptions
+        if let tasks = syncTasks {
+            self.syncTasks = tasks
         }
         
         // Start listening
