@@ -11,6 +11,7 @@ In our projects we pair this framework with a REST-ful nodejs endpoint to POST/P
 - JSON Serialization and De-serialization for Swift Classes
 - Local Document Stash 
 - File Uploads
+- Custom Sync Tasks
 
 ## What's Missing or Broken
 - Document Conflict Handling is not covered, the framework assumes conflict decisions will be handled elsewhere
@@ -81,8 +82,8 @@ The background sync process is designed to push data and pull data to and from t
 2) When the App is in the background the background sync process is executed during a background fetch event from the OS
 3) The developer can manually trigger a background sync by calling PingPong.startBackgroundSync()
 
-### Custom Sync Options
-There are scenarios when you don't want PingPong to handle specific document types, and in those cases we provide an override mechanism. When starting a PingPong 
+### Custom Sync Tasks
+There are scenarios when you don't want PingPong to handle specific document types, or as a whole the document endpoint is not an option. In those cases we provide an override mechanism. When starting PingPong you provide it with an array of SyncTask objects. These specific objects are "tasks" that you create by subclassing the SyncTask type. You configure these sync tasks as one of two different types, either **automatic sync tasks** or **document sync tasks**. If you set automaticSyncTask to true then everytime PingPong syncs in the background it will automatically execute the logic defined in the sync function. Otherwise if the task is not an automatic task but instead is defined by a specific docType, then it will execute the sync logic when the background sync process has a document of that type to process in the sync queue.
 
 ### Querying the Stash
 There is a handy func in the DataStore that enables the user to query the local stash. Simply pass in a set of fields and values to search on those values.
