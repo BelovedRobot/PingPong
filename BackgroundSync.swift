@@ -11,9 +11,10 @@ import Foundation
 class BackgroundSync {
     
     static let shared : BackgroundSync = BackgroundSync()
-    private var queue : OperationQueue;
+    private var queue : OperationQueue
     private var secondsInterval : Int = 0
     private var timer : Timer?
+    private var isSyncing : Bool = false
     
     init() {
         queue = OperationQueue()
@@ -38,6 +39,13 @@ class BackgroundSync {
     }
     
     @objc private func timerFired(timer : Timer) {
+        // Only fire the sync if the background sync is not running
+        if self.isSyncing {
+            print("Automatic sync avoided, already running in background")
+            return
+        }
+        // Update the syncing status
+        self.isSyncing = true
         let someWork : ()->() = {
             print("Background Sync Fired -> \(Date().toISOString())")
             self.sync()
@@ -48,9 +56,27 @@ class BackgroundSync {
         self.scheduleTimer(seconds: self.secondsInterval)
     }
     
+    func manualSync() {
+        // Only fire the manual sync if the background sync is not running
+        if self.isSyncing {
+            print("Manual sync avoided, already running in background")
+            return
+        }
+        
+        // Create some work for queue
+        let someWork : ()->() = {
+            print("Manual Sync Fired -> \(Date().toISOString())")
+            DispatchQueue.background.async {
+                self.sync()
+            }
+        }
+        self.queue.addOperation(someWork);
+    }
     func sync() {
         // Is there a network connection
         guard PingPong.shared.isEndpointReachable else {
+            print("Sync aborting: Endpoint is not reachable")
+            self.isSyncing = false
             return
         }
         
@@ -103,10 +129,34 @@ class BackgroundSync {
             }
         }
         
+        // For tracking the end of syncing we will create an array of ints, and as they complete they will
+        // pop an int off of the stack. This is a generic counting mechanism.
+        var autoSyncTasksCounter : [Int] = [Int]()
+        
+        // For the success of the auto complete tasks we need to check the counter, and if it's empty then we know we're done
+        let autoSuccess = {
+            // Somehow this was fired when there was no objects left, so wrapping for safety
+            if autoSyncTasksCounter.count > 0 {
+                autoSyncTasksCounter.removeLast()
+            }
+            
+            if (autoSyncTasksCounter.count == 0) {
+                // Send complete notification
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name(Globals.backgroundSyncCompleteNotification), object: nil)
+                    self.isSyncing = false
+                }
+            }
+        }
         // Get list of automatic sync tasks and execute
         let autoSyncTasks = PingPong.shared.syncTasks.filter({ $0.automaticTask })
+        
+        // Add a counter for each task
+        autoSyncTasksCounter += 1...autoSyncTasks.count
+        
         for task in autoSyncTasks {
-            task.sync(jsonString: nil, success: nil)
+            // Perform Sync
+            task.sync(jsonString: nil, success: autoSuccess)
         }
         
         // Delete any orphanced records in the sync queue, there is a byproduct of the sync options in which they clean up their own records but 

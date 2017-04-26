@@ -31,6 +31,45 @@ class DataStore {
         queue = FMDatabaseQueue(path: dbPath)
     }
     
+    func stashObjects(objects: [StashObject]) -> Bool{
+        var success : Bool = false
+        queue.inTransaction() { database, rollback in
+            guard let database = database else {
+                return
+            }            
+            for stashableObject in objects {
+                do {
+                    let documentJson = stashableObject.toJSON()
+                    
+                    if !stashableObject.id.isEmpty {
+                        let id = stashableObject.id
+                        // First see if document already exists
+                        //   print("CHECKING FOR A DEF DOCUMENT HERE \(id)")
+                        let results = try database.executeQuery("SELECT * FROM documents WHERE id = ?;", values: [id])
+                        if (results.next()) {
+                            // The document does exist so update
+                            try database.executeUpdate("UPDATE documents SET json = ? WHERE id = ?;", values: [documentJson, id])
+                        }else{
+                            try database.executeUpdate("INSERT INTO documents (id, json) VALUES(?, ?);", values: [id, documentJson])
+                        }
+                        results.close()
+
+                        
+                        // Document does not exist so we insert
+                        
+                        success = true
+                    }
+                } catch {
+                    rollback?.pointee = true
+                    print("There was an error executing database queries or updates.")
+                    success = false
+                }
+            }
+        }
+        return success
+    }
+    
+    
     func addDocumentToSyncQueue(documentId : String) {
         queue.inDatabase { database in
             guard let database = database else {
@@ -208,26 +247,28 @@ class DataStore {
             }
         }
     }
-    
-    func queryDocumentStore(parameters : (property: String, value: String)..., callback : @escaping ([JSON]) -> ()) {
+    func countQueryDocumentJSON(parameters : (property: String, value: Any)..., callback : @escaping (Int) -> ()) {
         queue.inDatabase { (database) in
             guard let database = database else {
                 return
             }
             
-            // Load all json objects AHHHHHH
-            var documents = [JSON]()
+            var count :Int = 0
             
+            //Build WHERE clause(s)
+            let (whereString, searchValues) = self.buildSQLWhereForJSONParams(parameters: parameters)
+            
+            //Run query
             do {
-                let results = try database.executeQuery(sql: "SELECT * FROM documents")
-                while (results.next()) {
-                    documents.append(JSON.parse(results.string(forColumn: "json")))
+                let results = try database.executeQuery("SELECT count(id) as count FROM documents\(whereString)", values: searchValues)
+                if (results.next()) {
+                    count = Int(results.int(forColumn: "count"))
                 }
                 results.close()
             } catch {
                 print("There was an error executing database queries or updates.")
             }
-            
+            callback(count);
             // Filter documents by parameters
             for (property, value) in parameters {
                 documents = documents.filter({ (json) -> Bool in
@@ -241,9 +282,29 @@ class DataStore {
                         // Property does not exist on document
                         return false
                     }
-                })
+    
+    func queryDocumentStore(parameters : (property: String, value: Any)..., callback : @escaping ([JSON]) -> ()) {
+        queue.inDatabase { (database) in
+            guard let database = database else {
+                return
             }
             
+            var documents = [JSON]()
+
+            //Build WHERE clause(s)
+            let (whereString, searchValues) = self.buildSQLWhereForJSONParams(parameters: parameters)
+            
+            //Run query
+            do {
+                let results = try database.executeQuery("SELECT json FROM documents\(whereString)", values: searchValues)
+                
+                while (results.next()) {
+                    documents.append(JSON.parse(results.string(forColumn: "json")))
+                }
+                results.close()
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
             callback(documents);
         }
     }
@@ -282,5 +343,31 @@ class DataStore {
     
     private func fatalAlert(message: String) {
         print("DataStore FATAL ERROR -> \(message)")
+    }
+    
+    private func buildSQLWhereForJSONParams(parameters:Array<(property: String, value: Any)>) ->(String, Array<String>) {
+        
+        /* FMDB warns against creating query strings without the use of their
+         placeholder "?" because the code becomes susceptible to sql injection.
+         So I jump through a few hoops to do that. There is likely a better way
+         */
+        
+        var searchStrings = [String]()
+        var searchValues = [String]()
+        var whereString:String = ""
+        
+        for (property, value) in parameters {
+            searchStrings.append("(json LIKE ?)") //for sql string
+
+            if let str = value as? String {
+                searchValues.append("%\"\(property)\":\"\(str)\"%") //for FMDB replacement variables
+            } else {
+                searchValues.append("%\(property)\":\(value)%") //for FMDB replacement variables
+            }
+        }
+        if !searchStrings.isEmpty {
+            whereString = " WHERE " + searchStrings.joined(separator: " and ")
+        }
+        return (whereString, searchValues)
     }
 }

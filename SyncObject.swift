@@ -73,11 +73,18 @@ class SyncObject : StashObject {
         }
     }
     
-    // This func takes is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
+    // This func is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
     func safeStashFromCloud() {
         if !self.hasPendingSync() {
             let jsonString = self.toJSON()
             DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
+        }
+    }
+    
+    // This func is meant for data coming from the cloud to ensure that it doesn't delete local queued changes, oftentimes when we fetch a large set of data we will delete existing data to ensure that objects deleted elsewhere are reflected. This is a safe way to do it.
+    func safeDelete() {
+        if !self.hasPendingSync() {
+            DataStore.sharedDataStore.deleteDocument(id: self.id)
         }
     }
     

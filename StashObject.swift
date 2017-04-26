@@ -21,6 +21,10 @@ class StashObject : JsonObject {
         DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
     }
     
+    class func stashAll(objects: [StashObject]) -> Bool{
+        return DataStore.sharedDataStore.stashObjects(objects:objects)
+    }
+    
     // This is essentially an override for stash where only a single instance of this document should exist in the DB at a time
     func stashSingle(docType : String) -> Bool {
         var shouldStash = false
