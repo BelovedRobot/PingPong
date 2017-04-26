@@ -10,7 +10,7 @@ import Foundation
 
 class DataStore {
     static let sharedDataStore : DataStore = DataStore()
-    private static let databaseName : String = "br-data-store.sqlite3"
+    static let databaseName : String = "br-data-store.sqlite3"
     private var queue : FMDatabaseQueue
     
     init() {
@@ -247,6 +247,7 @@ class DataStore {
             }
         }
     }
+    
     func countQueryDocumentJSON(parameters : (property: String, value: Any)..., callback : @escaping (Int) -> ()) {
         queue.inDatabase { (database) in
             guard let database = database else {
@@ -269,19 +270,8 @@ class DataStore {
                 print("There was an error executing database queries or updates.")
             }
             callback(count);
-            // Filter documents by parameters
-            for (property, value) in parameters {
-                documents = documents.filter({ (json) -> Bool in
-                    if let val = json[property].string {
-                        if (val == value) {
-                            return true
-                        } else {
-                            return false
-                        }
-                    } else {
-                        // Property does not exist on document
-                        return false
-                    }
+        }
+    }
     
     func queryDocumentStore(parameters : (property: String, value: Any)..., callback : @escaping ([JSON]) -> ()) {
         queue.inDatabase { (database) in

@@ -50,7 +50,7 @@ class BackgroundSync {
             print("Background Sync Fired -> \(Date().toISOString())")
             self.sync()
         }
-        queue.addOperation(someWork);
+        self.queue.addOperation(someWork);
         
         // Schedule more work
         self.scheduleTimer(seconds: self.secondsInterval)
@@ -72,6 +72,7 @@ class BackgroundSync {
         }
         self.queue.addOperation(someWork);
     }
+    
     func sync() {
         // Is there a network connection
         guard PingPong.shared.isEndpointReachable else {
@@ -89,7 +90,6 @@ class BackgroundSync {
             results = dataResults
             sema.signal()
         }
-        
         sema.wait()
         
         // Get list of document sync tasks
@@ -148,6 +148,7 @@ class BackgroundSync {
                 }
             }
         }
+        
         // Get list of automatic sync tasks and execute
         let autoSyncTasks = PingPong.shared.syncTasks.filter({ $0.automaticTask })
         

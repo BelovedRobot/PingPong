@@ -22,7 +22,7 @@ extension Date {
         return components.day! + 1
     }
     
-    func isBetweeen(date date1: NSDate, andDate date2: NSDate) -> Bool {
+    func isBetweeen(date date1: Date, andDate date2: Date) -> Bool {
         return date1.compare(self as Date).rawValue * self.compare(date2 as Date).rawValue >= 0
     }
     
@@ -50,7 +50,7 @@ extension Date {
     }
     
     func endOfDay() -> Date {
-        let testDate = self.localDate().addingTimeInterval(86399)
+        let testDate = self.localDate()
         
         // Strip off the time
         let formatter = DateFormatter()
