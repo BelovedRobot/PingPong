@@ -23,7 +23,7 @@ class BackgroundSync {
     
     func start(secondsInterval : Int) {
         self.secondsInterval = secondsInterval
-        self.scheduleTimer(seconds: 5) // First pass refreshes after 5 seconds
+        self.scheduleTimer(seconds: secondsInterval) // First pass refreshes after 5 seconds
     }
     
     func stop() {
@@ -35,7 +35,10 @@ class BackgroundSync {
     private func scheduleTimer(seconds : Int) {
         let secondsDouble = Double(seconds)
         let selector = #selector(self.timerFired(timer:))
-        timer = Timer.scheduledTimer(timeInterval: secondsDouble, target: self, selector: selector, userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: secondsDouble, target: self, selector: selector, userInfo: nil, repeats: true)
+        
+        // Go ahead and fire the first time
+        timer?.fire()
     }
     
     @objc private func timerFired(timer : Timer) {
@@ -53,7 +56,7 @@ class BackgroundSync {
         self.queue.addOperation(someWork);
         
         // Schedule more work
-        self.scheduleTimer(seconds: self.secondsInterval)
+        // self.scheduleTimer(seconds: self.secondsInterval)
     }
     
     func manualSync() {
