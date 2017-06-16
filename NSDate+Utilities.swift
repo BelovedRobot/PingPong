@@ -35,6 +35,12 @@ extension Date {
     static func fromISOString(dateString : String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let result = formatter.date(from: dateString) {
+            return result
+        }
+        
+        // Update format
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter.date(from: dateString)!
     }
     

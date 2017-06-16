@@ -68,6 +68,8 @@ class JsonObject : NSObject {
                     // String
                     if let childValue = childItem as? NSString {
                         children.append(childValue)
+                    } else if let childValue = childItem as? NSNumber {
+                        children.append(childValue)
                     } else {
                         // Object
                         do {

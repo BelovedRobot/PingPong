@@ -51,8 +51,10 @@ class BackgroundSync {
         self.isSyncing = true
         let someWork : ()->() = {
             print("Background Sync Fired -> \(Date().toISOString())")
+                            DispatchQueue.background.async {
             self.sync()
         }
+                        }
         self.queue.addOperation(someWork);
         
         // Schedule more work
@@ -137,7 +139,9 @@ class BackgroundSync {
         var autoSyncTasksCounter : [Int] = [Int]()
         
         // For the success of the auto complete tasks we need to check the counter, and if it's empty then we know we're done
+        let autoQueue = DispatchQueue(label: "autoTaskSuccessQueue") // Create a queue to process all success messages
         let autoSuccess = {
+            autoQueue.sync {
             // Somehow this was fired when there was no objects left, so wrapping for safety
             if autoSyncTasksCounter.count > 0 {
                 autoSyncTasksCounter.removeLast()
@@ -151,6 +155,7 @@ class BackgroundSync {
                 }
             }
         }
+        }
         
         // Get list of automatic sync tasks and execute
         let autoSyncTasks = PingPong.shared.syncTasks.filter({ $0.automaticTask })
@@ -160,6 +165,7 @@ class BackgroundSync {
         
         for task in autoSyncTasks {
             // Perform Sync
+            // print("Starting task name \(String(describing: type(of: task)))")
             task.sync(jsonString: nil, success: autoSuccess)
         }
         
