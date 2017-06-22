@@ -82,7 +82,7 @@ The background sync process is designed to push data and pull data to and from t
 2) When the App is in the background the background sync process is executed during a background fetch event from the OS
 3) The developer can manually trigger a background sync by calling PingPong.startBackgroundSync()
 
-### Custom Document Sync Tasks and Automatic Sync Tasks
+### Custom Sync Tasks for Documents and Automatic Sync Tasks
 There are scenarios when you don't want PingPong to handle specific document types, or as a whole the document endpoint is not an option. In those cases we provide an override mechanism. When starting PingPong you provide it with an array of SyncTask objects. These specific objects are "tasks" that you create by subclassing the SyncTask type. You configure these sync tasks as one of two different types, either **automatic sync tasks** or **document sync tasks**. If you set automaticSyncTask to true then everytime PingPong syncs in the background it will automatically execute the logic defined in the sync function. Otherwise if the task is not an automatic task but instead is defined by a specific docType, then it will execute the sync logic when the background sync process has a document of that type to process in the sync queue.
 
 #### Example of an Automatic Sync Task
@@ -163,7 +163,7 @@ DataStore.sharedDataStore.queryDocumentStore(("docType", "note")) { documents in
 ## Implementation
 The first step is to create the Document endpoint. This endpoint can be configured anyway you like as long as PingPong can POST/PUT json documents. A sample endpoint that Beloved Robot uses is found here: https://github.com/BelovedRobot/PingPongEndpoint
 
-### Implementation Notes for the Service Endpoint
+### Implementation Notes for a PingPong-compatible API
 1. Each document needs an ID
 
 2. Each document needs a "docType" property, which can then be used to model types of objects
@@ -174,8 +174,8 @@ The first step is to create the Document endpoint. This endpoint can be configur
 
 5. Authorization to the endpoint is _only_ provided through simple token-based authentication where a token is assigned to each app and or user that gives access the endpoint through the "Authorization" header on requests. That is to say each PingPong request includes "Token token=xxx" in the Authorization header where "xxx" is the actual token
 
-### Implementation of Alternate Endpoints
-If you are implementing a non-document endpoint or you do not have control of the endpoint then you can override all functionality of PingPong by using the syncOptions. You will need to register a syncOption for each documentType and implement it in that manner. If you have a file upload process you can either a) modify the fileUpload logic directly or b) change the docType of FileUpload and create a customer sync option.
+### Implementation of Alternate APIs
+If you are implementing a non-document API or you do not have control of the endpoint then you can override all syncing functionality of PingPong by using custom Sync Tasks (see Custom Sync Tasks section above). You will need to register a SyncTask object for each documentType or automatic task with PingPong. If you have a file upload process you can either a) modify the fileUpload logic directly or b) change the docType of FileUpload and create a customer sync option.
 
 ### Implementation Notes for iOS Apps
 After creating the endpoint, add PingPong to your iOS project by following these steps:
