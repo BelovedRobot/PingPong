@@ -82,8 +82,66 @@ The background sync process is designed to push data and pull data to and from t
 2) When the App is in the background the background sync process is executed during a background fetch event from the OS
 3) The developer can manually trigger a background sync by calling PingPong.startBackgroundSync()
 
-### Custom Sync Tasks
+### Custom Document Sync Tasks and Automatic Sync Tasks
 There are scenarios when you don't want PingPong to handle specific document types, or as a whole the document endpoint is not an option. In those cases we provide an override mechanism. When starting PingPong you provide it with an array of SyncTask objects. These specific objects are "tasks" that you create by subclassing the SyncTask type. You configure these sync tasks as one of two different types, either **automatic sync tasks** or **document sync tasks**. If you set automaticSyncTask to true then everytime PingPong syncs in the background it will automatically execute the logic defined in the sync function. Otherwise if the task is not an automatic task but instead is defined by a specific docType, then it will execute the sync logic when the background sync process has a document of that type to process in the sync queue.
+
+#### Example of an Automatic Sync Task
+```swift
+class FetchNotes : SyncTask {
+    var docType: String? = nil
+    var automaticTask: Bool = true
+    
+    func sync(jsonString: String?, success: (() -> ())?) {
+        let headerDict = [
+            "Authorization" : "Token token=\(PingPong.shared.authorizationToken)"
+        ]
+        
+        let url = "\(PingPong.shared.documentEndpoint)/document/type/Note"
+        
+        // Send the request
+        request(url, headers: headerDict)
+            .validate()
+            .response(
+                responseSerializer: DataRequest.jsonResponseSerializer(),
+                completionHandler: { response in
+                    // Do something with the response here
+            }
+        )
+    }
+```
+
+#### Example of a Document Sync Task
+```swift
+class NoteTask : SyncTask {
+    var automaticTask: Bool = false
+    var docType: String? = "note"
+    
+    func sync(jsonString: String?, success: (() -> ())?) {
+        guard let _ = jsonString else {
+            return
+        }
+        
+        let headerDict = [
+            "Authorization" : "Token token=\(PingPong.shared.authorizationToken)"
+        ]
+        
+        let url = "\(PingPong.shared.documentEndpoint)/document"
+
+        let note = Note()
+        note.fromJson(jsonString!)
+        
+        guard let parametersDict = note.toDictionary() else {
+            return
+        }
+        
+        request(url, method: .post, parameters: parametersDict, encoding: JSONEncoding.default, headers: headerDict)
+            .validate()
+            .responseJSON { response in
+                // Do something with the response here
+            }
+    }
+}
+```
 
 ### Querying the Stash
 There is a handy func in the DataStore that enables the user to query the local stash. Simply pass in a set of fields and values to search on those values.
