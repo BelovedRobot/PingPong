@@ -1,0 +1,3 @@
+github "ccgus/fmdb"
+github "SwiftyJSON/SwiftyJSON"
+github "Alamofire/Alamofire" ~> 4.4 
