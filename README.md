@@ -5,6 +5,19 @@ PingPong provides a framework to sync json documents to and from a type-less doc
 
 In our projects we pair this framework with a REST-ful nodejs endpoint to POST/PUT documents, which are then stored in a document database. The framework also supports file uploads through another endpoint.
 
+## Installation
+
+CocoaPods
+```ruby
+target '<Your Target Name>' do
+    pod 'PingPong', '~> 0.2.0'
+end
+```
+Carthage
+```ogdl
+github "BelovedRobot/PingPong" ~> 0.2.0
+```
+
 ## Features
 - Foreground and Background Document Syncing
 - Offline Document Syncing
@@ -234,5 +247,6 @@ class PayrollWeek : SyncObject {
 }
 ```
 
-### Modifying PingPong
-The easiest and recommended way of making modifications to PingPong is to edit the source files directly in a working iOS project. Before making modifications make sure that you have the latest version of PingPong installed. Then simply start editing. This ensures that any changes are built and tested prior to committing to the PingPong repo. Once you have validated your changes you can can copy/paste the source into the PingPong repo and commit them.
+### Contributing to PingPong
+
+See the [contribution guide](CONTRIBUTING.md).
