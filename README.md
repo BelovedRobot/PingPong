@@ -249,6 +249,6 @@ class PayrollWeek : SyncObject {
 }
 ```
 
-### Contributing to PingPong
+## Contributing to PingPong
 
 See the [contribution guide](CONTRIBUTING.md).
