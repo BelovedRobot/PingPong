@@ -1,5 +1,7 @@
 # PingPong by Beloved Robot
 
+![alt text](https://github.com/BelovedRobot/PingPong/blob/master/PingPongBanner.png "PingPong Github banner")
+
 ## Overview
 PingPong provides a framework to sync json documents to and from a type-less document endpoint. The syncing can occur in the foreground or background, and it supports offline syncing.
 
