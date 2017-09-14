@@ -20,7 +20,7 @@ open class JsonObject : NSObject {
     
     // Convert object to JSON String
     
-    final func toJSON() -> String {
+    public final func toJSON() -> String {
         do {
             let dict = try self.mirrorObjectToDict(object: self)
             let data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.init(rawValue: 0))
@@ -32,7 +32,7 @@ open class JsonObject : NSObject {
     }
     
     // Convert object to Dictionary<String, AnyObject> that can be converted to JSON
-    final open func toDictionary() -> Dictionary<String, AnyObject>? {
+    public final func toDictionary() -> Dictionary<String, AnyObject>? {
         do {
             return try self.mirrorObjectToDict(object: self)
         } catch {
@@ -156,59 +156,4 @@ open class JsonObject : NSObject {
             }
         }
     }
-
-    // [ZK] -  This is old code. I could never fully get subJson dictionary and arrays to serialize without using the serialization exceptions and manually
-    // performing the conversions
-//    Convert a child dictionary is that when you set the key it keeps it as a Dictionary rather than the actual type it should be
-//    private func convertSubJsonToDictionary(subJson : [String : JSON]) -> Dictionary<String, AnyObject> {
-//        var childDict = [String : AnyObject]()
-//
-//        for (key, value) in subJson {   
-//            // If it is a string
-//            if let stringVal = value.string {
-//                childDict[key] = stringVal
-//                // If it is a double
-//            } else if let intVal = value.double {
-//                childDict[key] = intVal
-//                // If it is an int
-//            } else if let intVal = value.int {
-//                childDict[key] = intVal
-//                // If it is a bool
-//            } else if let boolVal = value.bool {
-//                childDict[key] = boolVal
-//            } else if let childVal = value.dictionary {
-//                let subChildDict = self.convertSubJsonToDictionary(childVal)
-//                childDict[key] = subChildDict
-//            }
-//        }
-//        return childDict
-//    }
-    
-//    // An alternative to init with json string, the input 'object' is expected to be a NSDictionary
-//    func fromDictionary(object : AnyObject) {
-//        if let jsonDictionary = object as? NSDictionary {
-//            for (key, value) in jsonDictionary {
-//                let keyName = key as! String
-//                
-//                // If the value is of type Dictionary or Array skip and force an override
-//                if let valueDict = value as? NSDictionary {
-//                    // Store for further serialization
-//                    self.deserializationExceptions[keyName] = valueDict
-//                } else if let valueArray = value as? NSArray {
-//                    // Store for further serialization
-//                    self.deserializationExceptions[keyName] = valueArray
-//                } else if (self.respondsToSelector(NSSelectorFromString(keyName))) {
-//                    // Property exists, test for type
-//                    if let stringValue = value as? String {
-//                        self.setValue(stringValue, forKey: keyName)
-//                    } else if let numberValue = value as? NSNumber {
-//                        self.setValue(numberValue, forKey: keyName)
-//                    }
-//                } else {
-//                    // Store for further serialization
-//                    self.deserializationExceptions[keyName] = value
-//                }
-//            }
-//        }
-//    }
 }

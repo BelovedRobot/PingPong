@@ -17,11 +17,11 @@ public class PingPong {
     public var documentEndpoint : String = ""
     public var authorizationToken : String = ""
     public var backgroundSync : BackgroundSync
-    private var reachabilityManager : NetworkReachabilityManager?
+    public var reachabilityManager : NetworkReachabilityManager?
     public var isEndpointReachable : Bool = false
     var syncTasks = [SyncTask]() // This array of sync tasks is configured with PingPong and enables overriding the default document syncing behavior
     
-    init() {
+    private init() {
         // Init the data store
         let _ = DataStore.sharedDataStore
         
@@ -55,7 +55,7 @@ public class PingPong {
         self.reachabilityManager?.startListening()
     }
     
-    func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?) {
+    public func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
         if let tasks = syncTasks {
@@ -80,11 +80,11 @@ public class PingPong {
         self.backgroundSync.sync()
     }
     
-    func stop() {
+    public func stop() {
         self.backgroundSync.stop()
     }
     
-    func uploadFile(fileUpload : FileUpload, callback: @escaping ()->()) {
+    public func uploadFile(fileUpload : FileUpload, callback: @escaping ()->()) {
         // Expand the path if necessary
         let expandedPath = (fileUpload.localFilePath as NSString).expandingTildeInPath
         
@@ -157,7 +157,7 @@ public class PingPong {
         )
     }
     
-    func saveFileEventually(fileData : FileUpload) {
+    public func saveFileEventually(fileData : FileUpload) {
         fileData.stash()
         
         // Ensure the taget object is queued for syncing first, because it will affect matching later
@@ -167,7 +167,7 @@ public class PingPong {
         DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: fileData.id)
     }
     
-    func deleteFile(fileDelete : FileDelete, callback: @escaping ()->()) {
+    public func deleteFile(fileDelete : FileDelete, callback: @escaping ()->()) {
         guard let fileUrl = NSURL(string: fileDelete.fileUrl) else {
             return
         }
@@ -197,13 +197,13 @@ public class PingPong {
         }
     }
     
-    func deleteFileEventually(fileDelete : FileDelete) {
+    public func deleteFileEventually(fileDelete : FileDelete) {
         fileDelete.stash()
         DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: fileDelete.id)
     }
     
     // POST JSON Document
-    func saveDocumentToCloud(jsonString : String, success : (() -> ())? ) {
+    public func saveDocumentToCloud(jsonString : String, success : (() -> ())? ) {
         // Guard against missing id
         guard let id = JSON.parse(jsonString)["id"].string else {
             return

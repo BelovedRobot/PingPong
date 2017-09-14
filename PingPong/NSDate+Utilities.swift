@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
     
-    func differenceInDaysWithDate(date: Date) -> Int {
+    public func differenceInDaysWithDate(date: Date) -> Int {
         let calendar: Calendar = Calendar.current
         
         let date1 = calendar.startOfDay(for: self as Date)
@@ -22,17 +22,17 @@ extension Date {
         return components.day! + 1
     }
     
-    func isBetweeen(date date1: Date, andDate date2: Date) -> Bool {
+    public func isBetweeen(date date1: Date, andDate date2: Date) -> Bool {
         return date1.compare(self as Date).rawValue * self.compare(date2 as Date).rawValue >= 0
     }
     
-    func toISOString() -> String {
+    public func toISOString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return formatter.string(from: self as Date)
     }
     
-    static open func fromISOString(dateString : String) -> Date {
+    public static func fromISOString(dateString : String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         if let result = formatter.date(from: dateString) {
@@ -44,18 +44,18 @@ extension Date {
         return formatter.date(from: dateString)!
     }
     
-    func toShortDateString() -> String {
+    public func toShortDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self as Date)
     }
     
-    func localDate() -> Date {
+    public func localDate() -> Date {
         let timezoneOffset = Calendar.current.timeZone.secondsFromGMT()
         return self.addingTimeInterval(TimeInterval(timezoneOffset)) as Date
     }
     
-    func endOfDay() -> Date {
+    public func endOfDay() -> Date {
         let testDate = self.localDate()
         
         // Strip off the time
@@ -70,7 +70,7 @@ extension Date {
         return dateWithoutTime.addingTimeInterval(86399)
     }
     
-    static func lastMonday() -> Date {
+    public static func lastMonday() -> Date {
         let calendar: Calendar = Calendar.current
         
         // Get the current components
