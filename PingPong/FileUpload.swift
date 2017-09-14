@@ -33,4 +33,17 @@ open class FileUpload : StashObject {
         self.targetDocType = targetDocType
         self.targetProperty = targetProperty
     }
+
+    public init(localFilePath : String, targetId : String, targetDocType : String, targetProperty : String, subTargetId: String, subTargetDocType: String, subTargetProperty: String) {
+        super.init()
+        self.id = NSUUID().uuidString
+
+        self.localFilePath = localFilePath
+        self.targetId = targetId
+        self.targetDocType = targetDocType
+        self.targetProperty = targetProperty
+        self.subTargetId = subTargetId
+        self.subTargetDocType = subTargetDocType
+        self.subTargetProperty = subTargetProperty
+    }
 }
