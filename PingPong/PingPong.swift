@@ -18,7 +18,7 @@ public class PingPong {
     public var authorizationToken : String = ""
     public var backgroundSync : BackgroundSync
     private var reachabilityManager : NetworkReachabilityManager?
-    var isEndpointReachable : Bool = false
+    public var isEndpointReachable : Bool = false
     var syncTasks = [SyncTask]() // This array of sync tasks is configured with PingPong and enables overriding the default document syncing behavior
     
     init() {

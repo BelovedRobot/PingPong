@@ -32,7 +32,7 @@ open class JsonObject : NSObject {
     }
     
     // Convert object to Dictionary<String, AnyObject> that can be converted to JSON
-    final func toDictionary() -> Dictionary<String, AnyObject>? {
+    final open func toDictionary() -> Dictionary<String, AnyObject>? {
         do {
             return try self.mirrorObjectToDict(object: self)
         } catch {

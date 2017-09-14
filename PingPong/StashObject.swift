@@ -16,7 +16,7 @@ open class StashObject : JsonObject {
     
     open var id : String = "" // Every sync object is required to have an id
     
-    func stash() {
+    open func stash() {
         let jsonString = self.toJSON()
         DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
     }
