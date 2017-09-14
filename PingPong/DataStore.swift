@@ -159,7 +159,7 @@ public class DataStore {
         }
     }
     
-    func retrieveDocumentJSON(id : String, callback: @escaping (String?) -> ()) {
+    open func retrieveDocumentJSON(id : String, callback: @escaping (String?) -> ()) {
         queue.inDatabase { (database) in
             do {
                 var jsonResult : String? = nil
@@ -190,7 +190,7 @@ public class DataStore {
         return result
     }
     
-    func deleteDocument(id : String) {
+    open func deleteDocument(id : String) {
         queue.inDatabase { (database) in
             do {
                 try database.executeUpdate("DELETE FROM documents WHERE id = ?;", values: [id])

@@ -34,7 +34,7 @@ open class SyncObject : StashObject {
         return "\(id)_updated"
     }
     
-    public func saveEventually() {
+    open func saveEventually() {
         // Update the local stash
         self.stash()
         
@@ -42,7 +42,7 @@ open class SyncObject : StashObject {
         DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: self.id)
     }
     
-    func backgroundSync(callback : (() -> ())? ) {
+    open func backgroundSync(callback : (() -> ())? ) {
         let isPost = (self.id == "")
         
         // Convert the closure to the type expected by post/put
@@ -58,7 +58,7 @@ open class SyncObject : StashObject {
         }
     }
     
-    func fromCloud(success : (()->())?) {
+    open func fromCloud(success : (()->())?) {
         self.get{ jsonString in
             
             // If json was returned
@@ -76,7 +76,7 @@ open class SyncObject : StashObject {
     }
     
     // This func is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
-    public func safeStashFromCloud() {
+    open func safeStashFromCloud() {
         if !self.hasPendingSync() {
             let jsonString = self.toJSON()
             DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
@@ -84,13 +84,13 @@ open class SyncObject : StashObject {
     }
     
     // This func is meant for data coming from the cloud to ensure that it doesn't delete local queued changes, oftentimes when we fetch a large set of data we will delete existing data to ensure that objects deleted elsewhere are reflected. This is a safe way to do it.
-    func safeDelete() {
+    open func safeDelete() {
         if !self.hasPendingSync() {
             DataStore.sharedDataStore.deleteDocument(id: self.id)
         }
     }
     
-    func hasPendingSync() -> Bool {
+    open func hasPendingSync() -> Bool {
         return DataStore.sharedDataStore.hasPendingSync(documentId: self.id);
     }
     
