@@ -14,19 +14,19 @@ open class StashObject : JsonObject {
         super.init()
     }
     
-    open var id : String = "" // Every sync object is required to have an id
+    public var id : String = "" // Every sync object is required to have an id
     
-    open func stash() {
+    public func stash() {
         let jsonString = self.toJSON()
         DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
     }
     
-    class func stashAll(objects: [StashObject]) -> Bool{
+    public class func stashAll(objects: [StashObject]) -> Bool{
         return DataStore.sharedDataStore.stashObjects(objects:objects)
     }
     
     // This is essentially an override for stash where only a single instance of this document should exist in the DB at a time
-    func stashSingle(docType : String) -> Bool {
+    public func stashSingle(docType : String) -> Bool {
         var shouldStash = false
         
         // Create semaphore to await results
@@ -50,7 +50,7 @@ open class StashObject : JsonObject {
         return shouldStash
     }
     
-    func refresh() {
+    public func refresh() {
         // Create semaphore to await results
         let sema = DispatchSemaphore(value: 0)
         
@@ -64,7 +64,7 @@ open class StashObject : JsonObject {
         sema.wait()
     }
     
-    func hasChangedFromStash() -> Bool {
+    public func hasChangedFromStash() -> Bool {
         // Create semaphore to await results
         let sema = DispatchSemaphore(value: 0)
         

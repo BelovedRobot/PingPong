@@ -8,17 +8,17 @@
 
 import Foundation
 
-class FileDelete : StashObject {
+open class FileDelete : StashObject {
     // The data will be used by the API to associate the upload with the right document.
     var docType : String = "fileDelete";
     var fileUrl : String = "";
     
-    required init() {
+    public required init() {
         super.init()
         self.id = NSUUID().uuidString
     }
     
-    init(fileUrl : String) {
+    public init(fileUrl : String) {
         super.init()
         self.id = NSUUID().uuidString
         

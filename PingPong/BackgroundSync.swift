@@ -18,17 +18,17 @@ public class BackgroundSync {
     private var timer : Timer?
     private var isSyncing : Bool = false
     
-    init() {
+    private init() {
         queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1 // Serial Queue
     }
     
-    func start(secondsInterval : Int) {
+    public func start(secondsInterval : Int) {
         self.secondsInterval = secondsInterval
         self.scheduleTimer(seconds: secondsInterval) // First pass refreshes after 5 seconds
     }
     
-    func stop() {
+    public func stop() {
         if let validTimer = self.timer {
             validTimer.invalidate()
         }
@@ -80,7 +80,7 @@ public class BackgroundSync {
         self.queue.addOperation(someWork);
     }
     
-    func sync() {
+    public func sync() {
         // Is there a network connection
         guard PingPong.shared.isEndpointReachable else {
             print("Sync aborting: Endpoint is not reachable")

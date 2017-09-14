@@ -30,11 +30,11 @@ open class SyncObject : StashObject {
         self.refresh()
     }
 
-    static func getUpdatedNotification(id : String) -> String {
+    public static func getUpdatedNotification(id : String) -> String {
         return "\(id)_updated"
     }
     
-    open func saveEventually() {
+    public func saveEventually() {
         // Update the local stash
         self.stash()
         
@@ -42,7 +42,7 @@ open class SyncObject : StashObject {
         DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: self.id)
     }
     
-    open func backgroundSync(callback : (() -> ())? ) {
+    public func backgroundSync(callback : (() -> ())? ) {
         let isPost = (self.id == "")
         
         // Convert the closure to the type expected by post/put
@@ -58,7 +58,7 @@ open class SyncObject : StashObject {
         }
     }
     
-    open func fromCloud(success : (()->())?) {
+    public func fromCloud(success : (()->())?) {
         self.get{ jsonString in
             
             // If json was returned
@@ -76,7 +76,7 @@ open class SyncObject : StashObject {
     }
     
     // This func is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
-    open func safeStashFromCloud() {
+    public func safeStashFromCloud() {
         if !self.hasPendingSync() {
             let jsonString = self.toJSON()
             DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
@@ -84,13 +84,13 @@ open class SyncObject : StashObject {
     }
     
     // This func is meant for data coming from the cloud to ensure that it doesn't delete local queued changes, oftentimes when we fetch a large set of data we will delete existing data to ensure that objects deleted elsewhere are reflected. This is a safe way to do it.
-    open func safeDelete() {
+    public func safeDelete() {
         if !self.hasPendingSync() {
             DataStore.sharedDataStore.deleteDocument(id: self.id)
         }
     }
     
-    open func hasPendingSync() -> Bool {
+    public func hasPendingSync() -> Bool {
         return DataStore.sharedDataStore.hasPendingSync(documentId: self.id);
     }
     

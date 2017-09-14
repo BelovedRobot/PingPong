@@ -15,7 +15,7 @@ public class DataStore {
     static let databaseName : String = "br-data-store.sqlite3"
     private var queue : FMDatabaseQueue
     
-    init() {
+    private init() {
         // Get and unwrap instance of BRDatabase
         let sharedDatabase = BRDatabase.sharedBRDatabase 
         
@@ -33,7 +33,7 @@ public class DataStore {
         queue = FMDatabaseQueue(path: dbPath)
     }
     
-    func stashObjects(objects: [StashObject]) -> Bool{
+    public func stashObjects(objects: [StashObject]) -> Bool{
         var success : Bool = false
         queue.inTransaction() { database, rollback in
             for stashableObject in objects {
@@ -69,7 +69,7 @@ public class DataStore {
     }
     
     
-    func addDocumentToSyncQueue(documentId : String) {
+    public func addDocumentToSyncQueue(documentId : String) {
         queue.inDatabase { database in
             do {
                 let results = try database.executeQuery("SELECT * FROM sync_queue WHERE id == ?;", values: [documentId])
@@ -88,7 +88,7 @@ public class DataStore {
         }
     }
     
-    func hasPendingSync(documentId : String) -> Bool {
+    public func hasPendingSync(documentId : String) -> Bool {
         var hasChanges = false
         
         // Create semaphore to await results
@@ -114,7 +114,7 @@ public class DataStore {
 
     }
     
-    func removeDocumentFromSyncQueue(documentId : String) {
+    public func removeDocumentFromSyncQueue(documentId : String) {
         queue.inDatabase { (database) in
             do {
                 try database.executeUpdate("DELETE FROM sync_queue WHERE id == ?;", values: [documentId])
@@ -124,7 +124,7 @@ public class DataStore {
         }
     }
     
-    func removeOrphanedSyncQueueEntries() {
+    public func removeOrphanedSyncQueueEntries() {
         queue.inDatabase { (database) in
             do {
                 try database.executeUpdate("DELETE FROM sync_queue WHERE id NOT IN (SELECT id FROM documents);", values: nil)
@@ -134,7 +134,7 @@ public class DataStore {
         }
     }
     
-    func stashDocument(documentJson : String) {
+    public func stashDocument(documentJson : String) {
         let json = JSON.parse(documentJson)
         
         if let id = json["id"].string {
@@ -159,7 +159,7 @@ public class DataStore {
         }
     }
     
-    open func retrieveDocumentJSON(id : String, callback: @escaping (String?) -> ()) {
+    public func retrieveDocumentJSON(id : String, callback: @escaping (String?) -> ()) {
         queue.inDatabase { (database) in
             do {
                 var jsonResult : String? = nil
@@ -176,7 +176,7 @@ public class DataStore {
         }
     }
     
-    func retrieveDocumentJSONSynchronous(id : String) -> String? {
+    public func retrieveDocumentJSONSynchronous(id : String) -> String? {
         var result : String?
         // Create semaphore to await results
         let sema = DispatchSemaphore(value: 0)
@@ -190,7 +190,7 @@ public class DataStore {
         return result
     }
     
-    open func deleteDocument(id : String) {
+    public func deleteDocument(id : String) {
         queue.inDatabase { (database) in
             do {
                 try database.executeUpdate("DELETE FROM documents WHERE id = ?;", values: [id])
@@ -200,7 +200,7 @@ public class DataStore {
         }
     }
     
-    func deleteDocumentsOfType(docType : String) {
+    public func deleteDocumentsOfType(docType : String) {
         // Create semaphore to await results
         let sema = DispatchSemaphore(value: 0)
         var documentsJson : [JSON] = []
@@ -219,7 +219,7 @@ public class DataStore {
         }
     }
     
-    func countQueryDocumentJSON(parameters : (property: String, value: Any)..., callback : @escaping (Int) -> ()) {
+    public func countQueryDocumentJSON(parameters : (property: String, value: Any)..., callback : @escaping (Int) -> ()) {
         queue.inDatabase { (database) in
             var count :Int = 0
             
@@ -262,7 +262,7 @@ public class DataStore {
         }
     }
     
-    func retrieveQueuedDocuments(callback: @escaping ([String]?) -> ()) {
+    public func retrieveQueuedDocuments(callback: @escaping ([String]?) -> ()) {
         queue.inDatabase { (database) in   
             do {
                 let results = try database.executeQuery("SELECT * FROM sync_queue", values: nil)
