@@ -12,12 +12,12 @@ In our projects we pair this framework with a REST-ful nodejs endpoint to POST/P
 CocoaPods
 ```ruby
 target '<Your Target Name>' do
-    pod 'PingPong', '~> 0.2.0'
+    pod 'PingPong', '~> 0.3.4'
 end
 ```
 Carthage
 ```ogdl
-github "BelovedRobot/PingPong" ~> 0.2.0
+github "BelovedRobot/PingPong" ~> 0.3.4
 ```
 
 ## Features
