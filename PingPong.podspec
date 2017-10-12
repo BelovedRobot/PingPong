@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors             = { "Zane Kellog" => "zane@belovedrobot.com", "Juan Pereira" => "juan@belovedrobot.com" }
   s.social_media_url   = "http://twitter.com/Belovedrobot"
   s.platform     = :ios, "10.0"
-  s.source       = { :git => 'https://github.com/BelovedRobot/PingPong', :tag => '0.3.4' }
+  s.source       = { :git => 'https://github.com/BelovedRobot/PingPong.git', :tag => '0.3.4' }
   s.source_files  = "PingPong", "PingPong/*.{h,m,swift}"
   s.resource_bundles = {
     'PingPong' => [
