@@ -152,7 +152,7 @@ public class BackgroundSync {
             if (autoSyncTasksCounter.count == 0) {
                 // Send complete notification
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: NSNotification.Name(""), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name("PingPong.BackgroundSync.Complete"), object: nil)
                     self.isSyncing = false
                 }
             }
