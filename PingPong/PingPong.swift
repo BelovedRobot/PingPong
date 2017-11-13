@@ -35,7 +35,6 @@ public class PingPong {
     public func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncTasks : [SyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
-        self.backgroundSync.start(secondsInterval: backGroundSyncInterval)
         if let tasks = syncTasks {
             self.syncTasks = tasks
         }
@@ -53,6 +52,10 @@ public class PingPong {
             }
         }
         self.reachabilityManager?.startListening()
+        let wait = DispatchTime.now() + 1 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: wait) {
+            self.backgroundSync.start(secondsInterval: backGroundSyncInterval)
+        }
     }
     
     public func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?) {
