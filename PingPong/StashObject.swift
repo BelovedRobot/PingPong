@@ -14,7 +14,7 @@ open class StashObject : JsonObject {
         super.init()
     }
     
-    public var id : String = "" // Every sync object is required to have an id
+    @objc public var id : String = "" // Every sync object is required to have an id
     
     open func stash() {
         let jsonString = self.toJSON()
