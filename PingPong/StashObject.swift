@@ -57,8 +57,8 @@ open class StashObject : JsonObject {
         DataStore.sharedDataStore.retrieveDocumentJSON(id: self.id) { (result : String?) in
             if let json = result {
                 self.fromJSON(json: json)
-                sema.signal()
             }
+            sema.signal()
         }
         
         sema.wait()
