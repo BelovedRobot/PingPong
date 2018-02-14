@@ -69,6 +69,8 @@ public class BackgroundSync {
             print("Manual sync avoided, already running in background")
             return
         }
+		// Update the syncing status
+		self.isSyncing = true
         
         // Create some work for queue
         let someWork : ()->() = {
