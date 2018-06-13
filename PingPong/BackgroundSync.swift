@@ -1,6 +1,5 @@
 //
 //  BackgroundSync.swift
-//  Deshazo
 //
 //  Created by Zane Kellogg on 7/2/16.
 //  Copyright © 2016 Beloved Robot. All rights reserved.
