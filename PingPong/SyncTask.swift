@@ -1,6 +1,5 @@
 //
 //  SyncTask.swift
-//  BGSafetyApp
 //
 //  Created by Zane Kellogg on 11/16/16.
 //  Copyright © 2016 Beloved Robot. All rights reserved.
