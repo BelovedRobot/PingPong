@@ -1,6 +1,5 @@
 //
 //  NSDate+Utilities.swift
-//  Deshazo
 //
 //  Created by Jarrod Glasgow on 5/23/16.
 //  Copyright © 2016 Beloved Robot. All rights reserved.
