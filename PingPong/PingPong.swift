@@ -19,6 +19,7 @@ public class PingPong {
     public var reachabilityManager : NetworkReachabilityManager?
     public var isEndpointReachable : Bool = false
     var syncTasks = [SyncTask]() // This array of sync tasks is configured with PingPong and enables overriding the default document syncing behavior
+    var autoTasks = [AutomaticSyncTask]() // This array of sync tasks is configured with PingPong and enables task to be executed for each sync
     
     private init() {
         // Init the data store
@@ -31,11 +32,16 @@ public class PingPong {
         self.reachabilityManager = NetworkReachabilityManager(host: "www.apple.com")
     }
     
-    public func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncTasks : [SyncTask]?) {
+    public func start(documentEndpoint : String, authorizationToken : String, backGroundSyncInterval : Int, syncTasks : [SyncTask]?, automaticSyncTasks : [AutomaticSyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
+        
         if let tasks = syncTasks {
             self.syncTasks = tasks
+        }
+        
+        if let autoTasks = automaticSyncTasks {
+            self.autoTasks = autoTasks
         }
         
         // Start listening
@@ -57,11 +63,16 @@ public class PingPong {
         }
     }
     
-    public func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?) {
+    public func startBackgroundSync(documentEndpoint : String, authorizationToken : String, syncTasks : [SyncTask]?, automaticSyncTasks: [AutomaticSyncTask]?) {
         self.documentEndpoint = documentEndpoint
         self.authorizationToken = authorizationToken
+        
         if let tasks = syncTasks {
             self.syncTasks = tasks
+        }
+        
+        if let autoTasks = automaticSyncTasks {
+            self.autoTasks = autoTasks
         }
         
         // Start listening
