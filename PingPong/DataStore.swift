@@ -67,7 +67,6 @@ public class DataStore {
         return success
     }
     
-    
     public func addDocumentToSyncQueue(documentId : String) {
         queue.inDatabase { database in
             do {
@@ -249,6 +248,25 @@ public class DataStore {
             //Run query
             do {
                 let results = try database.executeQuery("SELECT json FROM documents\(whereString)", values: searchValues)
+                
+                while (results.next()) {
+                    documents.append(JSON.parse(results.string(forColumn: "json")!))
+                }
+                results.close()
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
+            callback(documents);
+        }
+    }
+    
+    public func queryDocumentStore(query : String, callback: @escaping ([JSON]) -> ()) {
+        queue.inDatabase { (database) in
+            var documents = [JSON]()
+            
+            //Run query
+            do {
+                let results = try database.executeQuery(query, values: nil)
                 
                 while (results.next()) {
                     documents.append(JSON.parse(results.string(forColumn: "json")!))

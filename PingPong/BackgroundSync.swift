@@ -45,9 +45,9 @@ public class BackgroundSync {
     @objc private func timerFired(timer : Timer) {
         // Only fire the sync if the background sync is not running
         if self.isSyncing {
-//            print("Automatic sync avoided, already running in background")
-//            return
-            print("Syncing already running: Starting Anyway")
+            print("Automatic sync avoided, already running in background")
+            return
+//            print("Syncing already running: Starting Anyway")
         }
         // Update the syncing status
         self.isSyncing = true
