@@ -18,6 +18,8 @@ public class PingPong {
     public var backgroundSync : BackgroundSync
     public var reachabilityManager : NetworkReachabilityManager?
     public var isEndpointReachable : Bool = false
+    public var avoidSyncIfUnreachable : Bool = true // Setting this to false will enable the sync to run regardless of reachability status
+    
     var syncTasks = [SyncTask]() // This array of sync tasks is configured with PingPong and enables overriding the default document syncing behavior
     var autoTasks = [AutomaticSyncTask]() // This array of sync tasks is configured with PingPong and enables task to be executed for each sync
     
@@ -44,19 +46,26 @@ public class PingPong {
             self.autoTasks = autoTasks
         }
         
-        // Start listening
-        self.reachabilityManager?.listener = { status in
-            print("Network Status Changed: \(status)")
-            switch (status) {
-            case .reachable(.ethernetOrWiFi):
-                self.isEndpointReachable = true
-            case .reachable(.wwan):
-                self.isEndpointReachable = true
-            default:
-                self.isEndpointReachable = false
+        // Ensure the setting is enabled before starting reachablity
+        if self.avoidSyncIfUnreachable {
+            // Start listening
+            self.reachabilityManager?.listener = { status in
+                print("Network Status Changed: \(status)")
+                switch (status) {
+                case .reachable(.ethernetOrWiFi):
+                    self.isEndpointReachable = true
+                case .reachable(.wwan):
+                    self.isEndpointReachable = true
+                default:
+                    self.isEndpointReachable = false
+                }
             }
+            self.reachabilityManager?.startListening()
+        } else {
+            // The feature is disabled so force isReachable to always be true
+            self.isEndpointReachable = true
         }
-        self.reachabilityManager?.startListening()
+        
         let wait = DispatchTime.now() + 1 // change 2 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: wait) {
             self.backgroundSync.start(secondsInterval: backGroundSyncInterval)
