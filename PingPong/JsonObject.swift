@@ -128,7 +128,7 @@ open class JsonObject : NSObject {
     
     // Init object with json string
     open func fromJSON(json : String) {
-        self.fromSwiftyJSON(json: JSON.parse(json))
+		self.fromSwiftyJSON(json: JSON.init(parseJSON: json))
     }
     
     private func fromSwiftyJSON(json : JSON) {
