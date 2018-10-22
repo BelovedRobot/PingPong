@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "PingPong"
-  s.version      = "0.3.4"
+  s.version      = "0.3.5"
   s.summary      = "A Beloved Robot framework that supports background, foreground, and offline json document syncing"
   s.homepage     = "https://github.com/BelovedRobot/PingPong"
   s.license      = "MIT"

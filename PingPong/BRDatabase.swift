@@ -9,13 +9,13 @@
 import Foundation
 import FMDB
 
-class BRDatabase {
+public class BRDatabase {
 
-    static let sharedBRDatabase = BRDatabase()
+    public static let sharedBRDatabase = BRDatabase()
 
     var databaseVersion: Float = 0.0
     var scripts = [String: String]()
-    var databasePath: String?
+    public var databasePath: String?
     var database: FMDatabase?
     var databaseQueue: FMDatabaseQueue?
 

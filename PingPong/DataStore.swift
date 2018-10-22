@@ -1,6 +1,5 @@
 //
 //  DataStore.swift
-//  Deshazo
 //
 //  Created by Zane Kellogg on 5/31/16.
 //  Copyright © 2016 Beloved Robot. All rights reserved.
@@ -67,7 +66,6 @@ public class DataStore {
         }
         return success
     }
-    
     
     public func addDocumentToSyncQueue(documentId : String) {
         queue.inDatabase { database in
@@ -262,6 +260,25 @@ public class DataStore {
         }
     }
     
+    public func queryDocumentStore(query : String, callback: @escaping ([JSON]) -> ()) {
+        queue.inDatabase { (database) in
+            var documents = [JSON]()
+            
+            //Run query
+            do {
+                let results = try database.executeQuery(query, values: nil)
+                
+                while (results.next()) {
+                    documents.append(JSON.parse(results.string(forColumn: "json")!))
+                }
+                results.close()
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
+            callback(documents);
+        }
+    }
+    
     public func retrieveQueuedDocuments(callback: @escaping ([String]?) -> ()) {
         queue.inDatabase { (database) in   
             do {
@@ -318,5 +335,21 @@ public class DataStore {
             whereString = " WHERE " + searchStrings.joined(separator: " and ")
         }
         return (whereString, searchValues)
+    }
+    
+    public func resetDatabase() {
+        let appDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let dbPath = "\(appDir)/\(DataStore.databaseName)"
+        try! FileManager.default.removeItem(atPath: dbPath)
+        
+        // Initialize the queue
+        queue = FMDatabaseQueue(path: dbPath)
+        
+        // Get and unwrap instance of BRDatabase
+        let sharedDatabase = BRDatabase.sharedBRDatabase
+        
+        // Re-init the db
+        sharedDatabase.initialize(databaseName: DataStore.databaseName, databaseVersion: 0.0, success: nil)
+        print("SQLite path is \(String(describing: sharedDatabase.databasePath))")
     }
 }

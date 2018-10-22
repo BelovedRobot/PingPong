@@ -1,6 +1,5 @@
 //
 //  BackgroundSync.swift
-//  Deshazo
 //
 //  Created by Zane Kellogg on 7/2/16.
 //  Copyright © 2016 Beloved Robot. All rights reserved.
@@ -48,6 +47,7 @@ public class BackgroundSync {
         if self.isSyncing {
             print("Automatic sync avoided, already running in background")
             return
+//            print("Syncing already running: Starting Anyway")
         }
         // Update the syncing status
         self.isSyncing = true
@@ -66,8 +66,9 @@ public class BackgroundSync {
     public func manualSync() {
         // Only fire the manual sync if the background sync is not running
         if self.isSyncing {
-            print("Manual sync avoided, already running in background")
-            return
+//            print("Manual sync avoided, already running in background")
+//            return
+            print("Syncing already running: Starting Anyway")
         }
 		// Update the syncing status
 		self.isSyncing = true
@@ -88,6 +89,12 @@ public class BackgroundSync {
             print("Sync aborting: Endpoint is not reachable")
             self.isSyncing = false
             return
+        }
+        
+        // First thing, run the before automatic sync tasks
+        let beforeTasks = PingPong.shared.autoTasks.filter({ $0.order == AutomaticSyncOrder.beforeDocumentSync })
+        beforeTasks.forEach { task in
+            task.sync(success: nil)
         }
         
         // Create semaphore to await results
@@ -162,7 +169,7 @@ public class BackgroundSync {
         }
         
         // Get list of automatic sync tasks and execute
-        let autoSyncTasks = PingPong.shared.syncTasks.filter({ $0.automaticTask })
+        let autoSyncTasks = PingPong.shared.autoTasks.filter({ $0.order == AutomaticSyncOrder.afterDocumentsSync })
         
         // Add a counter for each task
         autoSyncTasksCounter += 1...autoSyncTasks.count
@@ -170,7 +177,7 @@ public class BackgroundSync {
         for task in autoSyncTasks {
             // Perform Sync
             // print("Starting task name \(String(describing: type(of: task)))")
-            task.sync(jsonString: nil, success: autoSuccess)
+            task.sync(success: autoSuccess)
         }
         
         // Delete any orphanced records in the sync queue, there is a byproduct of the sync options in which they clean up their own records but 

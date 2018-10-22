@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB442A0120E181D10042D97F /* AutomaticSyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB442A0020E181D10042D97F /* AutomaticSyncTask.swift */; };
 		CD40E7F41F3E406B00E12A79 /* BRDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD40E7F31F3E406B00E12A79 /* BRDatabase.swift */; };
 		CD79196B1F38F8F3009B69E3 /* BackgroundSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7919611F38F8F3009B69E3 /* BackgroundSync.swift */; };
 		CD79196C1F38F8F3009B69E3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7919621F38F8F3009B69E3 /* DataStore.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB442A0020E181D10042D97F /* AutomaticSyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticSyncTask.swift; sourceTree = "<group>"; };
 		CD2C559B1F38F37D00D42254 /* PingPong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PingPong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2C559F1F38F37D00D42254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD40E7F31F3E406B00E12A79 /* BRDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRDatabase.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			children = (
 				CDBC69A11F41E81D0043024F /* Scripts */,
 				CD7919841F38FDFD009B69E3 /* BRDatabase */,
+				CB442A0020E181D10042D97F /* AutomaticSyncTask.swift */,
 				CD7919611F38F8F3009B69E3 /* BackgroundSync.swift */,
 				CD7919621F38F8F3009B69E3 /* DataStore.swift */,
 				CD7919631F38F8F3009B69E3 /* FileDelete.swift */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD79196E1F38F8F3009B69E3 /* FileUpload.swift in Sources */,
+				CB442A0120E181D10042D97F /* AutomaticSyncTask.swift in Sources */,
 				CD79196B1F38F8F3009B69E3 /* BackgroundSync.swift in Sources */,
 				CD79196C1F38F8F3009B69E3 /* DataStore.swift in Sources */,
 				CD7919731F38F8F3009B69E3 /* SyncObject.swift in Sources */,
