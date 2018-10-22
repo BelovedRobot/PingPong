@@ -29,7 +29,7 @@ public class DataStore {
         // Initialize the queue
         let appDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let dbPath = "\(appDir)/\(DataStore.databaseName)"
-        queue = FMDatabaseQueue(path: dbPath)
+        queue = FMDatabaseQueue(path: dbPath)!
     }
     
     public func stashObjects(objects: [StashObject]) -> Bool{
@@ -343,7 +343,7 @@ public class DataStore {
         try! FileManager.default.removeItem(atPath: dbPath)
         
         // Initialize the queue
-        queue = FMDatabaseQueue(path: dbPath)
+        queue = FMDatabaseQueue(path: dbPath)!
         
         // Get and unwrap instance of BRDatabase
         let sharedDatabase = BRDatabase.sharedBRDatabase
