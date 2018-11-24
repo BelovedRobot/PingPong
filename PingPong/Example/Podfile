@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PingPong_Example' do
+  pod 'PingPong', :path => '../'
+
+  target 'PingPong_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

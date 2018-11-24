@@ -1,0 +1,6 @@
+framework module Pods_PingPong_Tests {
+  umbrella header "Pods-PingPong_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
