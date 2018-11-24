@@ -83,10 +83,10 @@ open class JsonObject : NSObject {
                 }
                 dict[label] = children as AnyObject?
                 // Class or Struct
-            } else if let value = anyValue as? AnyObject {
+            } else if type(of: anyValue) is AnyClass {
                 // Reflect on child
                 do {
-                    let childDict = try self.mirrorObjectToDict(object: value)
+                    let childDict = try self.mirrorObjectToDict(object: anyValue)
                     dict[label] = childDict as AnyObject?
                 } catch {
                     // Ignore children error (ie do not throw again)
@@ -128,7 +128,7 @@ open class JsonObject : NSObject {
     
     // Init object with json string
     open func fromJSON(json : String) {
-        self.fromSwiftyJSON(json: JSON.parse(json))
+        self.fromSwiftyJSON(json: JSON.init(parseJSON: json))
     }
     
     private func fromSwiftyJSON(json : JSON) {

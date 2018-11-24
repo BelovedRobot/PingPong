@@ -114,8 +114,8 @@ public class BackgroundSync {
         if let jsonDocuments = results {
             // For each document
             for json in jsonDocuments {
-                let type = JSON.parse(json)["docType"].stringValue
-                let id = JSON.parse(json)["id"].stringValue
+                let type = JSON.init(parseJSON: json)["docType"].stringValue
+                let id = JSON.init(parseJSON: json)["id"].stringValue
                 
                 // The success for each type of document is to remove itself from the sync queue
                 let success = {

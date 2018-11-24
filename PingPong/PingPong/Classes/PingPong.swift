@@ -227,7 +227,7 @@ public class PingPong {
     // POST JSON Document
     public func saveDocumentToCloud(jsonString : String, success : (() -> ())? ) {
         // Guard against missing id
-        guard let id = JSON.parse(jsonString)["id"].string else {
+        guard let id = JSON.init(parseJSON: jsonString)["id"].string else {
             return
         }
         
@@ -256,7 +256,7 @@ public class PingPong {
                 if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
                     // Parse the data
                     if let realData = data, let value = String(data: realData, encoding: String.Encoding.utf8) {
-                        let json = JSON.parse(value)
+                        let json = JSON.init(parseJSON: value)
                         if let documentJson = json["data"].rawString() {
                             // Update stash
                             DataStore.sharedDataStore.stashDocument(documentJson: documentJson)

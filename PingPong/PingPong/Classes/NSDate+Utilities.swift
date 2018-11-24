@@ -76,7 +76,7 @@ extension Date {
         // Strip off the time
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)!
 
         let dateWithoutTimeString = formatter.string(from: testDate as Date)
         let dateWithoutTime = formatter.date(from: dateWithoutTimeString)!
