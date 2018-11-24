@@ -139,8 +139,8 @@
 		0314ACE90E5B26A84355C256B3CF6B3C /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		050A27F0BB99992D9420E4E2C0E01430 /* Pods-PingPong_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		05514B1ADBDA647E166483A112F8DA0D /* Pods-PingPong_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PingPong_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0724493E7DB728B6C9E8C42076EE1C06 /* PingPong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PingPong.framework; path = PingPong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07BAE98CA0B230780F2F758AF35E4D27 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FMDB.modulemap; sourceTree = "<group>"; };
+		0724493E7DB728B6C9E8C42076EE1C06 /* PingPong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PingPong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BAE98CA0B230780F2F758AF35E4D27 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FMDB.modulemap; sourceTree = "<group>"; };
 		088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		09F0087BFA1594316AF63CF8A98161CD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B972E52BF4C5C17FF25ACAC95A4E5C3 /* PingPong-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PingPong-dummy.m"; sourceTree = "<group>"; };
@@ -152,16 +152,16 @@
 		1EE075C2903CB2A8013ED3FA45984BA1 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
 		1FA426B70306B6951216B5A9AC4F38E3 /* DataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = PingPong/Classes/DataStore.swift; sourceTree = "<group>"; };
 		2702E06E28DE1C89BC55B6BBD6DCF9A8 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
-		287C82F49CB9A5EFE2E349FE6AC26DD2 /* PingPong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PingPong.modulemap; sourceTree = "<group>"; };
+		287C82F49CB9A5EFE2E349FE6AC26DD2 /* PingPong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PingPong.modulemap; sourceTree = "<group>"; };
 		2AE61769ACD35E82F32273F2D8B65E8E /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		2D9F30BC62CF5EBBECF63F32A24F294F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338DB0BFF6971ADADF74E9E44086799A /* Pods-PingPong_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		39CAC306161B64982040457720A5497A /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		39CAC306161B64982040457720A5497A /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		3A82694085BD22E97319D272C1B49620 /* Pods-PingPong_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Example.release.xcconfig"; sourceTree = "<group>"; };
 		41E7ED99B2BF8960184F120C22E0A4F2 /* SyncObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyncObject.swift; path = PingPong/Classes/SyncObject.swift; sourceTree = "<group>"; };
 		458461A7F5F014F8E6613175FB5244D8 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		4701584B10878CC61580EBE65CCD0B72 /* NSDate+Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "PingPong/Classes/NSDate+Utilities.swift"; sourceTree = "<group>"; };
-		485EE7643F422612E3A9869DAE4DDE2B /* Pods-PingPong_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PingPong_Example.modulemap"; sourceTree = "<group>"; };
+		485EE7643F422612E3A9869DAE4DDE2B /* Pods-PingPong_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PingPong_Example.modulemap"; sourceTree = "<group>"; };
 		5025169BF12CCE660D9D7E9DAA5523F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52C983C01851813069039C2FB2314027 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
 		561396FC83B16CB23CF21585E2D7ED8E /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
@@ -176,28 +176,28 @@
 		6CEA9DCD33947D2CE2FAB6BDB11E5835 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
 		712767E0D61389C986F3027E87615FDF /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		7151658751529BAB033B098909AF7118 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		7890C28C166A4E96B951A20EC6EB83F3 /* Pods-PingPong_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PingPong_Tests.modulemap"; sourceTree = "<group>"; };
-		7919970CADEC19B0AB88F46D9B82AA4E /* DatabaseInstall.sql */ = {isa = PBXFileReference; includeInIndex = 1; name = DatabaseInstall.sql; path = PingPong/Assets/DatabaseInstall.sql; sourceTree = "<group>"; };
+		7890C28C166A4E96B951A20EC6EB83F3 /* Pods-PingPong_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PingPong_Tests.modulemap"; sourceTree = "<group>"; };
+		7919970CADEC19B0AB88F46D9B82AA4E /* DatabaseInstall.sql */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DatabaseInstall.sql; path = PingPong/Assets/DatabaseInstall.sql; sourceTree = "<group>"; };
 		7AE6F8CD83411611BB59EDBA32B056BE /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F637B4BAAE38ECF2A9D3F0C37AA11F4 /* Pods-PingPong_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		817EEDB957A2C2DA3751F1690C541E76 /* JsonObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JsonObject.swift; path = PingPong/Classes/JsonObject.swift; sourceTree = "<group>"; };
 		8444555C5874B09F8367B428D01A7999 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		85EC695895EE0D8ACF25F98DB46CB56E /* Pods-PingPong_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PingPong_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		876BD843D28801BF0FD00FB14F25E6F9 /* Pods-PingPong_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Tests-resources.sh"; sourceTree = "<group>"; };
 		89E32F8680481930C37B1100ED9654B9 /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
-		8D0EB1F1856E1E22CFC8993AE4F6A426 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		8D0EB1F1856E1E22CFC8993AE4F6A426 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		904A05293E0405445F2CD45B0CE28DCB /* Pods-PingPong_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Example-resources.sh"; sourceTree = "<group>"; };
 		90D48C9CF83B313F5F06EECBB7D9BE39 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		9209AFAF2082562681512DED66AC8F30 /* Pods-PingPong_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PingPong_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		92DE301DAA00EDAC7DFA0C37030D4D86 /* FileUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileUpload.swift; path = PingPong/Classes/FileUpload.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		96DB5108C43689B57CEB69C2DECFF1CA /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PingPong_Tests.framework; path = "Pods-PingPong_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		96DB5108C43689B57CEB69C2DECFF1CA /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9829D1B5C2FD898B5989E787204615B0 /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
 		9831B800A18C878B5E48D7E21E5A34E0 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
 		9AA0F98EA67D9DC795C3D4A8BFEE8186 /* PingPong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PingPong.xcconfig; sourceTree = "<group>"; };
 		A26576C433FD1B4395524C7E26DDB4CA /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		A5D5ED4A2B7E57167FAAFD93C000E79B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		A5D5ED4A2B7E57167FAAFD93C000E79B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		A6CAFE48B9F611255622D3D6C67419C3 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		A8414982BAB3071480BAEDA3A3792ED0 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
 		AA417F2D22B74FFAF23106B76212E64D /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 		C26EDBC63BE01F1DEFB775D81FBBD1B3 /* Pods-PingPong_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PingPong_Tests-dummy.m"; sourceTree = "<group>"; };
 		C30174AAF86114110C608C953F9349F1 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C325415229CFB9A612181BBE1A4E7CAD /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
-		C3673256A51861FCFA064403A3C72C33 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		C3673256A51861FCFA064403A3C72C33 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C6C74E977ADE29E6D7C8521C6057325D /* ResourceBundle-PingPong-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PingPong-Info.plist"; sourceTree = "<group>"; };
 		C7B208ACA2A07F9E60840FA7404E819A /* StashObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StashObject.swift; path = PingPong/Classes/StashObject.swift; sourceTree = "<group>"; };
 		CC8F436A3531CD629F83862410BE9206 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
@@ -225,19 +225,19 @@
 		E68BA4DDF2D0D81026CB05E483E5BFB9 /* PingPong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-umbrella.h"; sourceTree = "<group>"; };
 		E7274DCD7589FC62FC50B933FE8CEB38 /* BRDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRDatabase.swift; path = PingPong/Classes/BRDatabase.swift; sourceTree = "<group>"; };
 		E9D3BEF3A794CCFB0F11C2FE4F62669B /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		EB7FDD2F98DCC24686D14A71440AAF4D /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PingPong.bundle; path = "PingPong-PingPong.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7FDD2F98DCC24686D14A71440AAF4D /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingPong.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9DAA825BB30E6DF4D713C3695B03DB /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		EE1E333FBABE592ECABF9D50F854A3C4 /* PingPong.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PingPong.swift; path = PingPong/Classes/PingPong.swift; sourceTree = "<group>"; };
 		F055845849291EF3EB807370E892D4B1 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		F1A0F64DAA8D910385AFA1B19C4BD821 /* Pods-PingPong_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Example-frameworks.sh"; sourceTree = "<group>"; };
 		F1A460798052E1498DF48686BACDF53A /* Pods-PingPong_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PingPong_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		F50A7B15DE4B56AD0413F866B226873B /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PingPong_Example.framework; path = "Pods-PingPong_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F50A7B15DE4B56AD0413F866B226873B /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7183AD403B474EE82C78751520781C3 /* Pods-PingPong_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PingPong_Tests-umbrella.h"; sourceTree = "<group>"; };
-		F7C95BCF0A92520BF7A43EFCBCAEF89C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7C95BCF0A92520BF7A43EFCBCAEF89C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F844E8FD13E0E9272BBAA123F78599FD /* FileDelete.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileDelete.swift; path = PingPong/Classes/FileDelete.swift; sourceTree = "<group>"; };
 		F8B8A50FD68AD51438B1E650D3D89328 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		FB317AD09857BA8DFB79A4ECCD1A356A /* PingPong.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = PingPong.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FB317AD09857BA8DFB79A4ECCD1A356A /* PingPong.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = PingPong.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FF4678E6DEFE793E3339D0CD048ECCAA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,7 +319,6 @@
 				4FF89EDE7C45ED14D88CE6D88F38DE0F /* standard */,
 				FF2711584202CA8C90B61B1437E9C44F /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -483,7 +482,6 @@
 				088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */,
 				A0421597ECEE713147A55DE4CDA2F2D8 /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -527,7 +525,6 @@
 				458461A7F5F014F8E6613175FB5244D8 /* Validation.swift */,
 				AD407D85592C9D594D46A72E9A320AA6 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
