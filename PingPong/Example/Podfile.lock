@@ -1,0 +1,16 @@
+PODS:
+  - PingPong (0.1.0)
+
+DEPENDENCIES:
+  - PingPong (from `../`)
+
+EXTERNAL SOURCES:
+  PingPong:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PingPong: c07a7382716ddf4edb9fb838e737dabcef1d2af3
+
+PODFILE CHECKSUM: a024b08459d4219d58a2e51b86e99c7c64bf9d80
+
+COCOAPODS: 1.4.0
