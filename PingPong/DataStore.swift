@@ -29,7 +29,7 @@ public class DataStore {
         // Initialize the queue
         let appDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let dbPath = "\(appDir)/\(DataStore.databaseName)"
-        queue = FMDatabaseQueue(path: dbPath)
+        queue = FMDatabaseQueue(path: dbPath)!
     }
     
     public func stashObjects(objects: [StashObject]) -> Bool{
@@ -133,7 +133,7 @@ public class DataStore {
     }
     
     public func stashDocument(documentJson : String) {
-        let json = JSON.parse(documentJson)
+        let json = JSON.init(parseJSON: documentJson)
         
         if let id = json["id"].string {
             queue.inDatabase { (database) -> Void in
@@ -250,7 +250,7 @@ public class DataStore {
                 let results = try database.executeQuery("SELECT json FROM documents\(whereString)", values: searchValues)
                 
                 while (results.next()) {
-                    documents.append(JSON.parse(results.string(forColumn: "json")!))
+                    documents.append(JSON.init(parseJSON: results.string(forColumn: "json")!))
                 }
                 results.close()
             } catch {
@@ -269,7 +269,7 @@ public class DataStore {
                 let results = try database.executeQuery(query, values: nil)
                 
                 while (results.next()) {
-                    documents.append(JSON.parse(results.string(forColumn: "json")!))
+					documents.append(JSON.init(parseJSON: results.string(forColumn: "json")!))
                 }
                 results.close()
             } catch {
@@ -343,7 +343,7 @@ public class DataStore {
         try! FileManager.default.removeItem(atPath: dbPath)
         
         // Initialize the queue
-        queue = FMDatabaseQueue(path: dbPath)
+        queue = FMDatabaseQueue(path: dbPath)!
         
         // Get and unwrap instance of BRDatabase
         let sharedDatabase = BRDatabase.sharedBRDatabase
