@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "PingPong.h"
 
-FOUNDATION_EXPORT double PingPongVersionNumber;
-FOUNDATION_EXPORT const unsigned char PingPongVersionString[];
+FOUNDATION_EXPORT double AlamofireVersionNumber;
+FOUNDATION_EXPORT const unsigned char AlamofireVersionString[];
 

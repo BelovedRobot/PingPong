@@ -1,5 +1,13 @@
 PODS:
-  - PingPong (0.1.0)
+  - Alamofire (4.7.3)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - PingPong (0.5):
+    - Alamofire (~> 4.7.3)
+    - FMDB
+    - SwiftyJSON (~> 4.2.0)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - PingPong (from `../`)
@@ -9,7 +17,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PingPong: c07a7382716ddf4edb9fb838e737dabcef1d2af3
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  PingPong: 30f3faddaa150334701de83c051b241666af5251
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
 PODFILE CHECKSUM: a024b08459d4219d58a2e51b86e99c7c64bf9d80
 

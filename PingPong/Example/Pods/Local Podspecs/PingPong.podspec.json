@@ -1,22 +1,40 @@
 {
   "name": "PingPong",
-  "version": "0.1.0",
-  "summary": "A short description of PingPong.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/zane.kellogg@gmail.com/PingPong",
-  "license": {
-    "type": "MIT",
-    "file": "LICENSE"
-  },
+  "version": "0.5",
+  "summary": "A Beloved Robot framework that supports background, foreground, and offline json document syncing",
+  "homepage": "https://github.com/BelovedRobot/PingPong",
+  "license": "MIT",
   "authors": {
-    "zane.kellogg@gmail.com": "zane@belovedrobot.com"
-  },
-  "source": {
-    "git": "https://github.com/zane.kellogg@gmail.com/PingPong.git",
-    "tag": "0.1.0"
+    "Zane Kellog": "zane@belovedrobot.com",
+    "Juan Pereira": "juan@belovedrobot.com",
+    "Humayun Haroon": "humayunharoon@gmail.com"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "11.0"
   },
-  "source_files": "PingPong/Classes/**/*"
+  "source": {
+    "git": "https://github.com/BelovedRobot/PingPong.git",
+    "tag": "0.5"
+  },
+  "source_files": "PingPong/Classes/**/*",
+  "resource_bundles": {
+    "PingPong": [
+      "PingPong/Assets/*"
+    ]
+  },
+  "dependencies": {
+    "SwiftyJSON": [
+      "~> 4.2.0"
+    ],
+    "Alamofire": [
+      "~> 4.7.3"
+    ],
+    "FMDB": [
+
+    ]
+  },
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "4.2"
+  },
+  "swift_version": "4.2"
 }
