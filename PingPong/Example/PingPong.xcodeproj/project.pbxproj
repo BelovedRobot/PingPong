@@ -16,6 +16,8 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		B14538F12FC60F1D1C5A6B0B /* Pods_PingPong_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACB4C963EA28445A6F56C3 /* Pods_PingPong_Tests.framework */; };
 		CBB5379E21AA0AC600F4E8DC /* PingPong in Resources */ = {isa = PBXBuildFile; fileRef = CBB5379D21AA0AC600F4E8DC /* PingPong */; };
+		CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */; };
+		CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB537A221AA154800F4E8DC /* TestStashObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		9B468E1A1272239563BCE007 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A2ACB4C963EA28445A6F56C3 /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB5379D21AA0AC600F4E8DC /* PingPong */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PingPong; path = ../PingPong; sourceTree = "<group>"; };
+		CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
+		CBB537A221AA154800F4E8DC /* TestStashObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStashObject.swift; sourceTree = "<group>"; };
 		FDDF01C5AA3AECE1417659E3 /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECC6A1CEEDA646342E84EFC /* Pods-PingPong_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingPong_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PingPong_Tests/Pods-PingPong_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -137,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
+				CBB537A221AA154800F4E8DC /* TestStashObject.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -392,6 +398,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */,
+				CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
