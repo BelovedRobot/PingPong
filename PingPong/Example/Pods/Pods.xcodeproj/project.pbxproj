@@ -10,7 +10,6 @@
 		1B2BB8DBA871B69F8788D7461020A8BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		3F65D452943FCC5B8CACBC51A9EAA28F /* PingPong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF4F08506C4DEE3A0A04B6C24ADBE46 /* PingPong-dummy.m */; };
 		7654D69983C7294C704426ADC8664C33 /* Pods-PingPong_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C26EDBC63BE01F1DEFB775D81FBBD1B3 /* Pods-PingPong_Tests-dummy.m */; };
-		770BB61B3409E2654B84343540E07B32 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EACB2D94F0377B022B581546F404AB /* ReplaceMe.swift */; };
 		7B1F33605B9A69D3BE5C2AEF062E7F35 /* PingPong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 856FF7496DF10D93C65482E02B1F1AF6 /* PingPong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E46439E580A10BE29DEF29FB483526 /* Pods-PingPong_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F7183AD403B474EE82C78751520781C3 /* Pods-PingPong_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F00E872FD18634A60E66B64A94E3184 /* Pods-PingPong_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 626D83E407A14CFDDFAFB7DA06B6AD9A /* Pods-PingPong_Example-dummy.m */; };
@@ -37,7 +36,6 @@
 		338DB0BFF6971ADADF74E9E44086799A /* Pods-PingPong_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3A82694085BD22E97319D272C1B49620 /* Pods-PingPong_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Example.release.xcconfig"; sourceTree = "<group>"; };
 		485EE7643F422612E3A9869DAE4DDE2B /* Pods-PingPong_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PingPong_Example.modulemap"; sourceTree = "<group>"; };
-		57EACB2D94F0377B022B581546F404AB /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = PingPong/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		5A1EC2A8362924B7A5068C33C8A2A8F3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		626D83E407A14CFDDFAFB7DA06B6AD9A /* Pods-PingPong_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PingPong_Example-dummy.m"; sourceTree = "<group>"; };
 		653ED22FE607D41D33E2BD586705364E /* PingPong-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-prefix.pch"; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 		098407B6E37E85E3DBC2C770433560AC /* PingPong */ = {
 			isa = PBXGroup;
 			children = (
-				57EACB2D94F0377B022B581546F404AB /* ReplaceMe.swift */,
 				7ACFDD5456B51F4FB56A121FFE2E35E9 /* Pod */,
 				F6300DE6B9D9E1B334BDFF3BBDC4285F /* Support Files */,
 			);
@@ -342,7 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F65D452943FCC5B8CACBC51A9EAA28F /* PingPong-dummy.m in Sources */,
-				770BB61B3409E2654B84343540E07B32 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
