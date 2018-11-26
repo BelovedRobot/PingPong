@@ -130,8 +130,11 @@ public class BackgroundSync {
                         // Execute the custom sync operation and pass the success callback
                         syncTask.sync(jsonString: json, success: success)
                     } else {
-                        // By Default sync the document
-                        PingPong.shared.saveDocumentToCloud(jsonString: json, success: success)
+                        // Convert to stash obj
+                        let syncObj = SyncObject()
+                        syncObj.fromJSON(json: json)
+                        
+                        syncObj.backgroundSync(callback: success)
                     }
                 }
             }
