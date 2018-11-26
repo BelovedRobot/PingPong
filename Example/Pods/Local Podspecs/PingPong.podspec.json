@@ -1,6 +1,6 @@
 {
   "name": "PingPong",
-  "version": "0.5",
+  "version": "0.4.0",
   "summary": "A Beloved Robot framework that supports background, foreground, and offline json document syncing",
   "homepage": "https://github.com/BelovedRobot/PingPong",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/BelovedRobot/PingPong.git",
-    "tag": "0.5"
+    "tag": "0.4.0"
   },
   "source_files": "PingPong/Classes/**/*",
   "resource_bundles": {
