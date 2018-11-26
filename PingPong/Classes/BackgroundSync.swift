@@ -124,14 +124,6 @@ public class BackgroundSync {
                 
                 // Based on type, de-serialize from JSON in order to save
                 switch(type) {
-                case "fileUpload":
-                    let fileUpload = FileUpload()
-                    fileUpload.fromJSON(json: json)
-                    PingPong.shared.uploadFile(fileUpload: fileUpload, callback: success)
-                case "fileDelete":
-                    let fileDelete = FileDelete()
-                    fileDelete.fromJSON(json: json)
-                    PingPong.shared.deleteFile(fileDelete: fileDelete, callback: success)
                 default:
                     // Does the docType has a custom sync task
                     if let syncTask = syncTaskDictionary[type] {
