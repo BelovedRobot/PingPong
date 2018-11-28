@@ -43,20 +43,14 @@ open class SyncObject : StashObject {
         DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: self.id)
     }
     
-    public func backgroundSync(callback : (() -> ())? ) {
-        let isPost = ( !self.synced )
-        
-        // Convert the closure to the type expected by post/put
-        let convertedCallback : (String?)->() = { _ in
-            callback?()
+    public func backgroundSync(completion : @escaping (_ success : Bool) -> ()) {
+        // Determine Post/Put
+        var method = HTTPMethod.post
+        if (self.synced) {
+            method = HTTPMethod.put
         }
         
-        // If it is a post
-        if isPost {
-            self.post(success: convertedCallback)
-        } else {
-            self.put(success: convertedCallback)
-        }
+        self.postPut(method: method, completion: completion)
     }
     
     public func fromCloud(success : (()->())?) {
@@ -69,9 +63,7 @@ open class SyncObject : StashObject {
                 self.fromJSON(json: json)
                 
                 // Call success
-                if let callableSuccess = success {
-                    callableSuccess()
-                }
+                success?()
             }
         }
     }
@@ -130,74 +122,47 @@ open class SyncObject : StashObject {
         }
     }
     
-    // POST Document
-    private func post(success : ((_ jsonString : String?) -> ())? ) {
+    // POST/PUT Document
+    private func postPut(method : HTTPMethod, completion : @escaping (_ success : Bool) -> () ) {
         let headerDict = [
             "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
             "Content-Type" : "application/json"
         ];
         
-        let url = "\(PingPong.shared.documentEndpoint)/document"
-        
-        // Send the request
-        request(url, method: .post, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
-            .responseJSON { response in
-                if response.response?.statusCode == 200 {
-                    print("Document \(self.value(forKey: "docType")!) synced!")
-                    
-                    if let value = response.result.value {
-                        let json = JSON(value);
-                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
-                        
-                        // Update stash
-                        DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
-                        
-                        // Send notification of update
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
-                        
-                        success?(documentJson)
-                    } else {
-                        success?(nil)
-                    }
-                } else {
-                    print("There was a problem syncing the document")
-                    print("Response code is \(String(describing: response.response?.statusCode))")
-                }
+        var url = "\(PingPong.shared.documentEndpoint)/document"
+        if (method == .put) {
+            url = "url/\(self.id)"
         }
-    }
-    
-    // PUT Document
-    private func put(success : ((_ jsonString : String?) -> ())? ) {
-        let headerDict = [
-            "Authorization" : "Token token=\(PingPong.shared.authorizationToken)",
-            "Content-Type" : "application/json"
-        ];
-        
-        let url = "\(PingPong.shared.documentEndpoint)/document"
         
         // Send the request
-        request(url, method: .put, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
+        request(url, method: method, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
             .responseJSON { response in
                 if response.response?.statusCode == 200 {
-                    print("Document \(self.value(forKey: "docType")!) synced!")
+                    print("Document \(self.docType):\(self.id) synced!")
                     
                     if let value = response.result.value {
-                        let json = JSON(value);
-                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
+                        var json = JSON(value)
+                        
+                        // Set field synced = true
+                        json["synced"] = true
                         
                         // Update stash
+                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
                         DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
-                        
-                        // Send notification of update
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
-                        
-                        success?(documentJson)
                     } else {
-                        success?(nil);
+                        // Set field synced = true
+                        self.synced = true
+                        self.stash()
                     }
+                    
+                    // Send notification of update
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
+                    
+                    completion(true)
                 } else {
                     print("There was a problem syncing the document")
                     print("Response code is \(String(describing: response.response?.statusCode))")
+                    completion(false)
                 }
         }
     }

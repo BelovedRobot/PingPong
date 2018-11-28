@@ -118,8 +118,11 @@ public class BackgroundSync {
                 let id = JSON.init(parseJSON: json)["id"].stringValue
                 
                 // The success for each type of document is to remove itself from the sync queue
-                let success = {
-                    DataStore.sharedDataStore.removeDocumentFromSyncQueue(documentId: id)
+                let completion : (Bool)->() = { success in
+                    // Remove object from sync queue if it was a success
+                    if (success) {
+                        DataStore.sharedDataStore.removeDocumentFromSyncQueue(documentId: id)
+                    }
                 }
                 
                 // Based on type, de-serialize from JSON in order to save
@@ -128,13 +131,13 @@ public class BackgroundSync {
                     // Does the docType has a custom sync task
                     if let syncTask = syncTaskDictionary[type] {
                         // Execute the custom sync operation and pass the success callback
-                        syncTask.sync(jsonString: json, success: success)
+                        syncTask.sync(jsonString: json, completion: completion)
                     } else {
                         // Convert to stash obj
                         let syncObj = SyncObject()
                         syncObj.fromJSON(json: json)
                         
-                        syncObj.backgroundSync(callback: success)
+                        syncObj.backgroundSync(completion: completion)
                     }
                 }
             }
