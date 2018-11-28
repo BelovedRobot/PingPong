@@ -1,16 +1,23 @@
 import XCTest
 import PingPong
 
-class Tests: XCTestCase {
+class SyncObjectTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        print("Warning: These tests depend on a local instance of the PingPongEndpoint running on port 8282")
+        print("For more info, see: https://github.com/BelovedRobot/PingPongEndpoint")
+        
+        // Init the data store
+        let _ = DataStore.sharedDataStore
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        
+        // Reset the database
+        DataStore.sharedDataStore.resetDatabase()
     }
     
     func testExample() {

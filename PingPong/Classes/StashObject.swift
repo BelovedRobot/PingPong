@@ -9,11 +9,17 @@ import Foundation
 
 open class StashObject : JsonObject {
     
-    required override public init() {
-        super.init()
+    public init(docType : String = "") {
+        // If docType is empty string then log
+        if (docType == "") {
+            print("PingPong: docType must be provided on type \(type(of: self))")
+        }
+        
+        self.docType = docType
     }
     
-    @objc public var id : String = "" // Every sync object is required to have an id
+    @objc public var id : String = "" // Every stash object is required to have an id
+    @objc public let docType : String // Every stash object must have a docType
     
     open func stash() {
         let jsonString = self.toJSON()

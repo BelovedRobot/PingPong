@@ -25,6 +25,8 @@ open class SyncObject : StashObject {
         }
     }
     
+    @objc public var synced : Bool = false // Every sync object is required to have a flag that tells PingPong if it has been synced. This will tell the API to issue a post or a put.
+    
     @objc private func onCloudUpdate() {
         self.refresh()
     }
@@ -42,7 +44,7 @@ open class SyncObject : StashObject {
     }
     
     public func backgroundSync(callback : (() -> ())? ) {
-        let isPost = (self.id == "")
+        let isPost = ( !self.synced )
         
         // Convert the closure to the type expected by post/put
         let convertedCallback : (String?)->() = { _ in
