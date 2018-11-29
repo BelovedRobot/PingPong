@@ -136,35 +136,39 @@ open class SyncObject : StashObject {
         
         // Send the request
         request(url, method: method, parameters: self.toDictionary(), encoding: JSONEncoding.default, headers: headerDict)
-            .responseJSON { response in
-                if response.response?.statusCode == 200 {
-                    print("Document \(self.docType):\(self.id) synced!")
-                    
-                    if let value = response.result.value {
+            .validate()
+            .response(
+                queue: DispatchQueue.backgroundQueue,
+                responseSerializer: DataRequest.jsonResponseSerializer(),
+                completionHandler: { response in
+                    switch response.result {
+                    case .success(let value):
+                        print("Document \(self.docType):\(self.id) synced!")
+                        
                         var json = JSON(value)
                         
                         // Set field synced = true
                         json["synced"] = true
                         
                         // Update stash
-                        let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))!
-                        DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
-                    } else {
-                        // Set field synced = true
-                        self.synced = true
-                        self.stash()
+                        if let documentJson = json["data"].rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0)) {
+                            DataStore.sharedDataStore.stashDocument(documentJson: documentJson)
+                        } else {
+                            // If the endpoint doesn't return anything but is still successful then we simply mark self as synced and stash
+                            self.synced = true
+                            self.stash()
+                        }
+                    
+                        // Send notification of update
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
+                        
+                        completion(true)
+                    case .failure(let error):
+                        print("There was a problem syncing the document: \(error.localizedDescription)")
+                        print("Response code is \(String(describing: response.response?.statusCode))")
+                        completion(false)
                     }
-                    
-                    // Send notification of update
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: SyncObject.getUpdatedNotification(id: self.id)), object: nil)
-                    
-                    completion(true)
-                } else {
-                    print("There was a problem syncing the document")
-                    print("Response code is \(String(describing: response.response?.statusCode))")
-                    completion(false)
-                }
-        }
+        })
     }
 }
 

@@ -13,8 +13,9 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* SyncObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* SyncObjectTests.swift */; };
 		B14538F12FC60F1D1C5A6B0B /* Pods_PingPong_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACB4C963EA28445A6F56C3 /* Pods_PingPong_Tests.framework */; };
+		CB41852221AE4D7500373614 /* TestSyncObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB41852021AE4D1800373614 /* TestSyncObject.swift */; };
 		CBB5379E21AA0AC600F4E8DC /* PingPong in Resources */ = {isa = PBXBuildFile; fileRef = CBB5379D21AA0AC600F4E8DC /* PingPong */; };
 		CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */; };
 		CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB537A221AA154800F4E8DC /* TestStashObject.swift */; };
@@ -42,12 +43,13 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* PingPong_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingPong_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* SyncObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncObjectTests.swift; sourceTree = "<group>"; };
 		675EB981305905E3C0A58708 /* Pods-PingPong_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingPong_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PingPong_Example/Pods-PingPong_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7C998A352801A5F952267AC6 /* Pods-PingPong_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingPong_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PingPong_Tests/Pods-PingPong_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		85BE11F38DF2C3A982F2DF1A /* PingPong.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PingPong.podspec; path = ../PingPong.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9B468E1A1272239563BCE007 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A2ACB4C963EA28445A6F56C3 /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB41852021AE4D1800373614 /* TestSyncObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSyncObject.swift; sourceTree = "<group>"; };
 		CBB5379D21AA0AC600F4E8DC /* PingPong */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PingPong; path = ../PingPong; sourceTree = "<group>"; };
 		CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		CBB537A221AA154800F4E8DC /* TestStashObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStashObject.swift; sourceTree = "<group>"; };
@@ -131,7 +133,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* SyncObjectTests.swift */,
 				CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -143,6 +145,7 @@
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 				CBB537A221AA154800F4E8DC /* TestStashObject.swift */,
+				CB41852021AE4D1800373614 /* TestSyncObject.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -397,9 +400,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* SyncObjectTests.swift in Sources */,
 				CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */,
 				CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */,
+				CB41852221AE4D7500373614 /* TestSyncObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

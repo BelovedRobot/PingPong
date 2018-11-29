@@ -6,4 +6,14 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import PingPong
+
+class TestSyncObject : SyncObject {
+    init() {
+        super.init(docType: "TestSyncObject")
+    }
+    
+    @objc var aString : String = ""
+    @objc var aNumber : Int = 0
+    @objc var aDateString : String = ""
+}

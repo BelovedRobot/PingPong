@@ -10,6 +10,12 @@ import Foundation
 import PingPong
 
 class TestStashObject : StashObject {
+    
+    init() {
+        // Must set the docType
+        super.init(docType: "TestStashObject")
+    }
+    
     @objc var aString : String = ""
     @objc var aNumber : Int = 0
     @objc var aDateString : String = ""
