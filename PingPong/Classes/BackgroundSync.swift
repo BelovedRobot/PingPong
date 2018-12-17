@@ -134,10 +134,10 @@ public class BackgroundSync {
                         syncTask.sync(jsonString: json, completion: completion)
                     } else {
                         // Convert to stash obj
-                        let syncObj = SyncObject()
-                        syncObj.fromJSON(json: json)
-                        
-                        syncObj.backgroundSync(completion: completion)
+//                        var syncObj = Syncable()
+//                        syncObj = syncObj.fromJSON(json: json)
+//
+//                        syncObj.backgroundSync(completion: completion)
                     }
                 }
             }

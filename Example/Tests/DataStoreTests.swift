@@ -33,15 +33,62 @@ class DataStoreTests : XCTestCase {
     }
     
     func testStash() {
-        let stashObject = TestStashObject()
+        let stashObject = TestObject(docType: "testObject")
         stashObject.aString = "Hello world"
         stashObject.aDateString = "2008-09-15T15:53:00"
-        stashObject.aNumber = 100
+        stashObject.aInt = 100
         
         stashObject.stash()
         
         let result = DataStore.sharedDataStore.retrieveDocumentJSONSynchronous(id: stashObject.id)
         
         XCTAssertNotNil(result)
+    }
+    
+    func testReset() {
+        let stashObject = TestObject(docType: "testObject")
+        stashObject.id = "stashObject"
+        stashObject.aString = "Hello world"
+        stashObject.aDateString = "2008-09-15T15:53:00"
+        stashObject.aInt = 100
+
+        stashObject.stash()
+        DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: stashObject.id)
+
+        let stashObject2 = TestObject(docType: "testObject")
+        stashObject2.id = "stashObject2"
+        stashObject2.aString = "Hello world"
+        stashObject2.aDateString = "2008-09-15T15:53:00"
+        stashObject2.aInt = 100
+
+        stashObject2.stash()
+        DataStore.sharedDataStore.addDocumentToSyncQueue(documentId: stashObject2.id)
+
+        // Create expectation to retrieve documents
+        let expectation = XCTestExpectation(description: "Get queued objects")
+
+        DataStore.sharedDataStore.retrieveQueuedDocuments { queuedDocuments in
+            XCTAssert(queuedDocuments.count == 2, "Documents Not queued")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+
+        // Reset the database
+        DataStore.sharedDataStore.resetDatabase()
+
+        let expectation2 = XCTestExpectation(description: "Get documents after reset")
+        DataStore.sharedDataStore.queryDocumentStore(query: "SELECT * FROM documents;") { results in
+            XCTAssert(results.count == 0, "Documents Not Deleted")
+            expectation2.fulfill()
+        }
+        wait(for: [expectation2], timeout: 10.0)
+
+        let expectation3 = XCTestExpectation(description: "Get queued objects after reset")
+        DataStore.sharedDataStore.retrieveQueuedDocuments { queuedDocs in
+            XCTAssert(queuedDocs.count == 0, "Documents Not Deleted")
+            expectation3.fulfill()
+        }
+
+        wait(for: [expectation3], timeout: 10.0)
     }
 }

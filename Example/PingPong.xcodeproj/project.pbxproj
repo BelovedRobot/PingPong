@@ -19,6 +19,8 @@
 		CBB5379E21AA0AC600F4E8DC /* PingPong in Resources */ = {isa = PBXBuildFile; fileRef = CBB5379D21AA0AC600F4E8DC /* PingPong */; };
 		CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */; };
 		CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB537A221AA154800F4E8DC /* TestStashObject.swift */; };
+		CBDDDD5D21B5D89B00387288 /* JsonSerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDDD5B21B5D88300387288 /* JsonSerializationTests.swift */; };
+		CBDDDD5E21B5D90E00387288 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDDD5921B5D3C300387288 /* TestObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		CBB5379D21AA0AC600F4E8DC /* PingPong */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PingPong; path = ../PingPong; sourceTree = "<group>"; };
 		CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		CBB537A221AA154800F4E8DC /* TestStashObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStashObject.swift; sourceTree = "<group>"; };
+		CBDDDD5921B5D3C300387288 /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
+		CBDDDD5B21B5D88300387288 /* JsonSerializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonSerializationTests.swift; sourceTree = "<group>"; };
 		FDDF01C5AA3AECE1417659E3 /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECC6A1CEEDA646342E84EFC /* Pods-PingPong_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PingPong_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PingPong_Tests/Pods-PingPong_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +139,7 @@
 			children = (
 				607FACEB1AFB9204008FA782 /* SyncObjectTests.swift */,
 				CBB5379F21AA10FF00F4E8DC /* DataStoreTests.swift */,
+				CBDDDD5B21B5D88300387288 /* JsonSerializationTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -146,6 +151,7 @@
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 				CBB537A221AA154800F4E8DC /* TestStashObject.swift */,
 				CB41852021AE4D1800373614 /* TestSyncObject.swift */,
+				CBDDDD5921B5D3C300387288 /* TestObject.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -400,6 +406,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBDDDD5E21B5D90E00387288 /* TestObject.swift in Sources */,
+				CBDDDD5D21B5D89B00387288 /* JsonSerializationTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* SyncObjectTests.swift in Sources */,
 				CBB537A121AA115100F4E8DC /* DataStoreTests.swift in Sources */,
 				CBB537A421AA154C00F4E8DC /* TestStashObject.swift in Sources */,

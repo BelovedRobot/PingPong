@@ -7,85 +7,94 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C5B974BE97DED48936400338B3F764 /* StashObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9833149DD08E3357F31DF256C6B5CB3C /* StashObject.swift */; };
-		015CD6AF66A25D0097908B9D756EAEDB /* JsonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E99B783F333B3227327BCCA60F32CA7 /* JsonObject.swift */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26576C433FD1B4395524C7E26DDB4CA /* Timeline.swift */; };
+		1573753B19829FEBEBFFCA7F8B7A2E34 /* StashObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91AD3FB4A02969638263F1D1AA01965 /* StashObject.swift */; };
+		15B32F6059B1500A8E3910A938384F7E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174E06765F5B536CDEB86585F85341DF /* SwiftyJSON.framework */; };
+		1711FB096D63DA162B43E50C9EF9B77C /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5BEEB34B868A113CA071E342504D6 /* Syncable.swift */; };
+		1A1B25FCC8EE35BC9C3677B60FD4BFE5 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8B8A50FD68AD51438B1E650D3D89328 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AEDAD10E24697E775EC70B9602B697D /* PingPong.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9611660ADCE29EDA35D62030EE127BA /* PingPong.swift */; };
 		1B2BB8DBA871B69F8788D7461020A8BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CC8F436A3531CD629F83862410BE9206 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D3C41177C9F03B23E1209CDB3490265 /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A82114BD4D2FD5A7B3DDEB76FF2E39 /* NSDate+Utilities.swift */; };
 		22554065FA07F1BFE5308A685394CB12 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE075C2903CB2A8013ED3FA45984BA1 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		240A02DB652AD96E6D1F50BF7819F94D /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1A117FAD39611DBEC72A47A643F481 /* NSDate+Utilities.swift */; };
-		2D71C9C3FA08A62213EF207840C4DFAE /* BRDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65F46D98146DFDC43DF1F75AA45051 /* BRDatabase.swift */; };
+		27FE01992F6B090E983762ADCBE552FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
+		2988F2D44F525504AB82CD3445DDD339 /* JsonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93571D581E1EFC596302AA96ABB7F0C /* JsonObject.swift */; };
+		31C29645AB6C88EDE04AE2B9493F94B2 /* BRDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0ED09E9790900B8363BD50A66EAFFE /* BRDatabase.swift */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5911FB2C55FE76DC1B9939881A65F /* TaskDelegate.swift */; };
 		37F097E2269EF1BD238AD7449D796445 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 561396FC83B16CB23CF21585E2D7ED8E /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		3E43906B70EB01C06F3AE17008B853B9 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702E06E28DE1C89BC55B6BBD6DCF9A8 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FF1013ECE2AFE1AC71F1E07F133CD7E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30174AAF86114110C608C953F9349F1 /* Alamofire.framework */; };
-		4B749C2AB4782FB8795CF31F7C3C3886 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
-		51D543FD5ABC8FDEE60B552532F8E36B /* BackgroundSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF814B0ED96112DE7E7ABB6D87AEE40 /* BackgroundSync.swift */; };
+		4E0E1638784977AD946DCE007BB42DED /* SyncObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2FBAC6862CC161208889BB9A9B0C84 /* SyncObject.swift */; };
+		50859FED2EA7F8E61FF4AD0908000918 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BA9104C88C3214931A3F9D68A6F8F7 /* FMDB.framework */; };
 		52459C83B82623E0A8F5480C3B879572 /* Pods-PingPong_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AD995F86313B3D9807FBDB2052B764B /* Pods-PingPong_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFEFCEA4078CDED25A5D73764E4D9E7 /* Request.swift */; };
-		5435519671BE393FA69E5F454CD8023B /* SyncObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7755C061866D3A0A4F3990F26E30ED24 /* SyncObject.swift */; };
+		5A3ADF696FF45A31E0AFF11C18F75E9D /* DatabaseInstall.sql in Resources */ = {isa = PBXBuildFile; fileRef = B8220DA2478B773C4D332D0652E4E8A9 /* DatabaseInstall.sql */; };
+		60E8D84644058C0BB2612CAAF612814B /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9C986849201EA5CFCEA0D0C25684E3 /* DispatchQueueExtension.swift */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F30802243A29B83DE496B06C22A3F6 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404698D12D00B4A6822CC2C2239EA32 /* ServerTrustPolicy.swift */; };
-		6D3D99643D7D82D7858F001BFD02B02F /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A8414982BAB3071480BAEDA3A3792ED0 /* SwiftyJSON-dummy.m */; };
-		719E51C48D01261BDEFCBC141566D578 /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A80BF662CE2B8DA5F1CCDE5A4A9DC /* DispatchQueueExtension.swift */; };
+		68CBD6FBA5C0EA681B7CE1507BE9862E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30174AAF86114110C608C953F9349F1 /* Alamofire.framework */; };
 		72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
 		73AFC99ED19FF5010E9B2C78DF6AC788 /* Pods-PingPong_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 626D83E407A14CFDDFAFB7DA06B6AD9A /* Pods-PingPong_Example-dummy.m */; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
 		7654D69983C7294C704426ADC8664C33 /* Pods-PingPong_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C26EDBC63BE01F1DEFB775D81FBBD1B3 /* Pods-PingPong_Tests-dummy.m */; };
-		79C2A3820D4819D68937B10E3FB8EDFC /* AutomaticSyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EE2F32BB9D87C334E1E51C98444E28 /* AutomaticSyncTask.swift */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE6F8CD83411611BB59EDBA32B056BE /* SessionDelegate.swift */; };
-		7B6AD189DBA461C65C702C4FBD397DE4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151658751529BAB033B098909AF7118 /* Result.swift */; };
+		8469C59D300B48696C96738748FEBF8E /* PingPong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A59DAFA8D0DAA4DF7546A2797A51B7 /* PingPong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84E46439E580A10BE29DEF29FB483526 /* Pods-PingPong_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F7183AD403B474EE82C78751520781C3 /* Pods-PingPong_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		862FDE5A7CA62075F8975D3C8A33FA46 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB2A0D2819F62EB8953FE8442BAC83 /* DataStore.swift */; };
 		87ECA447DB887426665260651B7F147E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = AA417F2D22B74FFAF23106B76212E64D /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8C8F19AA17F4F9533DD366EE71556D04 /* PingPong-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95C347F26E9070C73876E582D911B322 /* PingPong-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		963D33094D19FC8A488A91C003E1D93A /* SyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A5567E58BF7A1CABE6CE48837A5413 /* SyncTask.swift */; };
 		96E70B43FC04BC99AED1BBD4FB1D7581 /* FMDB-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89E32F8680481930C37B1100ED9654B9 /* FMDB-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B8D84996694C541CD3434386E0A081A /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = ED9DAA825BB30E6DF4D713C3695B03DB /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C11A290C9C5866A185A54F1EC04E2BB /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0BDA57E7FD1D3830BE127F005E8BB /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CAFE48B9F611255622D3D6C67419C3 /* AFError.swift */; };
 		A1B5D80A8998311B8C9043E6942925E6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA9DCD33947D2CE2FAB6BDB11E5835 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D48C9CF83B313F5F06EECBB7D9BE39 /* NetworkReachabilityManager.swift */; };
+		A48D3E8B70F7221A80F42A1576D56936 /* SyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25387A61753B5389FBC6C2BF6CDE9D5 /* SyncTask.swift */; };
 		A548833BE5FAD40830428F36E77D0F52 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A8F1AE71E65433B68636C6E471036DA /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A5D5FD672264CDC4DF7B62FBC758F7F6 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8B8A50FD68AD51438B1E650D3D89328 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0314ACE90E5B26A84355C256B3CF6B3C /* Alamofire-dummy.m */; };
 		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699E166F1C926CAED4AD6D98E807FFE5 /* SessionManager.swift */; };
-		B4B9EE8886A4CC670346E1000B79F818 /* PingPong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3EE1AA25FC819D00FA99144F640A0C /* PingPong-dummy.m */; };
-		B5FA226E875AF8FF08C82610E9AF4ECA /* PingPong.h in Headers */ = {isa = PBXBuildFile; fileRef = 539A02D54D38E1BCAD480A46AA25E18B /* PingPong.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055845849291EF3EB807370E892D4B1 /* MultipartFormData.swift */; };
-		B7C1806AD6C5A1FD47DA11E7E339F0CF /* DatabaseInstall.sql in Resources */ = {isa = PBXBuildFile; fileRef = 4A6CD05397257FE7DA73C11677665DCB /* DatabaseInstall.sql */; };
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458461A7F5F014F8E6613175FB5244D8 /* Validation.swift */; };
+		BC03A1A9DDCDDFB2EC46A81764FFAD6D /* AutomaticSyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4851992BAD1924AFE59147B259918CC8 /* AutomaticSyncTask.swift */; };
+		BE0ECC9D6E98953320E42B51FAE7AE94 /* BackgroundSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1D5A6E89A83F1E49044E4A60B8AE8 /* BackgroundSync.swift */; };
 		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB1D59048551657ABF4F602243E967C /* ParameterEncoding.swift */; };
+		BF3703D7C0C5C4E30D4F9F3F49BC4537 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */; };
+		C169EED120C7E6CDBD72CF55B790EB47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
 		C605A44DF96E7FCACF7D6E37B62F795D /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C59ADB8BD53FDC829980399E6AEE2A5 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC56C3E12586EDDCDD7FD84D5F80F81 /* Response.swift */; };
+		CBDDDD5821B5D2FF00387288 /* JsonPong.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDDD5721B5D2FF00387288 /* JsonPong.swift */; };
 		CCB74062CE0F4B8E5B7483599BC398DA /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = C325415229CFB9A612181BBE1A4E7CAD /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D259C9254FC9A9F5C719D8344C058C35 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174E06765F5B536CDEB86585F85341DF /* SwiftyJSON.framework */; };
-		D2BFA89D22BB2CF93859877E86E37E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
 		D5991941DC41DDDDDACAE0B5D47A4639 /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9829D1B5C2FD898B5989E787204615B0 /* FMDB-dummy.m */; };
 		D73433AC065A1C47113B221DFA116A64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */; };
-		D74C5D1B79606F186E4CDBD90989C393 /* PingPong.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF92B86F0480E220AF512121355830CF /* PingPong.swift */; };
+		DD1DF9ABCEA059A38A64BB989DF280A6 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A8414982BAB3071480BAEDA3A3792ED0 /* SwiftyJSON-dummy.m */; };
+		DD6F9A410EFE777C6D5B81EF8E5C095F /* PingPong.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */; };
+		E8C4DF27D0BCA35F97FF48D515B31593 /* PingPong.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8660D21F05214539B0C4A8921EB1DF /* PingPong.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE49D61FDDEB052F004A211D7DCE40C0 /* PingPong-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEB104EA6DF076D3C0CBE78809C7C33 /* PingPong-dummy.m */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D3BEF3A794CCFB0F11C2FE4F62669B /* Notifications.swift */; };
 		F11FAB91014130EE233A3429439D38D7 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9831B800A18C878B5E48D7E21E5A34E0 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712767E0D61389C986F3027E87615FDF /* ResponseSerialization.swift */; };
-		F8494114EB83141D3CFE379E7D98FEA7 /* PingPong.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */; };
 		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53957270353FF5DEA1742C53BE72975 /* Alamofire.swift */; };
-		FB48833C2AAFF4417E297BA4631D46E7 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BA9104C88C3214931A3F9D68A6F8F7 /* FMDB.framework */; };
+		FC4AF86F0AB6573FEFDEF7DAB0094F01 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC22192C24942E1ED0A0B4BA96253D46 /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3CD0B28BCCC3C97B13C26733AC7CD259 /* PBXContainerItemProxy */ = {
+		04847D73AB4B206A9FEACD87C826CCC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 251BAD17812F7EBF6532EACF66F941C3;
+			remoteInfo = FMDB;
+		};
+		0830A69BBE3A5ECB5621EB1659AFDBD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
 			remoteInfo = Alamofire;
 		};
-		5828AA380DF997944DF62E0044AD6FD8 /* PBXContainerItemProxy */ = {
+		4B27F13E726C76051678BDA2F9517646 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 65B3F81263745FDC6D7AC4797D99C32F;
+			remoteGlobalIDString = 05DD39E4CF030EA723913EDA48696C26;
 			remoteInfo = SwiftyJSON;
 		};
 		612C921AA73C981FAE507868241EA7C7 /* PBXContainerItemProxy */ = {
@@ -106,39 +115,31 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 65B3F81263745FDC6D7AC4797D99C32F;
+			remoteGlobalIDString = 05DD39E4CF030EA723913EDA48696C26;
 			remoteInfo = SwiftyJSON;
 		};
 		A16DBF9C33CF0270B7DF54B7FB50D346 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9B7E435374EF77869E26E0FED4925FE4;
+			remoteGlobalIDString = BD00D5D97C1A510B07F5CF380B4DAD9C;
 			remoteInfo = PingPong;
 		};
-		CB5387D29B1D4A6A0CC5CF4BCE87A7A2 /* PBXContainerItemProxy */ = {
+		EF3B3FDAA2B6C94FF720D4635BBD96D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0738366DD6F01BE8D6AC53677E0F5DCC;
+			remoteGlobalIDString = 4A240FF2C64FE9832B9B66DCBEEC4520;
 			remoteInfo = "PingPong-PingPong";
-		};
-		EBC03048D9815FAAC71E53694EBF61F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 251BAD17812F7EBF6532EACF66F941C3;
-			remoteInfo = FMDB;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PingPong.xcconfig; sourceTree = "<group>"; };
 		0314ACE90E5B26A84355C256B3CF6B3C /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		050A27F0BB99992D9420E4E2C0E01430 /* Pods-PingPong_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		05514B1ADBDA647E166483A112F8DA0D /* Pods-PingPong_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PingPong_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0724493E7DB728B6C9E8C42076EE1C06 /* PingPong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PingPong.framework; path = PingPong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07BAE98CA0B230780F2F758AF35E4D27 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FMDB.modulemap; sourceTree = "<group>"; };
+		0724493E7DB728B6C9E8C42076EE1C06 /* PingPong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PingPong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BAE98CA0B230780F2F758AF35E4D27 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FMDB.modulemap; sourceTree = "<group>"; };
 		088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		09F0087BFA1594316AF63CF8A98161CD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10BA9104C88C3214931A3F9D68A6F8F7 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,92 +149,95 @@
 		1D2783749357ECC3FD413515FB27EE3D /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		1EE075C2903CB2A8013ED3FA45984BA1 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
 		2702E06E28DE1C89BC55B6BBD6DCF9A8 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		27ABFF6579F6815C7E364FCF3B10F897 /* ResourceBundle-PingPong-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PingPong-Info.plist"; sourceTree = "<group>"; };
 		2AE61769ACD35E82F32273F2D8B65E8E /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		338DB0BFF6971ADADF74E9E44086799A /* Pods-PingPong_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		378B47C1961EFD2C5EF9CB536991A64B /* ResourceBundle-PingPong-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PingPong-Info.plist"; sourceTree = "<group>"; };
-		39CAC306161B64982040457720A5497A /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
-		39EE2F32BB9D87C334E1E51C98444E28 /* AutomaticSyncTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutomaticSyncTask.swift; path = PingPong/Classes/AutomaticSyncTask.swift; sourceTree = "<group>"; };
+		39CAC306161B64982040457720A5497A /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		3A82694085BD22E97319D272C1B49620 /* Pods-PingPong_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Example.release.xcconfig"; sourceTree = "<group>"; };
 		458461A7F5F014F8E6613175FB5244D8 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		485EE7643F422612E3A9869DAE4DDE2B /* Pods-PingPong_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PingPong_Example.modulemap"; sourceTree = "<group>"; };
-		4A6CD05397257FE7DA73C11677665DCB /* DatabaseInstall.sql */ = {isa = PBXFileReference; includeInIndex = 1; name = DatabaseInstall.sql; path = PingPong/Assets/DatabaseInstall.sql; sourceTree = "<group>"; };
-		4E1A117FAD39611DBEC72A47A643F481 /* NSDate+Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "PingPong/Classes/NSDate+Utilities.swift"; sourceTree = "<group>"; };
+		4851992BAD1924AFE59147B259918CC8 /* AutomaticSyncTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutomaticSyncTask.swift; path = PingPong/Classes/AutomaticSyncTask.swift; sourceTree = "<group>"; };
+		485EE7643F422612E3A9869DAE4DDE2B /* Pods-PingPong_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PingPong_Example.modulemap"; sourceTree = "<group>"; };
 		5025169BF12CCE660D9D7E9DAA5523F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52BB2A0D2819F62EB8953FE8442BAC83 /* DataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = PingPong/Classes/DataStore.swift; sourceTree = "<group>"; };
 		52C983C01851813069039C2FB2314027 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
-		539A02D54D38E1BCAD480A46AA25E18B /* PingPong.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PingPong.h; path = PingPong/Classes/PingPong.h; sourceTree = "<group>"; };
 		561396FC83B16CB23CF21585E2D7ED8E /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
 		5863DB0E6B4DE9203E8384AF37DBACAD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A8F1AE71E65433B68636C6E471036DA /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		5C59ADB8BD53FDC829980399E6AEE2A5 /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
 		5CB1D59048551657ABF4F602243E967C /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		5E99B783F333B3227327BCCA60F32CA7 /* JsonObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JsonObject.swift; path = PingPong/Classes/JsonObject.swift; sourceTree = "<group>"; };
 		626D83E407A14CFDDFAFB7DA06B6AD9A /* Pods-PingPong_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PingPong_Example-dummy.m"; sourceTree = "<group>"; };
-		67DBEE877619897ED82DDAB7298FFA7F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		699E166F1C926CAED4AD6D98E807FFE5 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		6AC56C3E12586EDDCDD7FD84D5F80F81 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		6AD995F86313B3D9807FBDB2052B764B /* Pods-PingPong_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PingPong_Example-umbrella.h"; sourceTree = "<group>"; };
-		6BBD9DD0B0FBD32E8700CC25DE22EA69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		6CEA9DCD33947D2CE2FAB6BDB11E5835 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		6CEB104EA6DF076D3C0CBE78809C7C33 /* PingPong-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PingPong-dummy.m"; sourceTree = "<group>"; };
+		6E9C986849201EA5CFCEA0D0C25684E3 /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueueExtension.swift; path = PingPong/Classes/DispatchQueueExtension.swift; sourceTree = "<group>"; };
 		712767E0D61389C986F3027E87615FDF /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		7151658751529BAB033B098909AF7118 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		76A5567E58BF7A1CABE6CE48837A5413 /* SyncTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyncTask.swift; path = PingPong/Classes/SyncTask.swift; sourceTree = "<group>"; };
-		7755C061866D3A0A4F3990F26E30ED24 /* SyncObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyncObject.swift; path = PingPong/Classes/SyncObject.swift; sourceTree = "<group>"; };
-		7890C28C166A4E96B951A20EC6EB83F3 /* Pods-PingPong_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PingPong_Tests.modulemap"; sourceTree = "<group>"; };
-		78B8B52412B413436F8614641024666B /* PingPong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PingPong.modulemap; sourceTree = "<group>"; };
+		7890C28C166A4E96B951A20EC6EB83F3 /* Pods-PingPong_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PingPong_Tests.modulemap"; sourceTree = "<group>"; };
 		7AE6F8CD83411611BB59EDBA32B056BE /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F637B4BAAE38ECF2A9D3F0C37AA11F4 /* Pods-PingPong_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8052A419C5EA2C8653B9CA6ADDC30270 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8444555C5874B09F8367B428D01A7999 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		85EC695895EE0D8ACF25F98DB46CB56E /* Pods-PingPong_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PingPong_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		86FBC3A51EDDEF5D267CC6E0B6D56DF3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		876BD843D28801BF0FD00FB14F25E6F9 /* Pods-PingPong_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Tests-resources.sh"; sourceTree = "<group>"; };
 		89E32F8680481930C37B1100ED9654B9 /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
-		8B7B951A6A83072BCA65E0694CD40A3D /* PingPong.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = PingPong.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		8EF814B0ED96112DE7E7ABB6D87AEE40 /* BackgroundSync.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BackgroundSync.swift; path = PingPong/Classes/BackgroundSync.swift; sourceTree = "<group>"; };
+		8E0ED09E9790900B8363BD50A66EAFFE /* BRDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRDatabase.swift; path = PingPong/Classes/BRDatabase.swift; sourceTree = "<group>"; };
 		904A05293E0405445F2CD45B0CE28DCB /* Pods-PingPong_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Example-resources.sh"; sourceTree = "<group>"; };
+		90B1D5A6E89A83F1E49044E4A60B8AE8 /* BackgroundSync.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BackgroundSync.swift; path = PingPong/Classes/BackgroundSync.swift; sourceTree = "<group>"; };
 		90D48C9CF83B313F5F06EECBB7D9BE39 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		9209AFAF2082562681512DED66AC8F30 /* Pods-PingPong_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PingPong_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		95C347F26E9070C73876E582D911B322 /* PingPong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-umbrella.h"; sourceTree = "<group>"; };
-		96DB5108C43689B57CEB69C2DECFF1CA /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PingPong_Tests.framework; path = "Pods-PingPong_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		968D3E0FA55597C58E44FBEDE9677868 /* PingPong.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = PingPong.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		96DB5108C43689B57CEB69C2DECFF1CA /* Pods_PingPong_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9829D1B5C2FD898B5989E787204615B0 /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
 		9831B800A18C878B5E48D7E21E5A34E0 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
-		9833149DD08E3357F31DF256C6B5CB3C /* StashObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StashObject.swift; path = PingPong/Classes/StashObject.swift; sourceTree = "<group>"; };
+		9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PingPong.xcconfig; sourceTree = "<group>"; };
 		A26576C433FD1B4395524C7E26DDB4CA /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		A5D5ED4A2B7E57167FAAFD93C000E79B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		A554F8BC8B3AE373D4A73964DA693619 /* PingPong.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PingPong.modulemap; sourceTree = "<group>"; };
+		A5D5ED4A2B7E57167FAAFD93C000E79B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		A6CAFE48B9F611255622D3D6C67419C3 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		A8414982BAB3071480BAEDA3A3792ED0 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		A98A9A2B3396F4546AA3EA656BCFB261 /* PingPong-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-prefix.pch"; sourceTree = "<group>"; };
 		AA417F2D22B74FFAF23106B76212E64D /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
-		AB65F46D98146DFDC43DF1F75AA45051 /* BRDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BRDatabase.swift; path = PingPong/Classes/BRDatabase.swift; sourceTree = "<group>"; };
 		AD5F41E8735B030E37B61426C9E4CC83 /* Pods-PingPong_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PingPong_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AE711424416F218AB9C306CAB340B671 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F30802243A29B83DE496B06C22A3F6 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		B3806A89683C3EFAB21CC5556CD47CE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B3A5911FB2C55FE76DC1B9939881A65F /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		B51A80BF662CE2B8DA5F1CCDE5A4A9DC /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueueExtension.swift; path = PingPong/Classes/DispatchQueueExtension.swift; sourceTree = "<group>"; };
+		B54FE93336291D5573560AC4A26DCD5F /* PingPong-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-prefix.pch"; sourceTree = "<group>"; };
+		B8220DA2478B773C4D332D0652E4E8A9 /* DatabaseInstall.sql */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DatabaseInstall.sql; path = PingPong/Assets/DatabaseInstall.sql; sourceTree = "<group>"; };
+		B93571D581E1EFC596302AA96ABB7F0C /* JsonObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JsonObject.swift; path = PingPong/Classes/JsonObject.swift; sourceTree = "<group>"; };
+		B9611660ADCE29EDA35D62030EE127BA /* PingPong.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PingPong.swift; path = PingPong/Classes/PingPong.swift; sourceTree = "<group>"; };
 		BAFEFCEA4078CDED25A5D73764E4D9E7 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		C26EDBC63BE01F1DEFB775D81FBBD1B3 /* Pods-PingPong_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PingPong_Tests-dummy.m"; sourceTree = "<group>"; };
 		C30174AAF86114110C608C953F9349F1 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C325415229CFB9A612181BBE1A4E7CAD /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		C91AD3FB4A02969638263F1D1AA01965 /* StashObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StashObject.swift; path = PingPong/Classes/StashObject.swift; sourceTree = "<group>"; };
+		CBDDDD5721B5D2FF00387288 /* JsonPong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPong.swift; sourceTree = "<group>"; };
 		CC8F436A3531CD629F83862410BE9206 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		CF92B86F0480E220AF512121355830CF /* PingPong.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PingPong.swift; path = PingPong/Classes/PingPong.swift; sourceTree = "<group>"; };
+		CE8660D21F05214539B0C4A8921EB1DF /* PingPong.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PingPong.h; path = PingPong/Classes/PingPong.h; sourceTree = "<group>"; };
+		D0A82114BD4D2FD5A7B3DDEB76FF2E39 /* NSDate+Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "PingPong/Classes/NSDate+Utilities.swift"; sourceTree = "<group>"; };
+		D25387A61753B5389FBC6C2BF6CDE9D5 /* SyncTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyncTask.swift; path = PingPong/Classes/SyncTask.swift; sourceTree = "<group>"; };
 		D3F0BDA57E7FD1D3830BE127F005E8BB /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		D404698D12D00B4A6822CC2C2239EA32 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		D53957270353FF5DEA1742C53BE72975 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		DB3EE1AA25FC819D00FA99144F640A0C /* PingPong-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PingPong-dummy.m"; sourceTree = "<group>"; };
+		D6360C6FD1A5572E24B64F51FD512825 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D6A59DAFA8D0DAA4DF7546A2797A51B7 /* PingPong-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PingPong-umbrella.h"; sourceTree = "<group>"; };
+		DC22192C24942E1ED0A0B4BA96253D46 /* DataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = PingPong/Classes/DataStore.swift; sourceTree = "<group>"; };
+		E5B109C4F8C6B7376B2D77B3E293778A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E9D3BEF3A794CCFB0F11C2FE4F62669B /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		EB7FDD2F98DCC24686D14A71440AAF4D /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PingPong.bundle; path = "PingPong-PingPong.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7FDD2F98DCC24686D14A71440AAF4D /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingPong.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9DAA825BB30E6DF4D713C3695B03DB /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		F055845849291EF3EB807370E892D4B1 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		F1A0F64DAA8D910385AFA1B19C4BD821 /* Pods-PingPong_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PingPong_Example-frameworks.sh"; sourceTree = "<group>"; };
 		F1A460798052E1498DF48686BACDF53A /* Pods-PingPong_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PingPong_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		F50A7B15DE4B56AD0413F866B226873B /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PingPong_Example.framework; path = "Pods-PingPong_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F5BEEB34B868A113CA071E342504D6 /* Syncable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Syncable.swift; path = PingPong/Classes/Syncable.swift; sourceTree = "<group>"; };
+		F50A7B15DE4B56AD0413F866B226873B /* Pods_PingPong_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PingPong_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7183AD403B474EE82C78751520781C3 /* Pods-PingPong_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PingPong_Tests-umbrella.h"; sourceTree = "<group>"; };
-		F7C95BCF0A92520BF7A43EFCBCAEF89C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7C95BCF0A92520BF7A43EFCBCAEF89C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B8A50FD68AD51438B1E650D3D89328 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		FD2FBAC6862CC161208889BB9A9B0C84 /* SyncObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyncObject.swift; path = PingPong/Classes/SyncObject.swift; sourceTree = "<group>"; };
 		FF4678E6DEFE793E3339D0CD048ECCAA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,14 +250,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		77C2EAFB12522B064200212C1B553F0F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2BFA89D22BB2CF93859877E86E37E61 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		99195E4207764744AEC07ECCBCD550EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,29 +258,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A9715B8BE265EFC333514B7558198117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C169EED120C7E6CDBD72CF55B790EB47 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B97C89DC89D147DB542D932286B9AC3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68CBD6FBA5C0EA681B7CE1507BE9862E /* Alamofire.framework in Frameworks */,
+				50859FED2EA7F8E61FF4AD0908000918 /* FMDB.framework in Frameworks */,
+				27FE01992F6B090E983762ADCBE552FD /* Foundation.framework in Frameworks */,
+				15B32F6059B1500A8E3910A938384F7E /* SwiftyJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0F9C35696AF76700D8EE3B42AE18536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EEFB61A65EB8DA6653B544822EB9CE44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF4C220FEA24B1A0E1253DF2560E6935 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3FF1013ECE2AFE1AC71F1E07F133CD7E /* Alamofire.framework in Frameworks */,
-				FB48833C2AAFF4417E297BA4631D46E7 /* FMDB.framework in Frameworks */,
-				4B749C2AB4782FB8795CF31F7C3C3886 /* Foundation.framework in Frameworks */,
-				D259C9254FC9A9F5C719D8344C058C35 /* SwiftyJSON.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5E606403734ED54E851354476FF23B1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,18 +319,15 @@
 				4FF89EDE7C45ED14D88CE6D88F38DE0F /* standard */,
 				FF2711584202CA8C90B61B1437E9C44F /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
-		09D31548C07008F0F1FD0738639E5539 /* Pod */ = {
+		127550B64FCF5E74B647AA8710496CB1 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				67DBEE877619897ED82DDAB7298FFA7F /* LICENSE */,
-				8B7B951A6A83072BCA65E0694CD40A3D /* PingPong.podspec */,
-				6BBD9DD0B0FBD32E8700CC25DE22EA69 /* README.md */,
+				D88ABA9789F35E4AF19FA621F3F065FA /* PingPong */,
 			);
-			name = Pod;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		180A06D42231CF60E6703D6A29A9153F /* Targets Support Files */ = {
@@ -336,6 +337,16 @@
 				712C631B2A4FB0F15DB3352394B9D251 /* Pods-PingPong_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		2053FBE672A80D7471BB986CB2106BCE /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				D6360C6FD1A5572E24B64F51FD512825 /* LICENSE */,
+				968D3E0FA55597C58E44FBEDE9677868 /* PingPong.podspec */,
+				E5B109C4F8C6B7376B2D77B3E293778A /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		4FF89EDE7C45ED14D88CE6D88F38DE0F /* standard */ = {
@@ -378,7 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				F58DEFB2617CFACBA05EBCC4A69BC83F /* Development Pods */,
+				127550B64FCF5E74B647AA8710496CB1 /* Development Pods */,
 				99AC4FA8D213ECCF91EC704354E21922 /* Frameworks */,
 				052A9101EE9695D75AC4EE5FACAC825C /* Pods */,
 				F00D336FACA66D26665DBC2A36844B99 /* Products */,
@@ -397,16 +408,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AE42879241724127F18046C90AF8AF4 /* Support Files */ = {
+		9FD6EBCF612A53446DBDA28BA9B9402C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				86FBC3A51EDDEF5D267CC6E0B6D56DF3 /* Info.plist */,
-				78B8B52412B413436F8614641024666B /* PingPong.modulemap */,
-				00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */,
-				DB3EE1AA25FC819D00FA99144F640A0C /* PingPong-dummy.m */,
-				A98A9A2B3396F4546AA3EA656BCFB261 /* PingPong-prefix.pch */,
-				95C347F26E9070C73876E582D911B322 /* PingPong-umbrella.h */,
-				378B47C1961EFD2C5EF9CB536991A64B /* ResourceBundle-PingPong-Info.plist */,
+				8052A419C5EA2C8653B9CA6ADDC30270 /* Info.plist */,
+				A554F8BC8B3AE373D4A73964DA693619 /* PingPong.modulemap */,
+				9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */,
+				6CEB104EA6DF076D3C0CBE78809C7C33 /* PingPong-dummy.m */,
+				B54FE93336291D5573560AC4A26DCD5F /* PingPong-prefix.pch */,
+				D6A59DAFA8D0DAA4DF7546A2797A51B7 /* PingPong-umbrella.h */,
+				27ABFF6579F6815C7E364FCF3B10F897 /* ResourceBundle-PingPong-Info.plist */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/PingPong";
@@ -440,37 +451,46 @@
 			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
-		AF538673B94BF311DDD35110B268BEFB /* PingPong */ = {
-			isa = PBXGroup;
-			children = (
-				39EE2F32BB9D87C334E1E51C98444E28 /* AutomaticSyncTask.swift */,
-				8EF814B0ED96112DE7E7ABB6D87AEE40 /* BackgroundSync.swift */,
-				AB65F46D98146DFDC43DF1F75AA45051 /* BRDatabase.swift */,
-				52BB2A0D2819F62EB8953FE8442BAC83 /* DataStore.swift */,
-				B51A80BF662CE2B8DA5F1CCDE5A4A9DC /* DispatchQueueExtension.swift */,
-				5E99B783F333B3227327BCCA60F32CA7 /* JsonObject.swift */,
-				4E1A117FAD39611DBEC72A47A643F481 /* NSDate+Utilities.swift */,
-				539A02D54D38E1BCAD480A46AA25E18B /* PingPong.h */,
-				CF92B86F0480E220AF512121355830CF /* PingPong.swift */,
-				9833149DD08E3357F31DF256C6B5CB3C /* StashObject.swift */,
-				7755C061866D3A0A4F3990F26E30ED24 /* SyncObject.swift */,
-				76A5567E58BF7A1CABE6CE48837A5413 /* SyncTask.swift */,
-				09D31548C07008F0F1FD0738639E5539 /* Pod */,
-				FD36EC559AB9F7A7239274A4783C8DAD /* Resources */,
-				9AE42879241724127F18046C90AF8AF4 /* Support Files */,
-			);
-			name = PingPong;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		BEA2BF2D1AEC08B5A5914980A0C0A293 /* SwiftyJSON */ = {
 			isa = PBXGroup;
 			children = (
 				088F15C8D7A43E462CA808A7322D880E /* SwiftyJSON.swift */,
 				A0421597ECEE713147A55DE4CDA2F2D8 /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		D88ABA9789F35E4AF19FA621F3F065FA /* PingPong */ = {
+			isa = PBXGroup;
+			children = (
+				4851992BAD1924AFE59147B259918CC8 /* AutomaticSyncTask.swift */,
+				90B1D5A6E89A83F1E49044E4A60B8AE8 /* BackgroundSync.swift */,
+				8E0ED09E9790900B8363BD50A66EAFFE /* BRDatabase.swift */,
+				DC22192C24942E1ED0A0B4BA96253D46 /* DataStore.swift */,
+				6E9C986849201EA5CFCEA0D0C25684E3 /* DispatchQueueExtension.swift */,
+				B93571D581E1EFC596302AA96ABB7F0C /* JsonObject.swift */,
+				CBDDDD5721B5D2FF00387288 /* JsonPong.swift */,
+				D0A82114BD4D2FD5A7B3DDEB76FF2E39 /* NSDate+Utilities.swift */,
+				CE8660D21F05214539B0C4A8921EB1DF /* PingPong.h */,
+				B9611660ADCE29EDA35D62030EE127BA /* PingPong.swift */,
+				C91AD3FB4A02969638263F1D1AA01965 /* StashObject.swift */,
+				F4F5BEEB34B868A113CA071E342504D6 /* Syncable.swift */,
+				FD2FBAC6862CC161208889BB9A9B0C84 /* SyncObject.swift */,
+				D25387A61753B5389FBC6C2BF6CDE9D5 /* SyncTask.swift */,
+				2053FBE672A80D7471BB986CB2106BCE /* Pod */,
+				E3D5D547D082BF99755939A212671300 /* Resources */,
+				9FD6EBCF612A53446DBDA28BA9B9402C /* Support Files */,
+			);
+			name = PingPong;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		E3D5D547D082BF99755939A212671300 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8220DA2478B773C4D332D0652E4E8A9 /* DatabaseInstall.sql */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E46700F6587D637F4A596FF5D59CE128 /* Pods-PingPong_Example */ = {
@@ -513,7 +533,6 @@
 				458461A7F5F014F8E6613175FB5244D8 /* Validation.swift */,
 				AD407D85592C9D594D46A72E9A320AA6 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -539,22 +558,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F58DEFB2617CFACBA05EBCC4A69BC83F /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AF538673B94BF311DDD35110B268BEFB /* PingPong */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		FD36EC559AB9F7A7239274A4783C8DAD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4A6CD05397257FE7DA73C11677665DCB /* DatabaseInstall.sql */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		FF2711584202CA8C90B61B1437E9C44F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,14 +575,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		18BC9FFC8C759876B0216A3CFF464591 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5D5FD672264CDC4DF7B62FBC758F7F6 /* SwiftyJSON-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D2A080C5CD4ED4520C6AEFA1D6BA26F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -594,12 +589,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		77BE99996A1929625700B54011508CFC /* Headers */ = {
+		47BFA60C034241E02A3E4D262B89EAFF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C8F19AA17F4F9533DD366EE71556D04 /* PingPong-umbrella.h in Headers */,
-				B5FA226E875AF8FF08C82610E9AF4ECA /* PingPong.h in Headers */,
+				1A1B25FCC8EE35BC9C3677B60FD4BFE5 /* SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ABC5E5A91BDBCDCF1B8C46C2AE66159 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8469C59D300B48696C96738748FEBF8E /* PingPong-umbrella.h in Headers */,
+				E8C4DF27D0BCA35F97FF48D515B31593 /* PingPong.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,22 +633,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0738366DD6F01BE8D6AC53677E0F5DCC /* PingPong-PingPong */ = {
+		05DD39E4CF030EA723913EDA48696C26 /* SwiftyJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50A95C4252C7D968224D053C1A24CA7F /* Build configuration list for PBXNativeTarget "PingPong-PingPong" */;
+			buildConfigurationList = 3042A90BB6CC57E0C83EFBD505089B15 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
 			buildPhases = (
-				69C5A6609AA23718171DFB272DE39049 /* Sources */,
-				F5E606403734ED54E851354476FF23B1 /* Frameworks */,
-				14AB635CD15EF68F6D66B1586FC7F4E4 /* Resources */,
+				9973A09EA4AD2A7090D13396F64282D5 /* Sources */,
+				A9715B8BE265EFC333514B7558198117 /* Frameworks */,
+				47BFA60C034241E02A3E4D262B89EAFF /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "PingPong-PingPong";
-			productName = "PingPong-PingPong";
-			productReference = EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */;
-			productType = "com.apple.product-type.bundle";
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = 7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		251BAD17812F7EBF6532EACF66F941C3 /* FMDB */ = {
 			isa = PBXNativeTarget;
@@ -664,22 +667,22 @@
 			productReference = EB7FDD2F98DCC24686D14A71440AAF4D /* FMDB.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		65B3F81263745FDC6D7AC4797D99C32F /* SwiftyJSON */ = {
+		4A240FF2C64FE9832B9B66DCBEEC4520 /* PingPong-PingPong */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C60310D3D6BE2F2DC46954097DE83A2 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
+			buildConfigurationList = A0BF646828C2CF8015C25BB398DEF51E /* Build configuration list for PBXNativeTarget "PingPong-PingPong" */;
 			buildPhases = (
-				9ED854CF884DFC795498A2A621D52DDD /* Sources */,
-				77C2EAFB12522B064200212C1B553F0F /* Frameworks */,
-				18BC9FFC8C759876B0216A3CFF464591 /* Headers */,
+				4175FFEA5520681B63480253D3506626 /* Sources */,
+				E0F9C35696AF76700D8EE3B42AE18536 /* Frameworks */,
+				9DED2BE02D83B394813E9B0AD1899A82 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SwiftyJSON;
-			productName = SwiftyJSON;
-			productReference = 7C3AFEB3859CDC64ECA06528D682D795 /* SwiftyJSON.framework */;
-			productType = "com.apple.product-type.framework";
+			name = "PingPong-PingPong";
+			productName = "PingPong-PingPong";
+			productReference = EC8706105A31B65E38A88A5F87ED4746 /* PingPong.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
 			isa = PBXNativeTarget;
@@ -715,22 +718,22 @@
 			productReference = 96DB5108C43689B57CEB69C2DECFF1CA /* Pods_PingPong_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9B7E435374EF77869E26E0FED4925FE4 /* PingPong */ = {
+		BD00D5D97C1A510B07F5CF380B4DAD9C /* PingPong */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28CA651E7551F27DB2A45B5385AB6452 /* Build configuration list for PBXNativeTarget "PingPong" */;
+			buildConfigurationList = 7A05B442B71F9209F41315959B2DD43C /* Build configuration list for PBXNativeTarget "PingPong" */;
 			buildPhases = (
-				7E48611666F558F32DB46988CB7E06A6 /* Sources */,
-				EF4C220FEA24B1A0E1253DF2560E6935 /* Frameworks */,
-				0F2A8E34A18CC4A0F516F3345C482474 /* Resources */,
-				77BE99996A1929625700B54011508CFC /* Headers */,
+				0B36C13DDCA4541A9EA7E32D0BF9AE5F /* Sources */,
+				B97C89DC89D147DB542D932286B9AC3C /* Frameworks */,
+				799BF09E1E1B69D1F0C2528F63C309A2 /* Resources */,
+				8ABC5E5A91BDBCDCF1B8C46C2AE66159 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DF14A385F5782E80436653A083060F57 /* PBXTargetDependency */,
-				25C85383B758A8F10B16C75AEDB75765 /* PBXTargetDependency */,
-				8C017D64CD7BBE6EF97B83FC1992E97A /* PBXTargetDependency */,
-				DEF05F03F8DBB28019474E247B62139B /* PBXTargetDependency */,
+				B6D75E891171556E2FEF24205BC24D81 /* PBXTargetDependency */,
+				D148D6F66C80C63BD35B1F69E7C0F6F0 /* PBXTargetDependency */,
+				ED71BAB3A00C79C79E614FC1D6952F24 /* PBXTargetDependency */,
+				9B0465D346A187BADD1BECE32A207CC8 /* PBXTargetDependency */,
 			);
 			name = PingPong;
 			productName = PingPong;
@@ -781,35 +784,56 @@
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
 				251BAD17812F7EBF6532EACF66F941C3 /* FMDB */,
-				9B7E435374EF77869E26E0FED4925FE4 /* PingPong */,
-				0738366DD6F01BE8D6AC53677E0F5DCC /* PingPong-PingPong */,
+				BD00D5D97C1A510B07F5CF380B4DAD9C /* PingPong */,
+				4A240FF2C64FE9832B9B66DCBEEC4520 /* PingPong-PingPong */,
 				E6BDC034B3AF78BCC9E37580FCBF73FE /* Pods-PingPong_Example */,
 				980056B93654BAA04AB1F1913FEB6615 /* Pods-PingPong_Tests */,
-				65B3F81263745FDC6D7AC4797D99C32F /* SwiftyJSON */,
+				05DD39E4CF030EA723913EDA48696C26 /* SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0F2A8E34A18CC4A0F516F3345C482474 /* Resources */ = {
+		799BF09E1E1B69D1F0C2528F63C309A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8494114EB83141D3CFE379E7D98FEA7 /* PingPong.bundle in Resources */,
+				DD6F9A410EFE777C6D5B81EF8E5C095F /* PingPong.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		14AB635CD15EF68F6D66B1586FC7F4E4 /* Resources */ = {
+		9DED2BE02D83B394813E9B0AD1899A82 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7C1806AD6C5A1FD47DA11E7E339F0CF /* DatabaseInstall.sql in Resources */,
+				5A3ADF696FF45A31E0AFF11C18F75E9D /* DatabaseInstall.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B36C13DDCA4541A9EA7E32D0BF9AE5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC03A1A9DDCDDFB2EC46A81764FFAD6D /* AutomaticSyncTask.swift in Sources */,
+				BE0ECC9D6E98953320E42B51FAE7AE94 /* BackgroundSync.swift in Sources */,
+				31C29645AB6C88EDE04AE2B9493F94B2 /* BRDatabase.swift in Sources */,
+				FC4AF86F0AB6573FEFDEF7DAB0094F01 /* DataStore.swift in Sources */,
+				60E8D84644058C0BB2612CAAF612814B /* DispatchQueueExtension.swift in Sources */,
+				2988F2D44F525504AB82CD3445DDD339 /* JsonObject.swift in Sources */,
+				1D3C41177C9F03B23E1209CDB3490265 /* NSDate+Utilities.swift in Sources */,
+				EE49D61FDDEB052F004A211D7DCE40C0 /* PingPong-dummy.m in Sources */,
+				1AEDAD10E24697E775EC70B9602B697D /* PingPong.swift in Sources */,
+				1573753B19829FEBEBFFCA7F8B7A2E34 /* StashObject.swift in Sources */,
+				1711FB096D63DA162B43E50C9EF9B77C /* Syncable.swift in Sources */,
+				CBDDDD5821B5D2FF00387288 /* JsonPong.swift in Sources */,
+				4E0E1638784977AD946DCE007BB42DED /* SyncObject.swift in Sources */,
+				A48D3E8B70F7221A80F42A1576D56936 /* SyncTask.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32B9974868188C4803318E36329C87FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -835,37 +859,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4175FFEA5520681B63480253D3506626 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		658AB14B7633D958C047A611B9C5CC5A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				73AFC99ED19FF5010E9B2C78DF6AC788 /* Pods-PingPong_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		69C5A6609AA23718171DFB272DE39049 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E48611666F558F32DB46988CB7E06A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79C2A3820D4819D68937B10E3FB8EDFC /* AutomaticSyncTask.swift in Sources */,
-				51D543FD5ABC8FDEE60B552532F8E36B /* BackgroundSync.swift in Sources */,
-				2D71C9C3FA08A62213EF207840C4DFAE /* BRDatabase.swift in Sources */,
-				862FDE5A7CA62075F8975D3C8A33FA46 /* DataStore.swift in Sources */,
-				719E51C48D01261BDEFCBC141566D578 /* DispatchQueueExtension.swift in Sources */,
-				015CD6AF66A25D0097908B9D756EAEDB /* JsonObject.swift in Sources */,
-				240A02DB652AD96E6D1F50BF7819F94D /* NSDate+Utilities.swift in Sources */,
-				B4B9EE8886A4CC670346E1000B79F818 /* PingPong-dummy.m in Sources */,
-				D74C5D1B79606F186E4CDBD90989C393 /* PingPong.swift in Sources */,
-				00C5B974BE97DED48936400338B3F764 /* StashObject.swift in Sources */,
-				5435519671BE393FA69E5F454CD8023B /* SyncObject.swift in Sources */,
-				963D33094D19FC8A488A91C003E1D93A /* SyncTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,24 +895,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9ED854CF884DFC795498A2A621D52DDD /* Sources */ = {
+		9973A09EA4AD2A7090D13396F64282D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D3D99643D7D82D7858F001BFD02B02F /* SwiftyJSON-dummy.m in Sources */,
-				7B6AD189DBA461C65C702C4FBD397DE4 /* SwiftyJSON.swift in Sources */,
+				DD1DF9ABCEA059A38A64BB989DF280A6 /* SwiftyJSON-dummy.m in Sources */,
+				BF3703D7C0C5C4E30D4F9F3F49BC4537 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		25C85383B758A8F10B16C75AEDB75765 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FMDB;
-			target = 251BAD17812F7EBF6532EACF66F941C3 /* FMDB */;
-			targetProxy = EBC03048D9815FAAC71E53694EBF61F7 /* PBXContainerItemProxy */;
-		};
 		4B118D5C518C6F35034088C61E09CD25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
@@ -917,32 +916,38 @@
 		5A9F2F3D9393D7FE95EA342A4D7E4098 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
-			target = 65B3F81263745FDC6D7AC4797D99C32F /* SwiftyJSON */;
+			target = 05DD39E4CF030EA723913EDA48696C26 /* SwiftyJSON */;
 			targetProxy = 808940B4578F2C5E05EAE129F0C47DA0 /* PBXContainerItemProxy */;
 		};
 		7E4DB5D658E4A46FC66B131C7BE02956 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PingPong;
-			target = 9B7E435374EF77869E26E0FED4925FE4 /* PingPong */;
+			target = BD00D5D97C1A510B07F5CF380B4DAD9C /* PingPong */;
 			targetProxy = A16DBF9C33CF0270B7DF54B7FB50D346 /* PBXContainerItemProxy */;
 		};
-		8C017D64CD7BBE6EF97B83FC1992E97A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "PingPong-PingPong";
-			target = 0738366DD6F01BE8D6AC53677E0F5DCC /* PingPong-PingPong */;
-			targetProxy = CB5387D29B1D4A6A0CC5CF4BCE87A7A2 /* PBXContainerItemProxy */;
-		};
-		DEF05F03F8DBB28019474E247B62139B /* PBXTargetDependency */ = {
+		9B0465D346A187BADD1BECE32A207CC8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
-			target = 65B3F81263745FDC6D7AC4797D99C32F /* SwiftyJSON */;
-			targetProxy = 5828AA380DF997944DF62E0044AD6FD8 /* PBXContainerItemProxy */;
+			target = 05DD39E4CF030EA723913EDA48696C26 /* SwiftyJSON */;
+			targetProxy = 4B27F13E726C76051678BDA2F9517646 /* PBXContainerItemProxy */;
 		};
-		DF14A385F5782E80436653A083060F57 /* PBXTargetDependency */ = {
+		B6D75E891171556E2FEF24205BC24D81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = 3CD0B28BCCC3C97B13C26733AC7CD259 /* PBXContainerItemProxy */;
+			targetProxy = 0830A69BBE3A5ECB5621EB1659AFDBD3 /* PBXContainerItemProxy */;
+		};
+		D148D6F66C80C63BD35B1F69E7C0F6F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB;
+			target = 251BAD17812F7EBF6532EACF66F941C3 /* FMDB */;
+			targetProxy = 04847D73AB4B206A9FEACD87C826CCC9 /* PBXContainerItemProxy */;
+		};
+		ED71BAB3A00C79C79E614FC1D6952F24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PingPong-PingPong";
+			target = 4A240FF2C64FE9832B9B66DCBEEC4520 /* PingPong-PingPong */;
+			targetProxy = EF3B3FDAA2B6C94FF720D4635BBD96D9 /* PBXContainerItemProxy */;
 		};
 		FAE5CC4EC6745E5479732D305CF2BA97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -953,6 +958,84 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		01234CE2A18F5543B2937FAA3B4A077E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D2783749357ECC3FD413515FB27EE3D /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0F0EAF5D1322CC3F757CD6B97DB8BAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PingPong";
+				INFOPLIST_FILE = "Target Support Files/PingPong/ResourceBundle-PingPong-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = PingPong;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		1207579496B46CC5FFFC2A3538418F64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PingPong/PingPong-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PingPong/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PingPong/PingPong.modulemap";
+				PRODUCT_NAME = PingPong;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		12C4B864767C59600DBFA238F1E2F8BC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1005,6 +1088,38 @@
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		1F0405C23CF7DAFCF790256CC2CBC7CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PingPong/PingPong-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PingPong/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PingPong/PingPong.modulemap";
+				PRODUCT_NAME = PingPong;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1070,7 +1185,7 @@
 			};
 			name = Debug;
 		};
-		428E747CD746563AA7846128A1BB8AE6 /* Release */ = {
+		3746523A92696E059B9726510463C73A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D2783749357ECC3FD413515FB27EE3D /* SwiftyJSON.xcconfig */;
 			buildSettings = {
@@ -1090,38 +1205,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		54EC148D693B2163634DA3FB31521208 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PingPong/PingPong-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PingPong/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PingPong/PingPong.modulemap";
-				PRODUCT_NAME = PingPong;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -1228,37 +1311,6 @@
 			};
 			name = Debug;
 		};
-		637693BECE6FEA8521436C9A5D3599E8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PingPong/PingPong-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PingPong/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PingPong/PingPong.modulemap";
-				PRODUCT_NAME = PingPong;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		74C921163C9CBEEA0B734A7574F46C71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD5F41E8735B030E37B61426C9E4CC83 /* Pods-PingPong_Example.debug.xcconfig */;
@@ -1290,22 +1342,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7B15EA4715F7ACA8F214032CEFB315E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PingPong";
-				INFOPLIST_FILE = "Target Support Files/PingPong/ResourceBundle-PingPong-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = PingPong;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
@@ -1403,22 +1439,6 @@
 			};
 			name = Release;
 		};
-		BA9FFD4231F830E9B00043F9CB0E9152 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00C23C4143314F69F984EC4C81199A1F /* PingPong.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PingPong";
-				INFOPLIST_FILE = "Target Support Files/PingPong/ResourceBundle-PingPong-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = PingPong;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		C1828902A51EDC04D42E33F2A7BBED89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 338DB0BFF6971ADADF74E9E44086799A /* Pods-PingPong_Tests.release.xcconfig */;
@@ -1452,54 +1472,39 @@
 			};
 			name = Release;
 		};
-		F87FFE7CF37D9907EB76AC58270F48CA /* Debug */ = {
+		DAF47E7DCB22603BCF27A4DFAFA2F446 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D2783749357ECC3FD413515FB27EE3D /* SwiftyJSON.xcconfig */;
+			baseConfigurationReference = 9C2EDD0AE0A16D7E270F1C2287B7E3A7 /* PingPong.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				PRODUCT_NAME = SwiftyJSON;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PingPong";
+				INFOPLIST_FILE = "Target Support Files/PingPong/ResourceBundle-PingPong-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = PingPong;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		28CA651E7551F27DB2A45B5385AB6452 /* Build configuration list for PBXNativeTarget "PingPong" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				637693BECE6FEA8521436C9A5D3599E8 /* Debug */,
-				54EC148D693B2163634DA3FB31521208 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
 				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3042A90BB6CC57E0C83EFBD505089B15 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01234CE2A18F5543B2937FAA3B4A077E /* Debug */,
+				3746523A92696E059B9726510463C73A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1522,15 +1527,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50A95C4252C7D968224D053C1A24CA7F /* Build configuration list for PBXNativeTarget "PingPong-PingPong" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7B15EA4715F7ACA8F214032CEFB315E3 /* Debug */,
-				BA9FFD4231F830E9B00043F9CB0E9152 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5B0566FF0CE681AC326D316CEC45A8CF /* Build configuration list for PBXNativeTarget "FMDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1540,20 +1536,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C60310D3D6BE2F2DC46954097DE83A2 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F87FFE7CF37D9907EB76AC58270F48CA /* Debug */,
-				428E747CD746563AA7846128A1BB8AE6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		76C0CDD675EF872819E0D655A5E26F1B /* Build configuration list for PBXNativeTarget "Pods-PingPong_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74C921163C9CBEEA0B734A7574F46C71 /* Debug */,
 				565AD7EE0BA61F6461CB564334D245F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A05B442B71F9209F41315959B2DD43C /* Build configuration list for PBXNativeTarget "PingPong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1207579496B46CC5FFFC2A3538418F64 /* Debug */,
+				1F0405C23CF7DAFCF790256CC2CBC7CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0BF646828C2CF8015C25BB398DEF51E /* Build configuration list for PBXNativeTarget "PingPong-PingPong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F0EAF5D1322CC3F757CD6B97DB8BAD7 /* Debug */,
+				DAF47E7DCB22603BCF27A4DFAFA2F446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

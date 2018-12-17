@@ -7,30 +7,32 @@
 
 import Foundation
 
-open class StashObject : JsonObject {
-    
-    public init(docType : String = "") {
-        // If docType is empty string then log
-        if (docType == "") {
-            print("PingPong: docType must be provided on type \(type(of: self))")
+extension Syncable {
+    public func stash() {
+        guard let jsonString = self.toJSON() else {
+            return
         }
-        
-        self.docType = docType
-    }
-    
-    @objc public var id : String = "" // Every stash object is required to have an id
-    @objc public let docType : String // Every stash object must have a docType
-    
-    open func stash() {
-        let jsonString = self.toJSON()
         DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
     }
     
-    public class func stashAll(objects: [StashObject]) -> Bool{
-        return DataStore.sharedDataStore.stashObjects(objects:objects)
+    // This func is meant for data coming from the cloud to ensure that it doesn't overwrite local queued changes
+    public func safeStash() {
+        if !self.hasPendingSync() {
+            guard let jsonString = self.toJSON() else {
+                return
+            }
+            DataStore.sharedDataStore.stashDocument(documentJson: jsonString)
+        }
     }
     
-    // This is essentially an override for stash where only a single instance of this document should exist in the DB at a time
+    // This func is meant for data coming from the cloud to ensure that it doesn't delete local queued changes, oftentimes when we fetch a large set of data we will delete existing data to ensure that objects deleted elsewhere are reflected. This is a safe way to do it.
+    public func safeDelete() {
+        if !self.hasPendingSync() {
+            DataStore.sharedDataStore.deleteDocument(id: self.id)
+        }
+    }
+    
+    // This is essentially an override for stash where only a single instance of this document type should exist in the DB at a time
     public func stashSingle(docType : String) -> Bool {
         var shouldStash = false
         
@@ -45,7 +47,6 @@ open class StashObject : JsonObject {
             }
             sema.signal()
         }
-        
         sema.wait()
         
         if (shouldStash) {
@@ -53,20 +54,6 @@ open class StashObject : JsonObject {
         }
         
         return shouldStash
-    }
-    
-    public func refresh() {
-        // Create semaphore to await results
-        let sema = DispatchSemaphore(value: 0)
-        
-        DataStore.sharedDataStore.retrieveDocumentJSON(id: self.id) { (result : String?) in
-            if let json = result {
-                self.fromJSON(json: json)
-            }
-            sema.signal()
-        }
-        
-        sema.wait()
     }
     
     public func hasChangedFromStash() -> Bool {
@@ -78,10 +65,8 @@ open class StashObject : JsonObject {
         
         DataStore.sharedDataStore.retrieveDocumentJSON(id: self.id) { (result : String?) in
             if let stashJson = result {
-                
                 let currentJson = self.toJSON()
                 hasChanged = (currentJson != stashJson)
-                
                 sema.signal()
             }
         }
@@ -89,5 +74,9 @@ open class StashObject : JsonObject {
         sema.wait()
         
         return hasChanged
+    }
+    
+    public func hasPendingSync() -> Bool {
+        return DataStore.sharedDataStore.hasPendingSync(documentId: self.id);
     }
 }

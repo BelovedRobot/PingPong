@@ -32,7 +32,7 @@ public class DataStore {
         queue = FMDatabaseQueue(path: dbPath)!
     }
     
-    public func stashObjects(objects: [StashObject]) -> Bool{
+    public func stashObjects(objects: [Syncable]) -> Bool{
         var success : Bool = false
         queue.inTransaction() { database, rollback in
             for stashableObject in objects {
@@ -279,7 +279,7 @@ public class DataStore {
         }
     }
     
-    public func retrieveQueuedDocuments(callback: @escaping ([String]?) -> ()) {
+    public func retrieveQueuedDocuments(callback: @escaping ([String]) -> ()) {
         queue.inDatabase { (database) in   
             do {
                 let results = try database.executeQuery("SELECT * FROM sync_queue", values: nil)
@@ -338,18 +338,13 @@ public class DataStore {
     }
     
     public func resetDatabase() {
-        let appDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let dbPath = "\(appDir)/\(DataStore.databaseName)"
-        try! FileManager.default.removeItem(atPath: dbPath)
-        
-        // Initialize the queue
-        queue = FMDatabaseQueue(path: dbPath)!
-        
-        // Get and unwrap instance of BRDatabase
-        let sharedDatabase = BRDatabase.sharedBRDatabase
-        
-        // Re-init the db
-        sharedDatabase.initialize(databaseName: DataStore.databaseName, databaseVersion: 0.0, success: nil)
-        print("SQLite path is \(String(describing: sharedDatabase.databasePath))")
+        queue.inDatabase { (database) in
+            do {
+                try database.executeUpdate("DELETE FROM sync_queue;", values: nil)
+                try database.executeUpdate("DELETE FROM documents;", values: nil)
+            } catch {
+                print("There was an error executing database queries or updates.")
+            }
+        }
     }
 }
